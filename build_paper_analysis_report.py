@@ -310,27 +310,47 @@ def map_residuals(panel: pd.DataFrame, slug: str, title: str) -> str:
         ax.text(0.5, 0.5, "no residuals", ha="center", va="center",
                 transform=ax.transAxes)
         return save_fig(fig, slug)
-    rmax = float(np.nanpercentile(np.abs(sub["residual_lag_only"]), 95))
-    sc = ax.scatter(sub["p_lon"], sub["p_lat"], s=44,
-                    c=sub["residual_lag_only"], cmap="RdBu_r",
-                    vmin=-rmax, vmax=rmax, edgecolor="black",
-                    linewidth=0.3, alpha=0.9,
+
+    # Aggregate to ONE dot per city: mean residual across the city's years.
+    # Otherwise three observations stack at identical lat/lon and the
+    # top-drawn dot's color disagrees with the label color (e.g., Stralsund
+    # was positive in 1300 and negative in 1500 → label and dot disagree).
+    by_city = (sub.groupby("city_id")
+                  .agg(p_lat=("p_lat", "first"),
+                       p_lon=("p_lon", "first"),
+                       buringh_city=("buringh_city", "first"),
+                       residual_mean=("residual_lag_only", "mean"),
+                       n_years=("residual_lag_only", "count"))
+                  .reset_index())
+
+    rmax = float(np.nanpercentile(np.abs(by_city["residual_mean"]), 95))
+    cmap = plt.get_cmap("RdBu_r")
+    norm = plt.matplotlib.colors.Normalize(vmin=-rmax, vmax=rmax)
+    sc = ax.scatter(by_city["p_lon"], by_city["p_lat"], s=48,
+                    c=by_city["residual_mean"], cmap=cmap, norm=norm,
+                    edgecolor="black", linewidth=0.3, alpha=0.92,
                     transform=ccrs.PlateCarree(), zorder=5)
     cb = plt.colorbar(sc, ax=ax, shrink=0.75, pad=0.02)
-    cb.set_label("residual = log(pop_T) − predicted from log(pop_T-100)",
+    cb.set_label("mean residual across observed years per city",
                  fontsize=10)
-    over = sub.nlargest(8, "residual_lag_only")
-    under = sub.nsmallest(8, "residual_lag_only")
+
+    # Label the 8 most-positive and 8 most-negative city averages.
+    over = by_city.nlargest(8, "residual_mean")
+    under = by_city.nsmallest(8, "residual_mean")
     for _, r in pd.concat([over, under]).iterrows():
-        # red residual (positive) = beat trajectory; blue (negative) = fell short
-        color = "#7c1f15" if r["residual_lag_only"] > 0 else "#1a3d6e"
+        # Match the label color to the dot color via the same colormap.
+        # Saturate toward the colormap edge for readability near zero.
+        v = float(r["residual_mean"])
+        v_sat = np.sign(v) * max(abs(v), 0.6 * rmax)
+        rgba = cmap(norm(v_sat))
+        color = tuple(0.7 * c for c in rgba[:3])
         ax.annotate(r["buringh_city"], (r["p_lon"], r["p_lat"]),
                     xytext=(5, 3), textcoords="offset points",
                     fontsize=9, fontweight="bold", color=color,
                     transform=ccrs.PlateCarree(), zorder=10,
                     path_effects=[
-                        plt.matplotlib.patheffects.withStroke(
-                            linewidth=2, foreground="white", alpha=0.85)])
+                        mpe.withStroke(linewidth=2, foreground="white",
+                                       alpha=0.85)])
     ax.set_title(title, fontsize=14, pad=12)
     return save_fig(fig, slug)
 
@@ -692,7 +712,7 @@ def main():
                                 title="HRE urban system, 1500 (population threshold ≥ 2,000)")
     map_uri_residuals = map_residuals(
         panel, slug="map_residuals_hre",
-        title="Path-dependence residuals (pooled 1300/1400/1500): "
+        title="Path-dependence residuals (mean across 1300/1400/1500 per city): "
               "red = beat trajectory, blue = fell short")
 
     # ----- Other figures -----------
