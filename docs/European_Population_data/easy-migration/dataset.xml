@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ddm:DDM xsi:schemaLocation="http://schemas.dans.knaw.nl/dataset/ddm-v2/ https://schemas.dans.knaw.nl/md/ddm/v2/ddm.xsd" xmlns:id-type="http://easy.dans.knaw.nl/schemas/vocab/identifier-type/" xmlns:ddm="http://schemas.dans.knaw.nl/dataset/ddm-v2/" xmlns:abr="http://www.den.nl/standaard/166/Archeologisch-Basisregister/" xmlns:gml="http://www.opengis.net/gml" xmlns:dcx-gml="http://easy.dans.knaw.nl/schemas/dcx/gml/" xmlns:dcx-dai="http://easy.dans.knaw.nl/schemas/dcx/dai/" xmlns:dct="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://purl.org/dc/elements/1.1/">
+     <ddm:profile>
+        
+       <dc:title>European urban population, 700 - 2000</dc:title>
+       <dct:description>This dataset contains estimates of the urban population (in thousands of inhabitants) between the years 700 and 2000 in 2,262 European settlements. It is based on previous historical demographic sources that have been critically assessed and systematically complemented with new population estimates for additional time windows, deriving from either quantitative sources or proxies. Missing data are covered by city-specific imputations. It contains European cities with more than 100,000 inhabitants. Furthermore medieval first and second nature geographical data for all cities have been added, as well as their historical names.</dct:description>
+       
+       
+       <dcx-dai:creatorDetails><dcx-dai:author>
+        <dcx-dai:titles>Dr. Dr. Ir.</dcx-dai:titles>
+        <dcx-dai:initials>E.</dcx-dai:initials>
+        
+        <dcx-dai:surname>Buringh</dcx-dai:surname>
+        
+        
+        
+        
+        <dcx-dai:organization>
+        <dcx-dai:name>Utrecht University</dcx-dai:name>
+        
+      </dcx-dai:organization>
+      </dcx-dai:author> </dcx-dai:creatorDetails>
+       <ddm:created>2020-05-05</ddm:created>
+       <ddm:available>2021-03-31</ddm:available>
+       <ddm:audience>D34000</ddm:audience><ddm:audience>D70000</ddm:audience><ddm:audience>D64000</ddm:audience><ddm:audience>D62000</ddm:audience>
+       <ddm:accessRights>OPEN_ACCESS</ddm:accessRights>
+     
+        <ddm:personalData present="Unknown"/>
+      </ddm:profile>
+     <ddm:dcmiMetadata>
+       <dct:identifier xsi:type="id-type:URN">urn:nbn:nl:ui:13-u7-96jh</dct:identifier><dct:identifier xsi:type="id-type:DOI">10.17026/dans-xzy-u62q</dct:identifier><dct:identifier xsi:type="id-type:EASY2">easy-dataset:197830</dct:identifier>
+       
+       
+       
+       
+       
+       
+       <ddm:relation scheme="id-type:DOI" href="https://doi.org/10.1163/24523666-06010003">The Population of European Cities from 700 to 2000</ddm:relation>
+       
+       <dcx-dai:contributorDetails><dcx-dai:author>
+        <dcx-dai:titles>Dr. Dr. Ir.</dcx-dai:titles>
+        <dcx-dai:initials>E.</dcx-dai:initials>
+        
+        <dcx-dai:surname>Buringh</dcx-dai:surname>
+        
+        
+        
+        <dcx-dai:role>RightsHolder</dcx-dai:role>
+        <dcx-dai:organization>
+        <dcx-dai:name>Utrecht University</dcx-dai:name>
+        
+      </dcx-dai:organization>
+      </dcx-dai:author> </dcx-dai:contributorDetails>
+       <dct:rightsHolder>Dr. Dr. Ir. E. Buringh (Utrecht University)</dct:rightsHolder>
+       
+       <dc:source>See code book and paper in Research Data Journal for the Humanities and Social Sciences.</dc:source>
+       <dct:type xsi:type="dct:DCMIType">Dataset</dct:type>
+       <dct:format>application/pdf</dct:format><dct:format>.txt</dct:format><dct:format>.ods</dct:format><dct:format>xlsx</dct:format>
+       
+       
+       <dct:subject>Urban population</dct:subject><dct:subject>City sizes</dct:subject><dct:subject>Historical demography</dct:subject><dct:subject>First nature geography</dct:subject><dct:subject>Second nature geography</dct:subject>
+       
+       <dct:spatial>Europe</dct:spatial>
+       <dct:temporal>700 to 2000</dct:temporal>
+       <dct:dateSubmitted xsi:type="dct:W3CDTF">2021-01-12</dct:dateSubmitted>
+       
+       <dct:license xsi:type="dct:URI">http://creativecommons.org/publicdomain/zero/1.0</dct:license>
+       <ddm:language code="eng" encodingScheme="ISO639-2">eng</ddm:language>
+       
+     </ddm:dcmiMetadata>
+   </ddm:DDM>

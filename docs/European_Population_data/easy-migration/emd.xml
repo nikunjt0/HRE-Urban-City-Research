@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<emd:easymetadata emd:version="0.1" xmlns:emd="http://easy.dans.knaw.nl/easy/easymetadata/" xmlns:eas="http://easy.dans.knaw.nl/easy/easymetadata/eas/" xmlns:dct="http://purl.org/dc/terms/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:foxml="info:fedora/fedora-system:def/foxml#">
+  <emd:title>
+    <dc:title>European urban population, 700 - 2000</dc:title>
+  </emd:title>
+  <emd:creator>
+    <eas:creator>
+      <eas:title>Dr. Dr. Ir.</eas:title>
+      <eas:initials>E.</eas:initials>
+      <eas:surname>Buringh</eas:surname>
+      <eas:organization>Utrecht University</eas:organization>
+      <eas:entityId eas:scheme="DAI" eas:identification-system="info:eu-repo/dai/nl/"/>
+    </eas:creator>
+  </emd:creator>
+  <emd:subject>
+    <dc:subject>Urban population</dc:subject>
+    <dc:subject>City sizes</dc:subject>
+    <dc:subject>Historical demography</dc:subject>
+    <dc:subject>First nature geography</dc:subject>
+    <dc:subject>Second nature geography</dc:subject>
+  </emd:subject>
+  <emd:description>
+    <dc:description>This dataset contains estimates of the urban population (in thousands of inhabitants) between the years 700 and 2000 in 2,262 European settlements. It is based on previous historical demographic sources that have been critically assessed and systematically complemented with new population estimates for additional time windows, deriving from either quantitative sources or proxies. Missing data are covered by city-specific imputations. It contains European cities with more than 100,000 inhabitants. Furthermore medieval first and second nature geographical data for all cities have been added, as well as their historical names.</dc:description>
+  </emd:description>
+  <emd:publisher/>
+  <emd:contributor>
+    <eas:contributor>
+      <eas:title>Dr. Dr. Ir.</eas:title>
+      <eas:initials>E.</eas:initials>
+      <eas:surname>Buringh</eas:surname>
+      <eas:organization>Utrecht University</eas:organization>
+      <eas:entityId eas:scheme="DAI" eas:identification-system="info:eu-repo/dai/nl/"/>
+      <eas:role eas:scheme="DATACITE">RightsHolder</eas:role>
+    </eas:contributor>
+  </emd:contributor>
+  <emd:date>
+    <eas:created eas:scheme="W3CDTF" eas:format="DAY">2020-05-05T00:00:00.000+02:00</eas:created>
+    <eas:available eas:scheme="W3CDTF" eas:format="DAY">2021-03-31T00:00:00.000+02:00</eas:available>
+    <eas:dateSubmitted eas:scheme="W3CDTF" eas:format="DAY">2021-01-12T00:00:00.000+01:00</eas:dateSubmitted>
+  </emd:date>
+  <emd:type>
+    <dc:type eas:schemeId="common.dc.type" eas:scheme="DCMI">Dataset</dc:type>
+  </emd:type>
+  <emd:format>
+    <dc:format eas:schemeId="common.dc.format" eas:scheme="IMT">application/pdf</dc:format>
+    <dc:format>.txt</dc:format>
+    <dc:format>.ods</dc:format>
+    <dc:format>xlsx</dc:format>
+  </emd:format>
+  <emd:identifier>
+    <dc:identifier eas:scheme="PID" eas:identification-system="http://www.persistent-identifier.nl">urn:nbn:nl:ui:13-u7-96jh</dc:identifier>
+    <dc:identifier eas:scheme="DOI" eas:identification-system="https://doi.org">10.17026/dans-xzy-u62q</dc:identifier>
+    <dc:identifier eas:scheme="DMO_ID">easy-dataset:197830</dc:identifier>
+  </emd:identifier>
+  <emd:source>
+    <dc:source>See code book and paper in Research Data Journal for the Humanities and Social Sciences.</dc:source>
+  </emd:source>
+  <emd:language>
+    <dc:language eas:schemeId="common.dc.language" eas:scheme="ISO 639">eng</dc:language>
+  </emd:language>
+  <emd:relation>
+    <eas:relation>
+      <eas:subject-title>The Population of European Cities from 700 to 2000</eas:subject-title>
+      <eas:subject-link>https://doi.org/10.1163/24523666-06010003</eas:subject-link>
+    </eas:relation>
+  </emd:relation>
+  <emd:coverage>
+    <dct:spatial>Europe</dct:spatial>
+    <dct:temporal>700 to 2000</dct:temporal>
+  </emd:coverage>
+  <emd:rights>
+    <dct:accessRights eas:schemeId="common.dcterms.accessrights">OPEN_ACCESS</dct:accessRights>
+    <dct:license>http://creativecommons.org/publicdomain/zero/1.0</dct:license>
+    <dct:license eas:scheme="Easy2 version 1">accept</dct:license>
+    <dct:rightsHolder>Dr. Dr. Ir. E. Buringh (Utrecht University)</dct:rightsHolder>
+  </emd:rights>
+  <emd:audience>
+    <dct:audience eas:schemeId="custom.disciplines">easy-discipline:8</dct:audience>
+    <dct:audience eas:schemeId="custom.disciplines">easy-discipline:24</dct:audience>
+    <dct:audience eas:schemeId="custom.disciplines">easy-discipline:45</dct:audience>
+    <dct:audience eas:schemeId="custom.disciplines">easy-discipline:49</dct:audience>
+  </emd:audience>
+  <emd:other>
+    <eas:application-specific>
+      <eas:metadataformat>ANY_DISCIPLINE</eas:metadataformat>
+      <eas:pakbon-status>NOT_IMPORTED</eas:pakbon-status>
+      <eas:archive eas:location="EASY"/>
+    </eas:application-specific>
+    <eas:etc/>
+  </emd:other>
+</emd:easymetadata>

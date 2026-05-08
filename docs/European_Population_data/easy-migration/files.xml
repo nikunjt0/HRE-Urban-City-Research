@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<files xsi:schemaLocation="http://easy.dans.knaw.nl/schemas/bag/metadata/files/ http://easy.dans.knaw.nl/schemas/bag/metadata/files/files.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://easy.dans.knaw.nl/schemas/bag/metadata/files/" xmlns:afm="http://easy.dans.knaw.nl/schemas/bag/metadata/afm/" xmlns:dct="http://purl.org/dc/terms/">
+    <file filepath="data/European urban population, 700 - 2000 - Annex B.pdf">
+        <!--original/European urban population, 700 - 2000 - Annex B.pdf-->
+        <dct:identifier>easy-file:10134293</dct:identifier>
+        <dct:title>European urban population, 700 - 2000 - Annex B.pdf</dct:title>
+        <dct:format>application/pdf</dct:format>
+        <dct:extent>0.4MB</dct:extent>
+        
+        <accessibleToRights>ANONYMOUS</accessibleToRights>
+        <visibleToRights>ANONYMOUS</visibleToRights>
+        
+        
+      </file><file filepath="data/European urban population, 700 - 2000.txt">
+        <!--original/European urban population, 700 - 2000.txt-->
+        <dct:identifier>easy-file:9917206</dct:identifier>
+        <dct:title>European urban population, 700 - 2000.txt</dct:title>
+        <dct:format>text/plain</dct:format>
+        <dct:extent>7.5MB</dct:extent>
+        
+        <accessibleToRights>ANONYMOUS</accessibleToRights>
+        <visibleToRights>ANONYMOUS</visibleToRights>
+        
+        
+      </file><file filepath="data/European urban population, 700 - 2000 - Annex A.pdf">
+        <!--original/European urban population, 700 - 2000 - Annex A.pdf-->
+        <dct:identifier>easy-file:9917207</dct:identifier>
+        <dct:title>European urban population, 700 - 2000 - Annex A.pdf</dct:title>
+        <dct:format>application/pdf</dct:format>
+        <dct:extent>0.2MB</dct:extent>
+        
+        <accessibleToRights>ANONYMOUS</accessibleToRights>
+        <visibleToRights>ANONYMOUS</visibleToRights>
+        
+        
+      </file><file filepath="data/European urban population, 700 - 2000.ods">
+        <!--original/European urban population, 700 - 2000.ods-->
+        <dct:identifier>easy-file:9931986</dct:identifier>
+        <dct:title>European urban population, 700 - 2000.ods</dct:title>
+        <dct:format>application/vnd.oasis.opendocument.spreadsheet</dct:format>
+        <dct:extent>3.1MB</dct:extent>
+        
+        <accessibleToRights>ANONYMOUS</accessibleToRights>
+        <visibleToRights>ANONYMOUS</visibleToRights>
+        
+        
+      </file><file filepath="data/European urban population, 700 - 2000.xlsx">
+        <!--original/European urban population, 700 - 2000.xlsx-->
+        <dct:identifier>easy-file:9931985</dct:identifier>
+        <dct:title>European urban population, 700 - 2000.xlsx</dct:title>
+        <dct:format>application/vnd.openxmlformats-officedocument.spreadsheetml</dct:format>
+        <dct:extent>2.4MB</dct:extent>
+        
+        <accessibleToRights>ANONYMOUS</accessibleToRights>
+        <visibleToRights>ANONYMOUS</visibleToRights>
+        
+        
+      </file>
+    </files>
