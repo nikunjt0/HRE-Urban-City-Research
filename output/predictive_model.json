@@ -1,0 +1,92 @@
+{
+  "spec": "\u0394log(pop_T) = \u03b1 + \u03b2_lag\u00b7log(pop_{T-100}) + \u03a3_k \u03b2_k \u00b7 z(factor_k_at_T)",
+  "outcome": "\u0394log(pop) over 100-year transition (Bairoch endpoints)",
+  "transitions": [
+    "1200-1300",
+    "1300-1400",
+    "1400-1500"
+  ],
+  "train_periods": [
+    "1200-1300",
+    "1300-1400"
+  ],
+  "holdout_period": "1400-1500",
+  "n_train": 255,
+  "n_test": 258,
+  "intercept": 0.988308866642414,
+  "intercept_ci": [
+    0.447651283852353,
+    1.611180300314109
+  ],
+  "coefficients": {
+    "lag_log_pop": {
+      "beta": -0.1541285769008933,
+      "ci_lo": -0.23161321436407978,
+      "ci_hi": -0.08627863168312801
+    },
+    "legal_capacity": {
+      "beta": 0.12771094797208402,
+      "ci_lo": 0.016916857255412768,
+      "ci_hi": 0.23349650055196772,
+      "z_mean": 2.1278431372549025,
+      "z_std": 2.010923418482644
+    },
+    "merchant_capital": {
+      "beta": 0.001359538234532889,
+      "ci_lo": -0.06211420853165229,
+      "ci_hi": 0.0731659892589732,
+      "z_mean": 0.7392156862745098,
+      "z_std": 1.2189803568319613
+    },
+    "agricultural_surplus": {
+      "beta": -0.0175270373133891,
+      "ci_lo": -0.07595630262017358,
+      "ci_hi": 0.03868254783725293,
+      "z_mean": 3.326291764705882,
+      "z_std": 0.8210265627589094
+    },
+    "noble_extraction": {
+      "beta": 0.02815783583742654,
+      "ci_lo": -0.07206883956147836,
+      "ci_hi": 0.12185687658490202,
+      "z_mean": -0.23333333333333334,
+      "z_std": 0.8281012220658343
+    },
+    "conflict_risk": {
+      "beta": 0.01837788314103136,
+      "ci_lo": -0.037312032003683285,
+      "ci_hi": 0.07887270611912639,
+      "z_mean": 0.34705882352941175,
+      "z_std": 0.9832624649457362
+    },
+    "trade_access": {
+      "beta": -0.019375781965122702,
+      "ci_lo": -0.08325141969224183,
+      "ci_hi": 0.036020553026711005,
+      "z_mean": 1.8327223529411762,
+      "z_std": 1.384992301787324
+    }
+  },
+  "factors_excluded": [
+    {
+      "name": "peasant_mobility",
+      "reason": "deterministic in 3 other factors per build_peasant_mobility.py:43-53; perfect collinearity"
+    }
+  ],
+  "feature_means": {
+    "legal_capacity": 2.1278431372549025,
+    "merchant_capital": 0.7392156862745098,
+    "agricultural_surplus": 3.326291764705882,
+    "noble_extraction": -0.23333333333333334,
+    "conflict_risk": 0.34705882352941175,
+    "trade_access": 1.8327223529411762
+  },
+  "feature_stds": {
+    "legal_capacity": 2.010923418482644,
+    "merchant_capital": 1.2189803568319613,
+    "agricultural_surplus": 0.8210265627589094,
+    "noble_extraction": 0.8281012220658343,
+    "conflict_risk": 0.9832624649457362,
+    "trade_access": 1.384992301787324
+  }
+}

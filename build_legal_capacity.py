@@ -166,6 +166,23 @@ def main():
             if charter_withdrawn:
                 score = max(0, score - 1)
 
+            # Continuous (pre-bucket) signal — predictive-model input.
+            # Same direction as the 0-3 score but preserves all underlying
+            # variance instead of collapsing to four tiers.
+            uni_proximity = (
+                max(0.0, 1.0 - (float(d_uni) / 200.0)) if np.isfinite(d_uni) else 0.0
+            )
+            legal_continuous = (
+                2.0 * cstatus
+                + 1.5 * int(has_formal)
+                + 0.7 * int(has_changes)
+                + 0.3 * int(has_mention)
+                + 1.0 * int(has_townhall)
+                + 0.7 * int(strong_family)
+                + 0.5 * uni_proximity
+                - 1.0 * int(charter_withdrawn)
+            )
+
             rows.append({
                 "city_id": cid,
                 "name": c["name"],
@@ -182,6 +199,7 @@ def main():
                 "city_status": cstatus,
                 "dist_university_km": (round(float(d_uni), 1) if np.isfinite(d_uni) else np.nan),
                 "legal_capacity_score": score,
+                "legal_capacity_continuous": round(float(legal_continuous), 4),
             })
     df = pd.DataFrame(rows)
     df = attach_nodesid(df)
@@ -190,7 +208,7 @@ def main():
     feat = ["has_formal_charter_by_y", "charter_withdrawn_by_y",
             "has_charter_changes_by_y", "has_mention_by_y",
             "has_townhall_by_y", "strong_legal_family", "city_status",
-            "dist_university_km"]
+            "dist_university_km", "legal_capacity_continuous"]
     long_path, wide_path = write_long_and_wide(
         df, "legal_capacity", feat, "legal_capacity_score")
     print(f"Wrote {long_path}")

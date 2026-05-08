@@ -99,6 +99,15 @@ def main():
             else:
                 score = 0
 
+            # Continuous (pre-bucket) signal — predictive-model input. Raw
+            # counts preserve the difference between "1 minor skirmish" and
+            # "10 sieges" that the 0-3 score collapses.
+            conflict_continuous = (
+                1.0 * float(n_events)
+                + 2.0 * float(n_major)
+                + 0.5 * float(n_fires)
+            )
+
             rows.append({
                 "city_id": cid,
                 "name": c["name"],
@@ -109,13 +118,15 @@ def main():
                 "n_major_conflicts_50yr": n_major,
                 "n_fires_50yr": n_fires,
                 "conflict_risk_score": score,
+                "conflict_risk_continuous": round(float(conflict_continuous), 4),
             })
 
     df = pd.DataFrame(rows)
     df = attach_nodesid(df)
     print(f"Built {len(df):,} (city, year) rows")
 
-    feat = ["n_conflicts_50yr", "n_major_conflicts_50yr", "n_fires_50yr"]
+    feat = ["n_conflicts_50yr", "n_major_conflicts_50yr", "n_fires_50yr",
+            "conflict_risk_continuous"]
     long_path, wide_path = write_long_and_wide(
         df, "conflict_risk", feat, "conflict_risk_score")
     print(f"Wrote {long_path}")

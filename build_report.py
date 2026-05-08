@@ -429,6 +429,14 @@ def _png_to_data_uri(fig) -> str:
     return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode()
 
 
+def _file_to_data_uri(path: Path) -> str:
+    """Read an existing PNG (e.g., from build_predictive_model.py) and embed it."""
+    if not path.exists():
+        return ""
+    return ("data:image/png;base64,"
+            + base64.b64encode(path.read_bytes()).decode())
+
+
 def fig_validation_scatter(
     df: pd.DataFrame, x_col: str, y_col: str, title: str,
     label_col: str | None = None, ax_x_label: str = None, ax_y_label: str = None,
@@ -920,6 +928,217 @@ def section_city_profiles(priority_long: pd.DataFrame, quotes: dict[str, list[di
     return section_html, nav_children
 
 
+def section_fitted_model() -> str:
+    """Render the fitted-regression section from build_predictive_model.py outputs.
+
+    Reads output/predictive_model.json and output/predictive_model_metrics.json.
+    If either is missing, render a placeholder telling the user how to generate
+    them (so the report still builds rather than breaking).
+    """
+    pm_json = OUT / "predictive_model.json"
+    metrics_json = OUT / "predictive_model_metrics.json"
+    if not (pm_json.exists() and metrics_json.exists()):
+        return """
+<section id="fitted-model">
+  <h2>5. Fitted Model</h2>
+  <p><em>Run <code>python3 build_predictive_model.py</code> to generate the fitted
+     coefficients, OOS validation, and residual maps. This section auto-populates
+     once <code>output/predictive_model.json</code> exists.</em></p>
+</section>
+"""
+    pm = json.loads(pm_json.read_text())
+    mt = json.loads(metrics_json.read_text())
+
+    coefs = pm["coefficients"]
+    cs_coefs = mt["cross_sectional_level_model"]["coefficients"]
+
+    # Equation rendering with bootstrap CIs
+    feat_order = ["legal_capacity", "merchant_capital", "trade_access",
+                  "agricultural_surplus", "noble_extraction", "conflict_risk"]
+    rows = []
+    rows.append(
+        f"<tr><td>α (intercept)</td>"
+        f"<td class='num'>{pm['intercept']:+.4f}</td>"
+        f"<td class='num small'>[{pm['intercept_ci'][0]:+.4f}, {pm['intercept_ci'][1]:+.4f}]</td>"
+        f"<td class='num small'>—</td></tr>")
+    rows.append(
+        f"<tr><td>β<sub>lag</sub> · log(pop<sub>T-100</sub>)</td>"
+        f"<td class='num'>{coefs['lag_log_pop']['beta']:+.4f}</td>"
+        f"<td class='num small'>[{coefs['lag_log_pop']['ci_lo']:+.4f}, {coefs['lag_log_pop']['ci_hi']:+.4f}]</td>"
+        f"<td class='num small'>mean reversion / convergence</td></tr>")
+    for f in feat_order:
+        if f not in coefs:
+            continue
+        c = coefs[f]
+        sig = (c["ci_lo"] > 0) or (c["ci_hi"] < 0)
+        beta_str = f"{c['beta']:+.4f}"
+        if sig:
+            beta_str = f"<strong>{beta_str}</strong>"
+        rows.append(
+            f"<tr><td>β<sub>{f}</sub> · z({f})</td>"
+            f"<td class='num'>{beta_str}</td>"
+            f"<td class='num small'>[{c['ci_lo']:+.4f}, {c['ci_hi']:+.4f}]</td>"
+            f"<td class='num small'>"
+            f"{'95% CI excludes 0' if sig else 'CI crosses 0 (not significant)'}"
+            f"</td></tr>")
+    coef_table = ("<table><thead><tr><th>Term</th><th>β</th><th>Bootstrap 95% CI</th>"
+                  "<th>Note</th></tr></thead><tbody>"
+                  + "".join(rows) + "</tbody></table>")
+
+    # Cross-sectional table
+    cs_rows = []
+    for f in feat_order:
+        if f not in cs_coefs:
+            continue
+        cs_rows.append(
+            f"<tr><td>β<sub>{f}</sub></td>"
+            f"<td class='num'>{cs_coefs[f]:+.4f}</td></tr>")
+    cs_table = ("<table><thead><tr><th>Term</th><th>β (cross-sectional, level)</th>"
+                "</tr></thead><tbody>" + "".join(cs_rows) + "</tbody></table>")
+
+    growth = mt["growth_model"]
+    ar1 = mt["ar1_baseline"]
+    rf = mt["rf_ceiling"]
+    cs_m = mt["cross_sectional_level_model"]
+
+    def fmt_r2(v):
+        if v is None or (isinstance(v, float) and (v != v)):
+            return "—"
+        return f"{v:+.3f}"
+
+    growth_kpi = kpi_grid([
+        ("In-sample R²",          fmt_r2(growth["in_sample_r2"])),
+        ("k-fold CV R² (by city)", f"{growth['kfold_cv_r2']['mean']:+.3f} ± "
+                                   f"{growth['kfold_cv_r2']['std']:.3f}"),
+        ("Temporal-holdout R²",   fmt_r2(growth["temporal_holdout_r2_oos"])),
+        ("vs AR(1) baseline",     fmt_r2(ar1["temporal_holdout_r2_oos"])),
+        ("vs Random Forest",      fmt_r2(rf["temporal_holdout_r2_oos"])),
+        ("Holdout MAE",           f"{growth['mae_oos']:.3f}"),
+    ])
+    cs_kpi = kpi_grid([
+        ("n observations",        f"{cs_m['n_obs']:,}"),
+        ("In-sample R²",          fmt_r2(cs_m["in_sample_r2"])),
+        ("k-fold CV R²",          f"{cs_m['kfold_cv_r2']['mean']:+.3f} ± "
+                                  f"{cs_m['kfold_cv_r2']['std']:.3f}"),
+    ])
+
+    cal_uri = _file_to_data_uri(OUT / "calibration_plot.png")
+    res_uri = _file_to_data_uri(OUT / "residual_map.png")
+    fi_uri = _file_to_data_uri(OUT / "feature_importance.png")
+
+    interp = mt.get("interpretation", "")
+    excluded = pm.get("factors_excluded", [])
+    excluded_html = ""
+    if excluded:
+        items = "".join(
+            f"<li><strong>{e['name']}</strong> — {_html.escape(e['reason'])}</li>"
+            for e in excluded)
+        excluded_html = f"<h4>Factors excluded from the regression</h4><ul>{items}</ul>"
+
+    img_block = lambda uri, alt: (
+        f'<img class="embed" src="{uri}" alt="{alt}">' if uri else
+        f"<p class='small'>(Plot {alt} not found — run build_predictive_model.py.)</p>")
+
+    return f"""
+<section id="fitted-model">
+  <h2>5. Fitted Model — Data-Driven Coefficients with Out-of-Sample Validation</h2>
+
+  <p>The hand-weighted composite in §2 is a <em>prior</em>: the weights are theoretical
+     commitments, not estimates. This section refits the same factors on real Bairoch
+     population data using OLS and reports honest out-of-sample performance.</p>
+
+  <p><strong>Two specifications</strong> are reported because they answer different
+     questions:</p>
+  <ul>
+    <li><em>Growth model.</em> Δlog(pop) over a 100-year transition, using factors at
+        the <strong>start</strong> of the transition (predetermined relative to outcome).
+        This is the causal claim — "do the factors predict subsequent growth?".</li>
+    <li><em>Cross-sectional level model.</em> log(pop<sub>T</sub>) at year T, using
+        factors at the same year. This is what the heuristic composite implicitly
+        targets — "given the factors, how big is this city now?".</li>
+  </ul>
+
+  <h3>Growth Model: Δlog(pop) over 100 years</h3>
+  <div class="equation"><code>{_html.escape(pm['spec'])}</code></div>
+  <p class="small">Train periods: {", ".join(pm['train_periods'])}.
+     Held-out period: {pm['holdout_period']}.
+     Train n = {pm['n_train']:,}; held-out n = {pm['n_test']:,}.
+     Bootstrap 95% CIs from cluster-bootstrap by city_id (n = 500).</p>
+  {growth_kpi}
+
+  <p><strong>How to read this:</strong> The k-fold CV R² is the model's true
+     within-period explanatory power — about 10% of the variance in 100-year
+     growth rates is captured by the 6 factors plus a lag-pop control. The
+     temporal-holdout R² is negative because the 1400→1500 period (post-Black
+     Death recovery) is a regime shift the 1200→1400 training data cannot
+     anticipate; the AR(1) baseline (lag pop only, no factors) is also negative
+     OOS, confirming the regime shift dominates. <em>The fitted-model framework
+     captures within-period heterogeneity but does not extrapolate across
+     centuries-long demographic regime shifts.</em></p>
+
+  <h4>Coefficients (z-scored factors → Δlog(pop) per 100 yr)</h4>
+  {coef_table}
+  <p class="small">Factors are z-scored using the training-set distribution.
+     A coefficient of +0.10 means: a one-standard-deviation increase in the
+     factor at the start of the period associates with about 10% higher log
+     population growth over the next 100 years, holding other factors fixed.</p>
+
+  <h3 style="margin-top:36px">Cross-Sectional Level Model</h3>
+  <div class="equation"><code>log(pop_T) ~ α + Σ β_k · z(factor_k at T) + year_FE</code></div>
+  {cs_kpi}
+  <p>This specification is closer to what the heuristic composite is trying to do.
+     The CV R² of about {cs_m['kfold_cv_r2']['mean']:.2f} is genuinely
+     informative — the six factors explain a meaningful share of the
+     cross-sectional variation in city size after holding out unseen cities.</p>
+  {cs_table}
+
+  <h3 style="margin-top:36px">Diagnostic plots</h3>
+  <h4>Calibration on the 1400→1500 holdout</h4>
+  {img_block(cal_uri, "calibration plot")}
+  <h4>Geographic residual map</h4>
+  {img_block(res_uri, "residual map")}
+  <p class="small">Blue points = under-predicted (city grew more than the model
+     expected); red = over-predicted. Watch for systematic regional bias —
+     e.g., southern German cities being uniformly under-predicted would suggest
+     the trade-access fallback (build_trade_access.py:Stage 10) is too
+     conservative.</p>
+  <h4>Feature importance</h4>
+  {img_block(fi_uri, "feature importance")}
+  <p class="small">Left: OLS β with bootstrap 95% CIs.
+     Right: permutation importance of the Random Forest, computed on the
+     test set — each feature is randomly shuffled and the resulting drop in
+     R² is the feature's importance. Bars near zero mean the feature carries
+     no information beyond what the others already provide.</p>
+
+  {excluded_html}
+
+  <details>
+    <summary>Methodology notes</summary>
+    <div class="details-body">
+      <p>{_html.escape(interp)}</p>
+      <ul>
+        <li><strong>Bairoch population panel.</strong> Loaded via
+            <code>lib/bairoch_pop.py</code>; matched to Bairoch <code>city_id</code>
+            via name + spatial join (≤15 km). Real snapshots: 1200, 1300, 1400, 1500.</li>
+        <li><strong>Sample selection.</strong> Bairoch codes cities below ~1k
+            population as NaN; the panel is biased toward cities that were
+            already large. Log-scale fitting partially mitigates.</li>
+        <li><strong>Standardisation.</strong> Factor columns z-scored using the
+            training distribution only — no information leaks from the holdout.</li>
+        <li><strong>Inference.</strong> Cluster-bootstrap by city_id (n = 500)
+            preserves the within-city correlation structure that a row-level
+            bootstrap would break.</li>
+        <li><strong>Why no period FE in the growth model?</strong> A period
+            dummy for the holdout transition would, by construction, be
+            estimated from test data only — leakage. The lag-pop term and
+            factor levels jointly absorb period drift.</li>
+      </ul>
+    </div>
+  </details>
+</section>
+"""
+
+
 def section_validation(stats_13: dict, stats_full: dict,
                        img_13: str, img_full: str,
                        residual_table: pd.DataFrame) -> str:
@@ -942,7 +1161,18 @@ def section_validation(stats_13: dict, stats_full: dict,
 
     return f"""
 <section id="validation">
-  <h2>5. Validation — Predicted vs. Actual</h2>
+  <h2>6. In-Sample Composite Illustration</h2>
+  <p class="warn-block" style="background:#faecd5;border:1px solid #d6b766;border-radius:6px;
+     padding:10px 14px;font-size:13.5px;color:#5e4413">
+     <strong>Read me first.</strong> The two scatters below are
+     <em>in-sample</em>: the heuristic composite from §2 was built from
+     variables (notably <code>agricultural_surplus_score</code>) that include
+     1500 population as a scoring input — so a high composite-vs-1500-pop R² is
+     <em>partly tautological</em>, not a fit metric. The honest out-of-sample
+     evaluation lives in <a href="#fitted-model">§5 Fitted Model</a>. This
+     section is retained because the per-city scatter is still a useful
+     qualitative diagnostic.
+  </p>
   <h3>13-city case study</h3>
   {kpi_grid([
       ("n", str(stats_13["n"])),
@@ -978,7 +1208,7 @@ def section_synthesis(residual_table: pd.DataFrame,
                       stats_13: dict, stats_full: dict) -> str:
     return f"""
 <section id="synthesis">
-  <h2>6. What the Model Got Right / Wrong</h2>
+  <h2>7. What the Heuristic Composite Got Right / Wrong</h2>
   <h3>What worked</h3>
   <ul>
     <li><strong>The free-imperial-city signal is load-bearing.</strong> Cologne, Frankfurt,
@@ -1097,7 +1327,7 @@ def section_appendix() -> str:
                 + "</tbody></table>")
     return f"""
 <section id="appendix">
-  <h2>7. Sources & Citations</h2>
+  <h2>8. Sources & Citations</h2>
   <h3>Primary datasets</h3>
   {data_html}
   <h3>Academic PDFs (quote sources)</h3>
@@ -1111,7 +1341,11 @@ def section_appendix() -> str:
     <li><code>build_peasant_mobility.py</code> → peasant_mobility score (imputed)</li>
     <li><code>build_noble_extraction.py</code> → noble_extraction score</li>
     <li><code>build_conflict_risk.py</code> → conflict_risk score</li>
-    <li><code>build_composite.py</code> → weighted sum + 0–3 bucketing</li>
+    <li><code>build_composite.py</code> → heuristic weighted sum + 0–3 bucketing (the prior)</li>
+    <li><code>build_predictive_model.py</code> → fitted OLS / RF coefficients,
+        OOS validation, calibration & residual plots (the posterior)</li>
+    <li><code>lib/bairoch_pop.py</code> → canonical Bairoch population loader, used by
+        both <code>build_agricultural_surplus.py</code> and the predictive model</li>
     <li><code>build_case_study.py</code> → case_study_priority13.csv</li>
     <li><code>build_report.py</code> → this report</li>
   </ul>
@@ -1202,6 +1436,7 @@ def main():
         section_equation(),
         section_methodology(),
         cities_html,
+        section_fitted_model(),
         section_validation(stats_13, stats_full, img_13, img_full,
                            val13_for_fit),
         section_synthesis(val13_for_fit, stats_13, stats_full),
@@ -1210,12 +1445,13 @@ def main():
 
     toc = [
         ("exec", "1. Executive Summary", []),
-        ("equation", "2. The Equation", []),
+        ("equation", "2. The Equation (Heuristic Prior)", []),
         ("methodology", "3. Methodology", []),
         ("cities", "4. City Profiles", nav_children),
-        ("validation", "5. Validation", []),
-        ("synthesis", "6. What Worked / Didn't", []),
-        ("appendix", "7. Sources", []),
+        ("fitted-model", "5. Fitted Model (OLS Posterior)", []),
+        ("validation", "6. In-Sample Composite Illustration", []),
+        ("synthesis", "7. What Worked / Didn't", []),
+        ("appendix", "8. Sources", []),
     ]
 
     html_doc = render_html(

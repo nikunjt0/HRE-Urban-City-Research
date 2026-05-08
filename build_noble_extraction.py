@@ -122,6 +122,16 @@ def main():
             else:
                 score = 1
 
+            # Continuous (pre-bucket) signal — predictive-model input. Higher
+            # value = more lord-extraction; mirrors the 0-3 sign (negative
+            # weight in the composite).
+            noble_continuous = (
+                1.0 * float(n_changes)
+                + 1.0 * float(n_foreign)
+                + 1.5 * float(int(is_pb_seat))
+                - 1.0 * float(cstatus)
+            )
+
             rows.append({
                 "city_id": cid,
                 "name": c["name"],
@@ -133,6 +143,7 @@ def main():
                 "n_foreign_rule_years_50yr": n_foreign,
                 "is_prince_bishop_seat": int(is_pb_seat),
                 "noble_extraction_score": score,
+                "noble_extraction_continuous": round(float(noble_continuous), 4),
             })
 
     df = pd.DataFrame(rows)
@@ -140,7 +151,7 @@ def main():
     print(f"Built {len(df):,} (city, year) rows")
 
     feat = ["city_status", "n_polity_changes_50yr", "n_foreign_rule_years_50yr",
-            "is_prince_bishop_seat"]
+            "is_prince_bishop_seat", "noble_extraction_continuous"]
     long_path, wide_path = write_long_and_wide(
         df, "noble_extraction", feat, "noble_extraction_score")
     print(f"Wrote {long_path}")

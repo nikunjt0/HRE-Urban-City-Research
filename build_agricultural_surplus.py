@@ -15,12 +15,15 @@ Score:
 """
 from __future__ import annotations
 
+import math
+
 import numpy as np
 import pandas as pd
 
 from lib.crosswalk import attach_nodesid
 from lib.geo import EARTH_KM, haversine_nearest
-from lib.paths import (BENCHMARKS, CITY_LOCATIONS_CSV, EU_POP_XLSX, VIABUNDUS)
+from lib.paths import (BENCHMARKS, CITY_LOCATIONS_CSV, EU_POP_XLSX, TOWNCHARTER_CSV,
+                       VIABUNDUS)
 from lib.scoring import write_long_and_wide
 
 
@@ -134,6 +137,59 @@ def main():
     river_xy = np.deg2rad(river[["mid_lat", "mid_lon"]].to_numpy())
     cities["dist_river_km"] = haversine_nearest(city_xy, river_xy)
 
+    # Voronoi cell area (km^2) — proxy for agricultural hinterland independent
+    # of own population. Cells unbounded at the convex hull of the city set
+    # get the within-region mean. Clipped to a generous HRE bounding box.
+    print("Computing Voronoi hinterland area for each city ...")
+    from scipy.spatial import Voronoi  # type: ignore
+    BBOX = (45.0, 55.0, 5.0, 20.0)  # (lat_min, lat_max, lon_min, lon_max)
+    # Use lat/lon directly for area computation, then convert with a coarse
+    # cos(lat)-corrected scaling. Good enough for a rank-preserving feature.
+    pts = cities[["lon", "lat"]].to_numpy()
+    vor = Voronoi(pts)
+    voronoi_area = np.full(len(cities), np.nan)
+    for i, region_idx in enumerate(vor.point_region):
+        region = vor.regions[region_idx]
+        if len(region) == 0 or -1 in region:
+            continue  # unbounded cell at convex hull
+        verts = vor.vertices[region]
+        # Reject cells with vertices well outside the bounding box
+        if (verts[:, 1].min() < BBOX[0] - 5 or verts[:, 1].max() > BBOX[1] + 5 or
+                verts[:, 0].min() < BBOX[2] - 5 or verts[:, 0].max() > BBOX[3] + 5):
+            continue
+        # Shoelace area in degrees^2, then convert (1° lat ≈ 111 km)
+        x = verts[:, 0]
+        y = verts[:, 1]
+        area_deg2 = 0.5 * abs(np.sum(x * np.roll(y, -1) - np.roll(x, -1) * y))
+        lat_mean = float(verts[:, 1].mean())
+        km_per_deg_lat = 111.0
+        km_per_deg_lon = 111.0 * np.cos(np.deg2rad(lat_mean))
+        area_km2 = area_deg2 * km_per_deg_lat * km_per_deg_lon
+        voronoi_area[i] = area_km2
+    # Cap at 99th percentile to neutralize huge boundary cells; impute mean.
+    finite = np.isfinite(voronoi_area)
+    if finite.any():
+        cap = np.nanquantile(voronoi_area[finite], 0.99)
+        voronoi_area[finite & (voronoi_area > cap)] = cap
+        mean_area = float(np.nanmean(voronoi_area[finite]))
+        voronoi_area[~finite] = mean_area
+    cities["voronoi_area_km2"] = voronoi_area
+    print(f"  Voronoi area: median={np.nanmedian(voronoi_area):.0f} km², "
+          f"max={np.nanmax(voronoi_area):.0f} km²")
+
+    # Earliest-mention year per city — the substrate for "centuries since
+    # first mention", a proxy for established cleared/cultivated hinterland.
+    print("Loading earliest-mention year per city from towncharter ...")
+    ch = pd.read_csv(TOWNCHARTER_CSV)
+    ch["time_point"] = pd.to_numeric(ch["time_point"], errors="coerce")
+    ch["type_origin"] = pd.to_numeric(ch["type_origin"], errors="coerce")
+    ch = ch.dropna(subset=["time_point", "city_id"])
+    fm = ch[ch["type_origin"] == 5].groupby("city_id")["time_point"].min().to_dict()
+    # Fall back to any earliest charter event when type_origin==5 missing
+    any_earliest = ch.groupby("city_id")["time_point"].min().to_dict()
+    print(f"  {len(fm):,} cities with type_origin==5 first mention; "
+          f"{len(any_earliest):,} with any charter event")
+
     print("Building per-(city, year) frame ...")
     # Pre-compute the closest available pop for each city across benchmark years
     # so we can interpolate (Bosker years are 700,800,900,...,1200,1300,1400,1500
@@ -168,6 +224,7 @@ def main():
             lat_band = "south" if lat < 49.0 else ("middle" if lat < 51.5 else "north")
             d_river = c["dist_river_km"]
             elev = elev_lookup.get(cid, np.nan)
+            varea = float(c["voronoi_area_km2"]) if np.isfinite(c["voronoi_area_km2"]) else np.nan
 
             pop_y = pop_at(cid, y)
             pop_prev = pop_at(cid, prev_y)
@@ -188,6 +245,9 @@ def main():
             # POSITIVE bonus, never as a penalty.
             river_bonus = bool(np.isfinite(d_river) and d_river <= 15)
 
+            # Legacy 0-3 score (kept for the report's tier maps and the
+            # heuristic composite). Uses population thresholds — DO NOT feed
+            # this into the predictive model: it leaks the outcome.
             if very_big or (big and growing):
                 score = 3
             elif big or (mid and (river_bonus or growing)) or (river_bonus and lat_band != "north"):
@@ -199,6 +259,32 @@ def main():
             if high_elev_penalty and score > 0:
                 score = max(0, score - 1)
 
+            # Continuous (population-free) score for the predictive model.
+            # All inputs are pre-determined relative to outcome:
+            #   * voronoi_area_km2: agricultural catchment, structural
+            #   * centuries_since_first_mention: cleared/cultivated land age
+            #   * river distance, elevation, lat band: geography
+            fm_y = fm.get(cid, any_earliest.get(cid, np.nan))
+            if np.isfinite(fm_y):
+                cent_since = max(0.0, min(8.0, (y - float(fm_y)) / 100.0))
+            else:
+                cent_since = 0.0
+            varea_term = math.log1p(varea) if (varea is not None and np.isfinite(varea)) else 0.0
+            river_term = (max(0.0, 1.0 - (float(d_river) / 40.0))
+                          if np.isfinite(d_river) else 0.0)
+            elev_term = (max(0.0, (float(elev) - 400.0) / 600.0)
+                         if np.isfinite(elev) else 0.0)
+            lat_south = 1.0 if lat_band == "south" else 0.0
+            lat_north = 1.0 if lat_band == "north" else 0.0
+            agri_continuous = (
+                0.4 * varea_term
+                + 0.3 * cent_since
+                + 0.5 * river_term
+                - 0.4 * elev_term
+                + 0.2 * lat_south
+                - 0.2 * lat_north
+            )
+
             rows.append({
                 "city_id": cid,
                 "name": c["name"],
@@ -208,16 +294,21 @@ def main():
                 "lat_band": lat_band,
                 "dist_river_km": (round(float(d_river), 1) if np.isfinite(d_river) else np.nan),
                 "elev_m": (round(float(elev), 0) if np.isfinite(elev) else np.nan),
+                "voronoi_area_km2": (round(float(varea), 1) if np.isfinite(varea) else np.nan),
+                "centuries_since_first_mention": round(cent_since, 2),
                 "population": (int(pop_y) if np.isfinite(pop_y) else np.nan),
                 "pop_growth_50yr": (round(float(growth), 3) if np.isfinite(growth) else np.nan),
                 "agricultural_surplus_score": score,
+                "agricultural_surplus_continuous": round(float(agri_continuous), 4),
             })
 
     df = pd.DataFrame(rows)
     df = attach_nodesid(df)
     print(f"Built {len(df):,} (city, year) rows")
 
-    feat = ["lat_band", "dist_river_km", "elev_m", "population", "pop_growth_50yr"]
+    feat = ["lat_band", "dist_river_km", "elev_m", "voronoi_area_km2",
+            "centuries_since_first_mention", "population", "pop_growth_50yr",
+            "agricultural_surplus_continuous"]
     long_path, wide_path = write_long_and_wide(
         df, "agricultural_surplus", feat, "agricultural_surplus_score")
     print(f"Wrote {long_path}")

@@ -13,7 +13,7 @@ CONSTRUCTION = DOCS / "construction_data"
 MARKETS = DOCS / "markets" / "markets_data"
 TERRITORIAL = DOCS / "territorial_histories" / "territorial_hit"
 CITY_LOCATIONS_DIR = DOCS / "city_locations_and_border_maps" / "dataverse_files"
-EU_POP = DOCS / "European_Population_data"
+EU_POP = DOCS / "European_Population_data_Buringh"
 
 CITY_LOCATIONS_CSV = CITY_LOCATIONS_DIR / "city_locations.csv"
 TOWNCHARTER_CSV = TOWNCHARTER / "towncharter.csv"

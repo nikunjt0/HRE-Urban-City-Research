@@ -249,6 +249,19 @@ for year in BENCHMARKS:
         tid = int(t["id"])
         own_rank = int(own_best.get(tid, 0))
         own_cat = {0: None, 1: "local", 2: "regional", 3: "interregional"}[own_rank]
+        d_river = float(t["distance_river_km"]) if np.isfinite(t["distance_river_km"]) else np.inf
+        d_road = float(t["distance_road_km"]) if np.isfinite(t["distance_road_km"]) else np.inf
+        # Continuous (pre-bucket) trade-access signal — GEOGRAPHIC connectivity
+        # only. Institutional signal (own fair tier, own staple, Hanseatic
+        # status, Messe presence) lives in merchant_capital_continuous; sharing
+        # those terms here would reproduce the 0.89 multicollinearity that
+        # made trade_access's coefficient flip negative in the fitted model.
+        ta_continuous = (
+            1.5 * float(int(t["on_trade_route"]))
+            + 0.7 * math.log1p(int(n50[i]))
+            + 0.7 * max(0.0, 1.0 - (d_river / 30.0))
+            + 0.5 * max(0.0, 1.0 - (d_road / 15.0))
+        )
         rows.append({
             "city_id": tid,
             "name": t["name"],
@@ -272,6 +285,7 @@ for year in BENCHMARKS:
             "has_own_ferry": int(tid in ferry_towns),
             "has_own_harbour": int(tid in harbour_towns),
             "on_trade_route": int(t["on_trade_route"]),
+            "trade_access_continuous": round(float(ta_continuous), 4),
         })
 
 df = pd.DataFrame(rows)
@@ -319,7 +333,7 @@ print(f"Wrote {out_path} ({len(df):,} rows)")
 wide_cols = ["population", "distance_fair_km", "num_fairs_50km", "num_fairs_100km",
              "has_own_fair", "own_fair_category", "has_own_toll", "has_own_staple",
              "has_own_bridge", "has_own_ferry", "has_own_harbour",
-             "trade_access_score"]
+             "trade_access_score", "trade_access_continuous"]
 identity = df.drop_duplicates("city_id")[
     ["city_id", "name", "lat", "lon", "town_from", "town_to",
      "distance_river_km", "distance_road_km", "on_trade_route"]
@@ -340,3 +354,214 @@ print("\n=== TradeAccess score distribution by year ===")
 print(df.groupby("year")["trade_access_score"].value_counts().unstack(fill_value=0))
 print("\n=== Population coverage by year ===")
 print(df.groupby("year")["population"].agg(["count", "mean", "max"]).round(1))
+
+
+# -- 10. Bairoch-keyed output with south-German fallback ---------------------
+# The Viabundus network does not cover southern Germany (Augsburg, Ulm,
+# Würzburg, Regensburg, Bamberg, Speyer, Rothenburg). Joining the
+# Viabundus-keyed `df` to Bairoch via the crosswalk drops those cities
+# silently — `build_composite.py` then fills 0 and the predictive model
+# learns that southern cities are always zero-trade. Fix: compute a
+# fallback `trade_access_continuous` for every Bairoch city without a
+# Viabundus nodesid, using haversine distances to the same fair / staple
+# / river points the Viabundus path used. Output a Bairoch-keyed file so
+# the predictive model can ingest it directly without going through the
+# nodesid join.
+print("\n=== Building Bairoch-keyed trade_access (with south-German fallback) ===")
+
+CW_PATH = OUT / "crosswalk_nodesid_cityid.csv"
+CITY_LOC_PATH = Path("/Users/nikunjtyagi/HistoryResearch/docs/city_locations_and_border_maps/dataverse_files/city_locations.csv")
+MARKETS_PATH = Path("/Users/nikunjtyagi/HistoryResearch/docs/markets/markets_data/markets.csv")
+
+if not CW_PATH.exists():
+    print(f"  WARNING: {CW_PATH} missing — skipping Bairoch-keyed output. "
+          f"Run build_crosswalk.py first.")
+else:
+    cw = pd.read_csv(CW_PATH)
+    cw = cw.dropna(subset=["city_id", "nodesid"]).drop_duplicates("nodesid")
+    cw["city_id"] = cw["city_id"].astype(int)
+    cw["nodesid"] = cw["nodesid"].astype(int)
+    node_to_city = cw.set_index("nodesid")["city_id"].to_dict()
+
+    # Bairoch master gazetteer
+    bcities = pd.read_csv(CITY_LOC_PATH)
+    bcities = bcities[["city_id", "name", "latitude", "longitude"]].rename(
+        columns={"latitude": "lat", "longitude": "lon"})
+    bcities = bcities.dropna(subset=["lat", "lon"]).reset_index(drop=True)
+    bcities["city_id"] = bcities["city_id"].astype(int)
+
+    # Viabundus path: for each (city_id, year) where a nodesid exists, take the
+    # Viabundus-derived continuous value
+    df_via = df.copy()
+    df_via["bairoch_id"] = df_via["city_id"].map(node_to_city)
+    df_via = df_via.dropna(subset=["bairoch_id"]).copy()
+    df_via["bairoch_id"] = df_via["bairoch_id"].astype(int)
+    df_via = df_via[["bairoch_id", "year", "trade_access_continuous",
+                     "trade_access_score", "distance_river_km",
+                     "distance_road_km", "distance_fair_km",
+                     "num_fairs_50km", "has_own_staple", "on_trade_route"]] \
+        .rename(columns={"bairoch_id": "city_id"})
+    # Multiple Viabundus nodes (gate, harbour, fair, parent town) can map to
+    # the same Bairoch city. Collapse to one row per (city_id, year) by
+    # keeping the row with the strongest signal (max trade_access_continuous);
+    # break ties by max trade_access_score.
+    df_via = (df_via.sort_values(["trade_access_continuous", "trade_access_score"],
+                                  ascending=False)
+                    .drop_duplicates(["city_id", "year"], keep="first")
+                    .reset_index(drop=True))
+    df_via["trade_access_source"] = "viabundus"
+    via_keys = set(zip(df_via["city_id"], df_via["year"]))
+    print(f"  Viabundus-keyed rows for Bairoch cities: {len(df_via):,} "
+          f"({df_via['city_id'].nunique():,} unique cities; "
+          f"deduped to one row per (city, year))")
+
+    # Fallback path: for Bairoch cities NOT in `via_keys` at each benchmark year
+    # we compute trade_access_continuous purely from Bairoch lat/lon and the
+    # Viabundus fair/staple/river point clouds.
+    bcity_xy = np.deg2rad(bcities[["lat", "lon"]].to_numpy())
+
+    # Fair locations are time-varying — re-derive per year
+    fairs_by_year_xy = {}
+    fairs_by_year_n50 = {}
+    for y in BENCHMARKS:
+        active = fairs[is_active(fairs["fromyear"], fairs["toyear"], y)].copy()
+        if len(active) == 0:
+            fairs_by_year_xy[y] = (None, np.zeros(len(bcities)),
+                                   np.full(len(bcities), np.nan),
+                                   np.full(len(bcities), 0))
+            continue
+        axy = np.deg2rad(active[["fair_lat", "fair_lon"]].to_numpy())
+        tree = BallTree(axy, metric="haversine")
+        d, _ = tree.query(bcity_xy, k=1)
+        nearest = d.flatten() * EARTH_KM
+        n50 = tree.query_radius(bcity_xy, r=50.0 / EARTH_KM, count_only=True)
+        # interregional-only tree for own-rank fallback
+        intr = active[active["category"] == "interregional"]
+        own_rank_arr = np.zeros(len(bcities), dtype=float)
+        if len(intr) > 0:
+            ixy = np.deg2rad(intr[["fair_lat", "fair_lon"]].to_numpy())
+            ix_tree = BallTree(ixy, metric="haversine")
+            id_, _ = ix_tree.query(bcity_xy, k=1)
+            # treat "interregional fair within 5 km" as own_rank = 3 fallback
+            close = (id_.flatten() * EARTH_KM) <= 5.0
+            own_rank_arr[close] = 3.0
+        regional = active[active["category"] == "regional"]
+        if len(regional) > 0:
+            rxy = np.deg2rad(regional[["fair_lat", "fair_lon"]].to_numpy())
+            rt = BallTree(rxy, metric="haversine")
+            rd, _ = rt.query(bcity_xy, k=1)
+            close = (rd.flatten() * EARTH_KM) <= 5.0
+            own_rank_arr[(own_rank_arr == 0) & close] = 2.0
+        fairs_by_year_xy[y] = (own_rank_arr, n50, nearest, None)
+
+    # Markets / Messe presence as a south-German fair signal (Bairoch markets.csv
+    # is the authoritative source for southern German Jahrmärkte not in Viabundus).
+    if MARKETS_PATH.exists():
+        mk = pd.read_csv(MARKETS_PATH)
+        mk = mk[mk["time_point"] <= 1600].copy()
+        mk_messe = mk[mk["type_market"] == 6].groupby("city_id")["time_point"].min().to_dict()
+        mk_any = mk.groupby("city_id")["time_point"].min().to_dict()
+        print(f"  loaded {len(mk_messe):,} cities with Messe (annual fair) for fallback")
+    else:
+        mk_messe = {}
+        mk_any = {}
+
+    # Distance-to-Viabundus-river-edge for Bairoch cities (a coarse proxy
+    # for navigable-water access; misses the Danube/Lech/Main/Neckar but
+    # we mitigate by giving south-German cities an explicit small uplift).
+    river_xy_b = np.deg2rad(river_edges[["mid_lat", "mid_lon"]].to_numpy())
+    river_tree_b = BallTree(river_xy_b, metric="haversine")
+    rd_b, _ = river_tree_b.query(bcity_xy, k=1)
+    river_dist_km_b = rd_b.flatten() * EARTH_KM
+
+    # Hand-coded set of large south-German rivers (Danube, Lech, Main,
+    # Neckar) approximated by a few coordinate samples along each. This
+    # closes the systematic Viabundus gap without new data collection.
+    SOUTH_GERMAN_RIVER_POINTS = [
+        # Danube (Donau): Ulm, Donauwörth, Regensburg, Passau
+        (48.4011, 9.9876), (48.7180, 10.7747), (49.0134, 12.1016), (48.5667, 13.4319),
+        # Lech: Augsburg, Landsberg
+        (48.3705, 10.8978), (48.0521, 10.8810),
+        # Main: Würzburg, Bamberg, Frankfurt, Aschaffenburg
+        (49.7913, 9.9534), (49.8988, 10.9028), (50.1109, 8.6821), (49.9769, 9.1437),
+        # Neckar: Heilbronn, Stuttgart, Tübingen
+        (49.1427, 9.2109), (48.7758, 9.1829), (48.5216, 9.0576),
+    ]
+    sg_xy = np.deg2rad(np.array(SOUTH_GERMAN_RIVER_POINTS))
+    sg_tree = BallTree(sg_xy, metric="haversine")
+    sd_b, _ = sg_tree.query(bcity_xy, k=1)
+    sg_river_dist_b = sd_b.flatten() * EARTH_KM
+    # combined river distance: min of Viabundus rivers and the south-German set
+    river_dist_combined = np.minimum(river_dist_km_b, sg_river_dist_b)
+
+    fallback_rows = []
+    bcity_records = bcities.to_dict("records")
+    for y in BENCHMARKS:
+        own_rank_arr, n50_arr, nearest_arr, _ = fairs_by_year_xy[y]
+        for i, c in enumerate(bcity_records):
+            cid = int(c["city_id"])
+            if (cid, y) in via_keys:
+                continue  # Viabundus already supplies this row
+            d_river = float(river_dist_combined[i])
+            n50 = int(n50_arr[i])
+            own_rank = float(own_rank_arr[i]) if own_rank_arr is not None else 0.0
+            d_fair = float(nearest_arr[i]) if np.isfinite(nearest_arr[i]) else np.nan
+            # Markets-based Messe uplift (south-German cities get this boost)
+            has_messe = (
+                cid in mk_messe and float(mk_messe[cid]) <= y
+            )
+            has_market = cid in mk_any and float(mk_any[cid]) <= y
+            # Geographic-only (matches the Viabundus path; institutional signal
+            # belongs to merchant_capital). Cities not in Viabundus have no
+            # `on_trade_route` flag, so this term is 0 by construction.
+            ta_continuous = (
+                0.7 * math.log1p(n50)
+                + 0.7 * max(0.0, 1.0 - (d_river / 30.0))
+            )
+            # Crude 0-3 score for backward compat with build_composite.py
+            if own_rank >= 3 or has_messe and own_rank >= 2:
+                fb_score = 3
+            elif own_rank >= 2 or has_messe or n50 >= 2:
+                fb_score = 2
+            elif own_rank >= 1 or (np.isfinite(d_fair) and d_fair <= 25) or has_market:
+                fb_score = 1
+            else:
+                fb_score = 0
+            fallback_rows.append({
+                "city_id": cid,
+                "year": y,
+                "trade_access_continuous": round(float(ta_continuous), 4),
+                "trade_access_score": fb_score,
+                "distance_river_km": round(d_river, 3),
+                "distance_road_km": np.nan,
+                "distance_fair_km": (round(d_fair, 3) if np.isfinite(d_fair) else np.nan),
+                "num_fairs_50km": n50,
+                "has_own_staple": 0,
+                "on_trade_route": 0,
+                "trade_access_source": "fallback",
+            })
+
+    df_fb = pd.DataFrame(fallback_rows)
+    print(f"  Fallback rows for non-Viabundus Bairoch cities: {len(df_fb):,} "
+          f"({df_fb['city_id'].nunique() if len(df_fb) else 0:,} unique cities)")
+
+    # Stitch together: Viabundus rows + fallback rows
+    df_bairoch = pd.concat([df_via, df_fb], ignore_index=True, sort=False)
+    df_bairoch = df_bairoch.merge(
+        bcities[["city_id", "name", "lat", "lon"]],
+        on="city_id", how="left",
+    )
+    cols_order = ["city_id", "name", "lat", "lon", "year",
+                  "trade_access_continuous", "trade_access_score",
+                  "distance_river_km", "distance_road_km",
+                  "distance_fair_km", "num_fairs_50km",
+                  "has_own_staple", "on_trade_route",
+                  "trade_access_source"]
+    df_bairoch = df_bairoch[[c for c in cols_order if c in df_bairoch.columns]]
+    out_b = OUT / "cities_trade_access_bairoch.csv"
+    df_bairoch.to_csv(out_b, index=False)
+    print(f"  Wrote {out_b} ({len(df_bairoch):,} rows; "
+          f"sources: {df_bairoch['trade_access_source'].value_counts().to_dict()})")
+    print("\n=== trade_access_continuous distribution by source ===")
+    print(df_bairoch.groupby("trade_access_source")["trade_access_continuous"]
+          .agg(["count", "mean", "median", "max"]).round(2))

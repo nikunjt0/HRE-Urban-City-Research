@@ -23,7 +23,19 @@ PRIORITY_CITIES = [
     ("Speyer",                  18087,    None),
 ]
 
-# Tunable weights for the composite "launch potential" score.
+# Tunable weights for the heuristic "launch potential" composite (the prior).
+# These are theoretical commitments, not estimated coefficients. The fitted
+# OLS posterior — with bootstrap 95% CIs and out-of-sample validation against
+# Bairoch population — lives in build_predictive_model.py and is reported in
+# §5 of the rendered report. The two are intentionally kept separate; this
+# composite drives the qualitative tier maps and city profiles, while the
+# fitted model drives the quantitative claims.
+#
+# peasant_mobility is included here for narrative continuity (it appears in
+# the prior equation walk-through), but the predictive model excludes it
+# because build_peasant_mobility.py:43-53 makes it a deterministic function
+# of three other factors — feeding it into a regression yields perfect
+# collinearity.
 DEFAULT_WEIGHTS = {
     "legal_capacity":       +1.0,
     "merchant_capital":     +1.0,

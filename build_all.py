@@ -30,7 +30,9 @@ STEPS = [
     ["python3", "build_noble_extraction.py"],
     ["python3", "build_conflict_risk.py"],
     ["python3", "build_peasant_mobility.py"],
+    ["python3", "build_trade_access.py"],
     ["python3", "build_composite.py"],
+    ["python3", "build_predictive_model.py"],
     ["python3", "build_case_study.py"],
 ]
 

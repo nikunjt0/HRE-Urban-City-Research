@@ -120,6 +120,17 @@ def main():
             else:
                 score = 0
 
+            # Continuous (pre-bucket) signal — predictive-model input.
+            # best_fair_category is already 0/1/2/3, preserving fair-tier info
+            # that the bucket-score collapses.
+            merchant_continuous = (
+                1.5 * float(best_fair)
+                + 1.5 * float(has_staple)
+                + 1.0 * float(hanse)
+                + 0.7 * float(has_messe)
+                + 0.3 * float(has_market)
+            )
+
             rows.append({
                 "city_id": cid,
                 "name": c["name"],
@@ -134,6 +145,7 @@ def main():
                 "has_messe_by_y": has_messe,
                 "has_market_by_y": has_market,
                 "merchant_capital_score": score,
+                "merchant_capital_continuous": round(float(merchant_continuous), 4),
             })
 
     df = pd.DataFrame(rows)
@@ -144,7 +156,7 @@ def main():
 
     feat = ["is_hanseatic", "best_fair_category", "has_regional_fair",
             "has_interregional_fair", "has_staple", "has_messe_by_y",
-            "has_market_by_y"]
+            "has_market_by_y", "merchant_capital_continuous"]
     long_path, wide_path = write_long_and_wide(
         df, "merchant_capital", feat, "merchant_capital_score")
     print(f"Wrote {long_path}")
