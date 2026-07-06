@@ -3,3 +3,7 @@
 docs/sound_toll_registers/belastingen.csv
 docs/sound_toll_registers/doorvaarten.csv
 docs/sound_toll_registers/ladingen.csv
+
+# Python bytecode cache
+__pycache__/
+*.pyc
