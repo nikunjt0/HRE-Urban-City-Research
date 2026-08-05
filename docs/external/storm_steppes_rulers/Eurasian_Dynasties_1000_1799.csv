@@ -1,0 +1,312 @@
+polity_name,truhart_id,dynasty_name,dynasty_id,dyn_start,dyn_end,dynasty_source,rulers_coded,rulers_source,fs_start,fs_end,IACW_primary_start,IACW_primary_end,IACW_partial_start,IACW_partial_end,start_core,pres_country,proxy_location,core_latitude,core_longitude,successor,IACW_successor,fs_successor,dynastic_end_conquest,core_region,state_history,inner_asia_core_dist,EPR1_ID,EPR2_ID,EPR3_ID
+Egypt (Fatimid),8.113,Fatimids,97,969,1170,Truhart (1996),1,Tapsell 1983,969,1170,,,1000,1170,Cairo,EG,"Cairo, Egypt",30.06263,31.24967,Egypt (Ayyubids),1,0,0,Middle_East,40,1497,2,6,7
+Egypt (Ayyubid),8.114,Ayyubids,33,1171,1249,Truhart (1996),1,Tapsell 1983,,,1171,1249,,,Cairo,EG,"Cairo, Egypt",30.06263,31.24967,Egypt (Bahris),1,0,0,Middle_East,42,1497,2,6,7
+Egypt (Mamluk),8.115,Bahris,37,1250,1381,Truhart (1996),1,Tapsell 1983,,,1250,1381,,,Cairo,EG,"Cairo, Egypt",30.06263,31.24967,Egypt (Burjis),1,0,0,Middle_East,43,1497,2,6,7
+Egypt (Mamluk),8.115,Burjis,56,1382,1517,Truhart (1996),1,Tapsell 1983,,,1382,1517,,,Cairo,EG,"Cairo, Egypt",30.06263,31.24967,Ottoman Empire,0,0,1,Middle_East,44,1497,2,6,7
+Ghazna,10.111,Ghaznavids,109,950,1175,Truhart (1996),1,Tapsell 1983,,,950,1175,,,Ghazni,AF,"Ghazni, Afghanistan",33.379194,67.792641,Ghurids,1,0,1,Middle_East,21,352,5,6,13
+Afghanistan,10.112,Durrani,92,1747,1826,Truhart (1996),0,,,,1747,1826,,,Kandahar,AF,"Kandahar, Afghanistan",31.62,65.715833,Afghanistan (Barakzai),1,0,0,Middle_East,29,445,2,6,8
+Badakhshan,10.1151,Shaybanids,305,1584,1881,Truhart (1996),0,,,,1584,1881,,,Badakhshan,AF,"Badakhan Province, Afghanistan",38,71,Afghanistan,1,0,1,Middle_East,20,23,5,7,13
+Harat,10.122,Seljuks,301,1040,1160,Truhart (1996),0,,,,1040,1160,,,Herat,AF,"Herat, Afghanistan",34.341944,62.203056,Harat (Ghuzz),1,0,1,Middle_East,16,36,5,6,13
+Harat,10.122,Ghuzz,113,1161,1206,Truhart (1996),0,,,,1161,1206,,,Herat,AF,"Herat, Afghanistan",34.341944,62.203056,Khwarizm (Anushtiginids),1,0,1,Middle_East,17,36,5,6,13
+Harat,10.122,Karts,157,1245,1380,Truhart (1996),1,Tapsell 1983,,,,,1245,1380,Herat,AF,"Herat, Afghanistan",34.341944,62.203056,Harat (Timurids),1,0,1,Middle_East,18,36,5,6,13
+Harat,10.122,Timurids,333,1381,1506,Truhart (1996),0,,,,1381,1506,,,Herat,AF,"Herat, Afghanistan",34.341944,62.203056,Harat (Shaybanids),1,0,1,Middle_East,19,36,5,6,13
+Harat,10.122,Shaybanids,305,1507,1510,Truhart (1996),0,,,,1507,1510,,,Herat,AF,"Herat, Afghanistan",34.341944,62.203056,Iran (Safavids),1,1,1,Middle_East,21,36,5,6,13
+Ghur,10.126,Shansabanis,111,1082,1205,Tapsell (1983),1,"Morby 1989, p.198",,,1082,1205,,,Firozkoh,AF,"Firozkoh, Afghanistan",34.396121,64.515144,Khwarizm (Anushtiginids),1,0,1,Middle_East,16,119,5,6,13
+Khwarizm,10.141,Anushtiginids,17,1077,1220,Truhart (1996),1,"Morby 1989, p.198",,,1077,1220,,,Gurganj,TM,"Konye-Urgench, Turkmenistan",42.333333,59.15,Mongols,1,0,1,Inner_Asia,11,0,5,6,13
+Khwarizm,10.141,Shaybanids,305,1505,1510,Truhart (1996),0,,,,1505,1510,,,Gurganj,TM,"Konye-Urgench, Turkmenistan",42.333333,59.15,Iran (Safavids),1,1,1,Inner_Asia,16,0,5,6,13
+Samarqand,10.142,Timurids,333,1360,1500,Truhart (1996),1,"Morby 1989, p.201",,,1360,1500,,,Samarkand,UZ,"Samarqand, Uzbekistan",39.819905,66.480798,Shaybanids,1,0,1,Inner_Asia,18,0,5,6,13
+Bukhara,10.143,Shaybanids,305,1501,1598,Truhart (1996),1,Tapsell 1983,,,1501,1598,,,Bukhara,UZ,"Bukhoro, Uzbekistan",40.012587,63.875724,Bukhara (Astrakhanids),1,0,0,Inner_Asia,20,0,5,6,13
+Bukhara,10.143,Astrakhanids,31,1599,1784,Truhart (1996),1,Tapsell 1983,,,1599,1784,,,Bukhara,UZ,"Bukhoro, Uzbekistan",40.012587,63.875724,Bukhara (Manqit),1,0,0,Inner_Asia,20,0,5,6,13
+Kokand,10.153,Khwaja,166,1700,1876,Truhart (1996),0,,,,1700,1876,,,Kokand,UZ,"Kokand, Uzbekistan",40.528611,70.9425,Russia,0,0,1,Inner_Asia,9,0,5,7,13
+Qarakhanids,10.172,Qarakhanids,263,830,1130,Truhart (1996),1,Tapsell 1983,,,830,1130,,,Balasagun,KG,"Chuy, Kyrgyzstan",42.614032,74.113474,Khitan,1,0,1,Inner_Asia,1,0,5,7,13
+Khitan,10.1722,Qara Qitay,261,1124,1218,Truhart (1996),1,Tapsell 1983,,,1124,1218,,,Balasagun,KG,"Chuy, Kyrgyzstan",42.614032,74.113474,Mongols,1,0,1,Inner_Asia,4,0,5,7,13
+Dsungaria,10.174,Zungars,372,1619,1756,Truhart (1996),0,,,,1619,1756,,,Dsungaria,CN,"Northern Xinjiang, China",45,85,China (Qing),1,1,1,Inner_Asia,16,0,5,7,13
+Ghuzz,10.1763,Ghuzz,113,900,1150,Truhart (1996),0,,,,900,1150,,,Yagkent,KZ,"Jankent, Kazakhstan",45.612222,61.921111,Qipchaks,1,0,1,Inner_Asia,9,0,5,6,13
+Kazakhstan (White Horde),10.1766,Chinggisids,521,1220,1380,Truhart (1996),1,Tapsell 1983,,,1220,1380,,,Sozak,KZ,"Sozak, Kazakhstan",44.133333,68.466667,Golden Horde,1,0,1,Inner_Asia,0,0,5,6,13
+Kazakh,10.1771,Kicik Guz,167,1535,1824,Truhart (1996),0,,,,1535,1824,,,Sozak,KZ,"Sozak, Kazakhstan",44.133333,68.466667,Russia,0,0,1,Inner_Asia,7,0,5,6,13
+Mongols (Chagatai),10.178,Chinggisids,70,1227,1403,Truhart (1996),1,Tapsell 1983,,,1227,1403,,,Almaliq,CN,"Huocheng, Ili, Xinjiang, China",44.196415,80.418183,Samarqand (Timurids),1,0,1,Inner_Asia,7,0,5,7,13
+Mogholistan,10.191,Dughlat,86,1348,1514,Truhart (1996),1,Tapsell 1983,,,1348,1514,,,Aksu,CN,"Aksu, China",41.185,80.2904,Mughals,1,0,1,Inner_Asia,8,0,5,7,13
+Ladakh,10.246,Yarlung,364,928,1470,Truhart (1996),0,,928,1470,,,,,Shey,IN,"Shey, India",34.073182,77.639294,Ladakh (rNam-gyal),0,1,1,Indian_Subcontinent,4,89,5,7,13
+Ladakh,10.246,rNam-gyal,284,1535,1843,Truhart (1996),1,Tapsell 1983,1535,1843,,,,,Leh,IN,"Leh, India",34.164167,77.584722,Sikh Empire,0,0,1,Indian_Subcontinent,7,85,5,7,13
+China (Song),10.313,Song,317,960,1275,Truhart (1996),1,"Morby 1989, p.219",997,1275,,,,,Bianjing,CN,"Kaifeng, China",34.618738,114.489446,China (Yuan),1,0,1,East_Asia,30,434,6,7,14
+Jin,10.314,Jurchen,149,1115,1234,Truhart (1996),1,"Morby 1989, p.219",,,1115,1234,,,Acheng,CN,"Acheng, China",45.556372,126.974487,China (Yuan),1,0,1,Inner_Asia,2,0,6,7,14
+China (Yuan),10.315,Yuan,367,1276,1367,Truhart (1996),1,"Morby 1989, p.220",,,,,1276,1367,Beijing,CN,"Beijing, China",39.937967,116.417592,China (Ming),0,1,0,East_Asia,20,206,5,7,14
+China (Ming),10.316,Ming,209,1368,1643,Truhart (1996),1,"Morby 1989, p.220",1368,1643,,,,,Nanjing,CN,"Nanjing, China",32.044972,118.773596,China (Qing),1,0,1,East_Asia,29,771,3,7,9
+China (Qing),10.317,Qing,268,1644,1912,Truhart (1996),1,"Morby 1989, p.220",1644,1912,,,1644,1912,Beijing,CN,"Beijing, China",39.937967,116.417592,China (Republican),0,0,0,East_Asia,23,206,5,7,14
+Great Liao,10.322,Khitan,165,901,1125,Truhart (1996),1,Tapsell 1983,901,1125,,,901,1125,Shangjing,CN,"Chifeng, China",43.249208,117.528938,Jin,1,0,1,Inner_Asia,8,0,5,7,14
+Nanzhao (Dali),10.432,Nanzhao,219,649,1253,Truhart (1996),1,Tapsell 1983,649,1253,,,,,Dali,CN,"Dali Town, China",25.7026,100.1554,China (Yuan),1,0,1,East_Asia,7,738,2,7,9
+Western Xia ,10.456,Tangut,329,986,1227,Truhart (1996),1,Tapsell 1983,986,1227,986,1227,,,Yinchuan,CN,"Yinchuan, China",38.471266,106.27192,Mongols,1,0,1,Inner_Asia,8,0,5,7,14
+Korea,10.479,Koryo,174,918,1391,Truhart (1996),1,Tapsell 1983,,,,,,,Kaesong,KP,"Kaesong, North Korea",37.97083,126.55444,Korea (Joseon),0,1,0,East_Asia,11,292,6,7,14
+Korea,10.48,Joseon,148,1392,1910,Truhart (1996),1,"Morby 1989, p.228",1471,1910,,,,,Seoul,KR,South Korea Seoul Yongsan-gu Seoul,37.539619,127.009676,Japan (Meiji),0,0,1,East_Asia,14,354,6,7,14
+Japan,10.491,Emperors,94,629,1191,Tapsell (1983),1,Tapsell 1983,,,,,,,Heian,JP,"Kyoto, Japan",35,135.766667,Japan (Minamoto),0,0,0,East_Asia,4,938,6,8,14
+Japan,10.491,Minamoto,208,1192,1219,Tapsell (1983),1,Tapsell 1983,,,,,,,Heian,JP,"Kyoto, Japan",35,135.766667,Japan (Fujiwara),0,0,0,East_Asia,9,938,6,8,14
+Japan,10.491,Fujiwara,102,1220,1250,Tapsell (1983),1,Tapsell 1983,,,,,,,Heian,JP,"Kyoto, Japan",35,135.766667,Japan (Imperial Shoguns),0,0,0,East_Asia,10,938,6,8,14
+Japan,10.491,Imperial Shoguns,140,1251,1333,Tapsell (1983),1,Tapsell 1983,,,,,,,Heian,JP,"Kyoto, Japan",35,135.766667,Japan (Ashikaga),0,0,0,East_Asia,10,938,6,8,14
+Japan,10.491,Ashikaga,29,1338,1573,Tapsell (1983),1,Tapsell 1983,,,,,,,Heian,JP,"Kyoto, Japan",35,135.766667,Oda Nobunaga,0,0,0,East_Asia,11,938,6,8,14
+Japan,10.491,Tokugawa,334,1603,1868,Tapsell (1983),1,Tapsell 1983,1603,1868,,,,,Edo,JP,"Edo, Japan",35.683889,139.774444,Japan (Meiji),0,0,0,East_Asia,6,1089,6,8,14
+Mongols,10.521,Chinggisids,70,1206,1543,Truhart (1996),1,Tapsell 1983,,,1206,1543,,,Avarga,MN,"Avarga, Mongolia",47.102778,109.155833,Disintegration,,,0,Inner_Asia,12,0,5,7,14
+Mongols (White Horde),10.533,Chinggisids,70,1227,1395,Truhart (1996),1,Tapsell 1983,,,1227,1395,,,Syr Darya,KZ,Syr Daria,46.154167,60.873611,Golden Horde,1,0,1,Inner_Asia,0,0,5,6,13
+Sibir,10.536,Sibir,308,1400,1588,Truhart (1996),0,,,,1400,1588,,,Tyumen,RU,"Tyumen, Russia",57.15,65.533333,Russia,0,1,1,Inner_Asia,0,99,5,10,18
+Buyids,10.6123,Buyids,57,934,1055,Truhart (1996),1,Tapsell 1983,,,,,934,1055,Shiraz,IR,"Shiraz, Iran",29.61031,52.53114,Seljuks,1,0,1,Middle_East,20,867,2,6,8
+Seljuks,10.6124,Seljuks,301,1038,1157,Truhart (1996),1,"Morby 1989, p.197",,,1038,1157,,,Nishapur ,IR,"Neyshabur, Iran",36.220023,58.820017,Disintegration,,,0,Middle_East,16,77,5,6,13
+Mongols (Il-Khan),10.613,Chinggisids,70,1256,1353,Truhart (1996),1,"Morby 1989, p.200, Jackson 1986 (for Togha Timur)",,,1256,1353,,,Maragheh,IR,"Maragheh, Iran",37.364417,46.425792,Disintegration,,,0,Middle_East,21,520,5,6,13
+Iran,10.615,Safavids,288,1501,1735,Truhart (1996),1,"Morby 1989, p.202",1501,1735,1501,1514,1515,1735,Tabriz,IR,"Tabriz, Iran",38.08,46.2919,Iran (Afsharids),1,0,1,Middle_East,24,447,5,6,13
+Iran,10.615,Afsharids,5,1736,1795,Truhart (1996),1,"Morby 1989, p.202",,,1736,1795,,,Mashhad,IR,"Mashhad, Iran",36.326389,59.543333,Iran (Qajars),1,0,1,Middle_East,23,42,5,6,13
+Iran,10.615,Qajars,260,1796,1925,Truhart (1996),1,"Morby 1989, p.202",,,1796,1925,,,Tehran,IR,"Tehran, Iran",35.689167,51.388889,Iran (Pahlavis),0,0,0,Middle_East,24,290,5,6,13
+Fars,10.621,Seljuks,301,1056,1147,Truhart (1996),0,,,,1056,1147,,,Fars,IR,"Fars, Iran",29.416667,53.233333,Fars (Salghurids),1,0,0,Middle_East,21,880,2,6,8
+Fars,10.621,Timurids,333,1393,1451,Truhart (1996),0,,,,1393,1451,,,Fars,IR,"Fars, Iran",29.416667,53.233333,Fars (Qara Qoyunlu),1,0,1,Middle_East,24,880,2,6,8
+Fars,10.621,Qara Qoyunlu,262,1452,1469,Truhart (1996),0,,,,1452,1469,,,Fars,IR,"Fars, Iran",29.416667,53.233333,Aq Qoyunlu,1,0,1,Middle_East,25,880,2,6,8
+Kirman,10.622,Seljuks,301,1042,1185,Truhart (1996),1,Tapsell 1983,,,1042,1185,,,Kerman,IR,"Kerman, Iran",30.28321,57.07879,Kirman (Ghuzz),1,0,1,Middle_East,16,662,2,6,8
+Kirman,10.622,Ghuzz,113,1186,1196,Truhart (1996),0,,,,1186,1196,,,Kerman,IR,"Kerman, Iran",30.28321,57.07879,Kirman (Khitan),1,0,1,Middle_East,17,662,2,6,8
+Kirman,10.622,Qutlugh Khanid,273,1222,1303,Truhart (1996),1,Tapsell 1983,,,1222,1303,,,Kerman,IR,"Kerman, Iran",30.28321,57.07879,Mongols (Il-Khanate),1,0,1,Middle_East,18,662,2,6,8
+Khurasan,10.631,Ghuzz,113,1153,1187,Truhart (1996),0,,,,1153,1187,,,Khurasan,IR,Khurasan,36,62,Khwarizm (Anushtiginids),1,0,1,Inner_Asia,17,0,5,6,13
+Cilicia,10.6803,Rubenids,286,1080,1157,Truhart (1996),1,Tapsell 1983,1080,1157,,,,,Tarson,TR,"Tarsus, Turkey",36.91876,34.8784,Byzantine Empire I,0,0,1,Middle_East,22,877,5,6,12
+Cilicia,10.6803,Rubenids,286,1173,1231,Truhart (1996),1,Tapsell 1983,1173,1231,,,,,Tarson,TR,"Tarsus, Turkey",36.91876,34.8784,Mongols,1,0,1,Middle_East,23,877,5,6,12
+Cilicia,10.6803,Hethumids,128,1335,1340,Truhart (1996),1,Tapsell 1983,1335,1340,,,,,Tarson,TR,"Tarsus, Turkey",36.91876,34.8784,Egypt (Bahris),1,0,1,Middle_East,25,877,5,6,12
+Cilicia,10.6803,Lusignans,189,1341,1374,Truhart (1996),1,Tapsell 1983,1341,1374,,,,,Tarson,TR,"Tarsus, Turkey",36.91876,34.8784,Egypt (Bahris),1,0,1,Middle_East,25,877,5,6,12
+Tabriz,10.706,Jalayarids,145,1336,1386,Truhart (1996),0,,,,1336,1386,,,Tabriz,IR,"Tabriz, Iran",38.081667,46.299167,Aq Qoyunlu,1,0,1,Middle_East,22,447,5,6,13
+Tabriz,10.706,Qara Qoyunlu,262,1387,1467,Truhart (1996),1,Tapsell 1983,,,1387,1467,,,Tabriz,IR,"Tabriz, Iran",38.081667,46.299167,Aq Qoyunlu,1,0,1,Middle_East,22,447,5,6,13
+Tabriz,10.706,Aq Qoyunlu,18,1468,1500,Truhart (1996),1,Tapsell 1983,,,1468,1500,,,Tabriz,IR,"Tabriz, Iran",38.081667,46.299167,Iran (Safavids),1,1,1,Middle_East,23,447,5,6,13
+Iberia,10.731,Bagratuni,35,974,1072,Truhart (1996),1,Tapsell 1983,974,1072,,,,,Iberia,GE,"Armazi, Georgia",41.816667,44.666667,Seljuks,1,0,1,Middle_East,13,142,5,6,12
+Iberia,10.731,Bagratuni,35,1122,1466,Truhart (1996),1,Tapsell 1983,1122,1466,,,,,Iberia,GE,"Armazi, Georgia",41.816667,44.666667,Disintegration,,,0,Middle_East,15,142,5,6,12
+Byzantine Empire I,10.771,Makedonian,195,867,1056,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Constantinople,TR,Constantinople,41.013889,28.955556,Byzantine Empire I (Komnenos),0,0,0,Middle_East,14,264,5,6,12
+Byzantine Empire I,10.771,Komnenos,172,1057,1184,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Constantinople,TR,Constantinople,41.013889,28.955556,Byzantine Empire I (Doukids),0,0,0,Middle_East,16,264,5,6,12
+Byzantine Empire I,10.771,Angelos,13,1185,1204,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Constantinople,TR,Constantinople,41.013889,28.955556,Venice,0,0,1,Middle_East,17,264,5,6,12
+Rum,10.782,Seljuks,301,1080,1307,Truhart (1996),1,Tapsell 1983,,,1080,1307,,,Iznik,TR,"Nicaea, Turkey",40.42861,29.72111,Mongols (Il-Khanate),1,0,1,Middle_East,18,342,5,6,12
+Danishmends,10.784,Danishmends,80,1085,1173,Truhart (1996),1,Tapsell 1983,,,1085,1173,,,Sivas,TR,"Sivas, Turkey",39.75,37.016667,Rum (Seljuks),1,0,1,Middle_East,20,562,5,6,12
+Byzantine Empire II,10.811,Palaiologos,239,1261,1453,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Constantinople,TR,Constantinople,41.013889,28.955556,Ottoman Empire,0,0,1,Middle_East,18,264,5,6,12
+Ottoman Empire,10.812,Osmans,238,1237,1922,Truhart (1996),1,"Morby 1989, p.191",,,1237,1349,,,Sogut,TR,"Sögüt, Turkey",40.03572,30.197823,Turkey,0,0,0,Middle_East,20,397,5,6,12
+Oman,10.826,Yarubids,365,1624,1748,Truhart (1996),1,Tapsell 1983,1678,1748,,,,,Muscat,OM,"Muscat, Oman",23.588889,58.408333,Oman (Al-bu-saids),0,1,0,Middle_East,9,1278,2,6,8
+Oman,10.826,Al-bu-saids,8,1749,1861,Truhart (1996),1,Tapsell 1983,1749,1861,,,,,Muscat,OM,"Muscat, Oman",23.588889,58.408333,Division,,,0,Middle_East,10,1278,2,6,8
+Tihama,10.852,Ayyubids,33,1175,1227,Truhart (1996),1,Tapsell 1983,,,1175,1227,,,Tihama Plain,YE,al-Hudaydah,14.802222,42.951111,Tihama (Rasulids),0,1,0,Middle_East,10,2722,2,2,8
+Tihama,10.852,Rasulids,526,1228,1454,Truhart (1996),0,,1228,1454,,,,,Tihama Plain,YE,al-Hudaydah,14.802222,42.951111,Tihama (Tahirids),0,,0,Middle_East,11,2722,2,2,8
+Sana'a,10.853,Rasulids,526,1273,1447,Truhart (1996),0,,1273,1447,,,,,Sana'a,YE,"Sanaa, Yemen",15.35472,44.20667,Tihama (Tahirids),0,,0,Middle_East,19,2617,2,2,8
+Sana'a,10.853,Qasimids,266,1630,1848,Truhart (1996),1,Tapsell 1983,1630,1848,,,,,Sana'a,YE,"Sanaa, Yemen",15.35472,44.20667,Disintegration,,,0,Middle_East,23,2617,2,2,8
+Abyan,10.871,Ayyubids,33,1175,1228,Truhart (1996),0,,,,1175,1228,,,Abyan,YE,"Abyan Governorate, Yemen",13.333333,45.383333,Abyan (Rasulids),0,1,0,Middle_East,13,2791,2,2,8
+Abyan,10.871,Rasulids,526,1233,1449,Truhart (1996),0,,1233,1449,,,,,Abyan,YE,"Abyan Governorate, Yemen",13.333333,45.383333,Abyan (Tahirids),0,,0,Middle_East,14,2791,2,2,8
+Mosul ,10.912,Uqaylids,525,992,1095,Truhart (1996),0,,,,,,,,Mosul,IQ,"Mosul, Iraq",36.335,43.11889,Mosul (Seljuks),1,0,1,Middle_East,26,734,5,6,12
+Mosul ,10.912,Seljuks,301,1096,1126,Truhart (1996),0,,,,1096,1126,,,Mosul,IQ,"Mosul, Iraq",36.335,43.11889,Mosul (Zangids),1,0,0,Middle_East,27,734,5,6,12
+Mosul ,10.912,Zangids,369,1127,1262,Truhart (1996),1,Tapsell 1983,,,,,1127,1262,Mosul,IQ,"Mosul, Iraq",36.335,43.11889,Mongols (Il-Khanate),1,0,1,Middle_East,28,734,5,6,12
+Baghdad,10.914,Abbasids,58,810,1258,Tapsell (1983),1,"Morby 1989, p.178",810,1258,,,850,1258,Baghdad,IQ,"Baghdad, Iraq",33.34058,44.40088,Mongols (Il-Khanate),1,0,1,Middle_East,30,970,5,6,13
+Baghdad,10.914,Jalayarids,145,1336,1410,Truhart (1996),1,Tapsell 1983,,,1336,1410,,,Baghdad,IQ,"Baghdad, Iraq",33.34058,44.40088,Baghdad (Aq Qoyunlu),1,0,1,Middle_East,35,970,5,6,13
+Baghdad,10.914,Aq Qoyunlu,18,1411,1502,Truhart (1996),0,,,,1411,1502,,,Baghdad,IQ,"Baghdad, Iraq",33.34058,44.40088,Iran (Safavids),1,1,1,Middle_East,36,970,5,6,13
+Hilla,10.918,Mazyadids,526,1012,1152,Truhart (1996),0,,,,,,,,Hillah,IQ,"Hillah, Iraq",32.4775,44.431389,Baghdad (Abbasids),1,1,1,Middle_East,36,1030,5,6,13
+Sinjar,10.92,Zangids,369,1170,1218,Truhart (1996),1,Tapsell 1983,,,1170,1218,,,Sinjar,IQ,"Sinjar, Iraq",36.3225,41.864167,Sinjar (Ayyubids),1,0,1,Middle_East,29,779,5,6,12
+Sinjar,10.92,Ayyubids,33,1219,1396,Truhart (1996),0,,,,1219,1396,,,Sinjar,IQ,"Sinjar, Iraq",36.3225,41.864167,Aq Qoyunlu,1,0,1,Middle_East,30,779,5,6,12
+Aleppo ,10.952,Mirdasids,210,1025,1084,Truhart (1996),1,Tapsell 1983,,,,,1025,1084,Aleppo,SY,"Aleppo, Syria",36.20124,37.16117,Uqaylids,0,0,1,Middle_East,23,944,5,6,12
+Aleppo ,10.952,Seljuks,301,1085,1116,Truhart (1996),1,Tapsell 1983,,,1085,1116,,,Aleppo,SY,"Aleppo, Syria",36.20124,37.16117,Aleppo (Artuqids),1,0,1,Middle_East,23,944,5,6,12
+Aleppo ,10.952,Zangids,369,1124,1182,Truhart (1996),1,Tapsell 1983,,,1124,1182,,,Aleppo,SY,"Aleppo, Syria",36.20124,37.16117,Egypt (Ayyubids),1,0,1,Middle_East,24,944,5,6,12
+Aleppo ,10.952,Ayyubids,33,1183,1260,Truhart (1996),1,Tapsell 1983,,,1183,1260,,,Aleppo,SY,"Aleppo, Syria",36.20124,37.16117,Mongols (Il-Khanate),1,0,1,Middle_East,24,944,5,6,12
+Antioch,10.953,Seljuks,301,1085,1097,Truhart (1996),0,,,,1085,1097,,,Antioch,TR,"Antioch, Turkey",36.204722,36.181667,Antioch (Hautevilles),0,1,1,Middle_East,22,960,5,6,12
+Antioch,10.953,Hautevilles,78,1098,1268,Truhart (1996),1,Tapsell 1983,1098,1268,,,,,Antioch,TR,"Antioch, Turkey",36.204722,36.181667,Egypt (Bahris),1,0,1,Middle_East,22,960,5,6,12
+Jerusalem,10.973,Kings of Jerusalem,522,1099,1291,Tapsell (1983),0,,1099,1291,,,,,Jerusalem,IS,"Jerusalem, Israel",31.783333,35.216667,Egypt (Burjis),1,0,1,Middle_East,22,1417,5,6,12
+Malwa,11.111,Paramaras,243,644,1151,Truhart (1996),1,Tapsell 1983,644,1151,,,,,Dhar,IN,"Dhar, India",22.59373,75.29774,Chaulukyas,0,1,1,Indian_Subcontinent,13,1352,2,7,8
+Malwa,11.111,Paramaras,243,1187,1305,Truhart (1996),1,Tapsell 1983,1187,1305,,,,,Dhar,IN,"Dhar, India",22.59373,75.29774,Delhi Sultanate (Khalji),1,0,1,Indian_Subcontinent,18,1352,2,7,8
+Dhar,11.119,Ghuri,110,1387,1435,Truhart (1996),1,Tapsell 1983,1387,1435,,,1387,1435,Dhar,IN,"Dhar, India",22.59373,75.29774,Dhar (Khalji),1,0,0,Indian_Subcontinent,20,1352,2,7,8
+Dhar,11.119,Khalji,161,1436,1531,Truhart (1996),1,Tapsell 1983,1436,1531,,,1436,1531,Dhar,IN,"Dhar, India",22.59373,75.29774,Gujarat,0,1,1,Indian_Subcontinent,21,1352,2,7,8
+Tripuri,11.181,Kalachuris,152,530,1195,Truhart (1996),0,,530,1195,,,,,Tripuri,IN,"Tewar, India",23.143,79.8465,Malwa (Paramaras),0,1,1,Indian_Subcontinent,12,1243,2,7,8
+Jejaka-bhukti,11.182,Chandellas,65,820,1569,Truhart (1996),1,Tapsell 1983,820,1569,,,,,Khajuraho,IN,"Khajuraho Group of Monuments, India",24.851579,79.928842,Disintegration,,,0,Indian_Subcontinent,8,1055,2,7,8
+Rewa,11.232,Kalachuris,152,1100,1199,Truhart (1996),0,,1100,1199,,,,,Dhavalakka,IN,"Dholka, India",22.72,72.47,,,,,Indian_Subcontinent,30,1436,2,7,8
+Chera,11.32,Kulaseskhara,178,825,1102,Truhart (1996),1,Tapsell 1983,825,1102,,,,,Makotai,IN,"Kodungallur, India",10.233761,76.194634,Disintegration,,,0,Indian_Subcontinent,11,2685,2,3,3
+Kolhapur,11.373,Marathas,202,1663,1949,Truhart (1996),1,Tapsell 1983,,,,,,,Kolhapur,IN,"Kolhapur, India",16.691667,74.233333,India,0,0,0,Indian_Subcontinent,19,2013,2,3,8
+Madura,11.402,Pandyas,242,980,1020,Truhart (1996),0,,980,1020,,,,,Madura,IN,"Madurai, India",9.9252,78.1198,Tanjur (Cholas),0,1,1,Indian_Subcontinent,12,2705,2,3,3
+Madura,11.402,Pandyas,242,1070,1310,Truhart (1996),1,Tapsell 1983,1070,1310,,,,,Madura,IN,"Madurai, India",9.9252,78.1198,Delhi Sultanate (Khalji),1,0,1,Indian_Subcontinent,13,2705,2,3,3
+Warangal,11.409,Kakatiyas,151,1000,1323,Truhart (1996),1,Tapsell 1983,1000,1323,,,,,Warangal,IN,"Warangal, India",17.9689,79.5941,Delhi Sultanate (Tughluqs),1,0,1,Indian_Subcontinent,13,1814,2,3,8
+Gangavadi,11.413,Gangas,105,325,1024,Truhart (1996),0,,325,1024,,,,,Kolar,IN,"Kolar, India",13.1333,78.1333,Tanjur (Cholas),0,1,1,Indian_Subcontinent,6,2350,2,3,8
+Tanjur,11.415,Cholas,72,846,1269,Truhart (1996),1,Tapsell 1983,846,1269,,,,,Thanjavur,IN,"Thanjavur, India",10.787,79.137806,Madura (Pandyas),0,1,1,Indian_Subcontinent,12,2608,2,3,3
+Tanjur,11.415,Pandyas,242,1270,1309,Truhart (1996),0,,1270,1309,,,,,Thanjavur,IN,"Thanjavur, India",10.787,79.137806,Delhi Sultanate (Khalji),1,0,1,Indian_Subcontinent,16,2608,2,3,3
+Vengi,11.434,Chalukyas,64,624,1075,Truhart (1996),1,Tapsell 1983,624,1075,,,,,Vengi,IN,"Pedavegi, India",16.770809,81.103864,Tanjur (Cholas),0,1,1,Indian_Subcontinent,9,1957,2,3,8
+Bijapur,11.436,Adil Shahis,4,1489,1686,Truhart (1996),1,Tapsell 1983,1489,1686,,,1489,1686,Bijapur,IN,"Bijapur, India",16.831387,75.713075,Mughals,1,0,1,Indian_Subcontinent,17,1967,2,3,8
+Bidar,11.441,Barid Shahis,39,1526,1619,Truhart (1996),1,Tapsell 1983,1526,1619,,,1526,1619,Bidar,IN,"Bidar, India",17.900341,77.55249,Bijapur,1,1,1,Indian_Subcontinent,18,1827,2,3,8
+Berar,11.446,Imad Shahis,139,1485,1575,Truhart (1996),1,Tapsell 1983,1485,1575,,,1485,1575,Elichpur,IN,"Amravati, India",20.945155,77.765764,Ahmadnagar,1,1,1,Indian_Subcontinent,19,1489,2,7,8
+Kalyana,11.447,Chalukyas,64,982,1156,Truhart (1996),1,Tapsell 1983,982,1156,,,,,Manyakheta,IN,"Malkhed, India",17.19486,77.16018,Kalyana (Kalachuris),0,1,1,Indian_Subcontinent,12,1908,2,3,8
+Kalyana,11.447,Kalachuris,152,1157,1183,Truhart (1996),1,Tapsell 1983,1157,1183,,,,,Manyakheta,IN,"Malkhed, India",17.19486,77.16018,Kalyana (Chalukya),0,1,1,Indian_Subcontinent,14,1908,2,3,8
+Kalyana,11.447,Chalukyas,64,1184,1191,Truhart (1996),1,Tapsell 1983,1184,1191,,,,,Manyakheta,IN,"Malkhed, India",17.19486,77.16018,Disintegration,,,0,Indian_Subcontinent,14,1908,2,3,8
+Kalyana,11.447,Bahmanis,36,1347,1525,Truhart (1996),1,"Morby 1989, p.210",1347,1525,,,1347,1525,Gulbarga,IN,"Gulbarga, India",17.235221,76.552523,Disintegration,,,0,Indian_Subcontinent,16,1911,2,3,8
+Suena-Desa,11.448,Yadavas,363,825,1318,Truhart (1996),1,Tapsell 1983,825,1318,,,,,Devagiri,IN,"Daulatabad Fort, India",19.942724,75.213164,Delhi Sultanate (Khalji),1,0,1,Indian_Subcontinent,11,1639,2,7,8
+Ahmadnagar,11.449,Nizam Shahis,229,1490,1632,Truhart (1996),1,Tapsell 1983,1490,1632,,,1490,1632,Ahmednagar,IN,"Ahmednagar, India",19.08,74.73,Mughals,1,0,1,Indian_Subcontinent,17,1401,2,7,8
+Golkunda,11.45,Qutb Shahis,272,1512,1687,Truhart (1996),1,Tapsell 1983,1512,1687,,,1512,1687,Golconda,IN,"Hyderabad, India",17.455891,78.402807,Mughals,1,0,1,Indian_Subcontinent,18,1871,2,3,8
+Hoysalas,11.46,Hoysalas,134,1000,1346,Truhart (1996),1,Tapsell 1983,,,,,,,Halebidu,IN,"Haleb?d, India",13.215943,75.997662,Delhi Sultanate (Tughluq),1,0,1,Indian_Subcontinent,13,2359,2,3,8
+Vijayanagara,11.464,Sangamas,294,1336,1485,Truhart (1996),1,Tapsell 1983,1336,1485,,,,,Vijayanagara,IN,"Bellary, India",15.138683,76.927567,Vijayanagar (Saluva),0,1,0,Indian_Subcontinent,16,2137,2,3,8
+Vijayanagara,11.464,Saluvas,292,1486,1567,Truhart (1996),1,Tapsell 1983,1486,1567,,,,,Vijayanagara,IN,"Bellary, India",15.138683,76.927567,Vijayanagar (Tuluva),0,1,0,Indian_Subcontinent,17,2137,2,3,8
+Vijayanagara,11.464,Aravidus,21,1568,1685,Truhart (1996),1,Tapsell 1983,1568,1685,,,,,Vijayanagara,IN,"Bellary, India",14.976737,76.408494,Disintegration,,,0,Indian_Subcontinent,18,2161,2,3,8
+Marathas,11.486,Bhonsla,44,1664,1803,Truhart (1996),1,Tapsell 1983,,,,,,,Raigad,IN,"Raigad, India",21.917557,83.380602,Great Britain,0,0,1,Indian_Subcontinent,23,1434,2,7,8
+Chaulukyas,11.5153,Chaulukyas,68,850,1244,Truhart (1996),1,Tapsell 1983,850,1244,,,,,Anahilavada,IN,"Patan, Gujarat",23.85,72.125,Rewa (Vaghela),,,0,Indian_Subcontinent,17,1339,2,7,8
+Gujarat,11.521,Paramaras,243,1030,1304,Truhart (1996),0,,1030,1304,,,,,Dhavalakka,IN,"Dholka, India",22.72,72.47,Delhi Sultanate (Khalji),1,0,1,Indian_Subcontinent,29,1436,2,7,8
+Gujarat,11.521,Muzaffarids,116,1396,1578,Tapsell (1983),1,Tapsell 1983,1396,1578,,,1396,1578,Anhilwad Patan,IN,"Patan, India",23.850661,72.13464,Mughals,1,0,1,Indian_Subcontinent,22,1339,2,7,8
+Lahur,11.771,Ghaznavids,109,1021,1180,Truhart (1996),0,,1021,1180,1021,1180,,,Lahore,PK,"Lahore, Pakistan",31.549722,74.343611,Ghurids,1,0,1,Indian_Subcontinent,24,504,2,7,8
+Lahur,11.771,Ghurids,112,1181,1289,Truhart (1996),0,,,,1181,1289,,,Lahore,PK,"Lahore, Pakistan",31.549722,74.343611,Mongols (Chagatai),1,0,1,Indian_Subcontinent,25,504,2,7,8
+Mewar,11.851,Guhilas,115,650,1568,Truhart (1996),1,Tapsell 1983,650,1568,,,,,Ahar,IN,"Ahar, Rajasthan",24.587258,73.72155,Mughals,1,0,1,Indian_Subcontinent,15,1196,2,7,8
+Jalor,11.865,Paramaras,243,1000,1178,Truhart (1996),0,,1000,1178,,,,,Jalor,IN,"Jalor, India",25.35,72.62,Jalor (Chahamanas),0,1,0,Indian_Subcontinent,19,1168,2,7,8
+Jaisalmer,11.87,Bhattis,42,1156,1949,Truhart (1996),1,Tapsell 1983,1156,1949,,,,,Jaisalmer,IN,"Jaisalmer, India",26.913,70.915,India,0,0,0,Indian_Subcontinent,20,1085,2,7,8
+Jodhpur,11.889,Marwar Rathors,203,1459,1818,Truhart (1996),1,Tapsell 1983,1459,1818,,,,,Jodhpur,IN,"Jodhpur, India",26.28,73.02,United Kingdom,0,1,1,Indian_Subcontinent,23,1058,2,7,8
+Udaipur,11.892,Guhilas,115,1597,1948,Truhart (1996),1,Tapsell 1983,1597,1948,,,,,Ahar,IN,"Ahar, Rajasthan",24.587258,73.72155,India,0,0,0,Indian_Subcontinent,24,1196,2,7,8
+Kashmir,11.922,Parvagupta,244,949,1002,Truhart (1996),0,,949,1002,,,,,Srinagar,IN,"Srinagar, India",34.08582,74.8002,Kashmir (Lohara),0,1,,Indian_Subcontinent,15,231,5,7,13
+Kashmir,11.922,Lohara,187,1003,1170,Truhart (1996),1,Tapsell 1983,1003,1170,,,,,Srinagar,IN,"Srinagar, India",34.08582,74.8002,Kashmir (Upyadeva),0,1,0,Indian_Subcontinent,16,231,5,7,13
+Kashmir,11.922,Upyadeva,349,1171,1320,Truhart (1996),1,Tapsell 1983,1171,1320,,,,,Srinagar,IN,"Srinagar, India",34.08582,74.8002,Kashmir (Ladakhi),0,1,1,Indian_Subcontinent,17,231,5,7,13
+Kashmir,11.922,Ladakhi,180,1321,1338,Truhart (1996),1,Tapsell 1983,1321,1338,,,,,Srinagar,IN,"Srinagar, India",34.08582,74.8002,Kashmir (Tahir Mirza),0,0,0,Indian_Subcontinent,0,231,5,7,13
+Kashmir,11.922,Tahir Mirza,327,1339,1561,Truhart (1996),1,Tapsell 1983,,,,,,,Srinagar,IN,"Srinagar, India",34.08582,74.8002,Kashmir (Chaks),0,0,0,Indian_Subcontinent,19,231,5,7,13
+Kashmir,11.922,Chaks,107,1562,1589,Truhart (1996),1,Tapsell 1983,,,,,,,Srinagar,IN,"Srinagar, India",34.08582,74.8002,Mughals,1,0,1,Indian_Subcontinent,21,231,5,7,13
+Gandhara,11.923,Hindu Shahis,129,870,1026,Truhart (1996),1,Tapsell 1983,870,1026,,,,,Gandhara,PK,"Pushkalavati, Pakistan",34.168,71.736,Ghaznavids,1,0,1,Indian_Subcontinent,14,278,5,7,13
+Ahom,12.144,Induvamsa,141,1223,1838,Truhart (1996),1,Tapsell 1983,1223,1838,,,,,Charaideo,IN,"Sivasagar, India",26.972822,94.690797,Great Britain,0,0,1,Indian_Subcontinent,2,527,2,7,9
+Bengal ,12.161,Palas,240,755,1161,Truhart (1996),1,Tapsell 1983,755,1161,,,,,Bikrampur,BD,"Bikrampur, Bangladesh",23.55,90.55,Bengal (Senas),0,1,0,Indian_Subcontinent,10,1030,2,7,9
+Bengal ,12.161,Senas,302,1162,1287,Truhart (1996),1,Tapsell 1983,1162,1287,,,,,Gauda,BD,"Gauda, India",24.866667,88.133333,Delhi Sultanate (Muizzis),1,0,1,Indian_Subcontinent,14,950,2,7,8
+Bengal ,12.161,Sultans of Bengal,41,1341,1576,Tapsell (1983),1,Tapsell 1983,,,,,1341,1576,Pandua,IN,"Pandua, India",25.14,88.153,Mughals,1,0,1,Indian_Subcontinent,16,921,2,7,8
+Trikalinga,12.192,Gangas,105,498,1433,Truhart (1996),1,Tapsell 1983,498,1433,,,,,Kalinganagara,IN,"Srikakulam, India",18.571358,83.885464,Trikalinga (Gajapatis),0,1,0,Indian_Subcontinent,7,1752,2,7,8
+Trikalinga,12.192,Gajapatis,104,1434,1539,Truhart (1996),1,Tapsell 1983,1434,1539,,,,,Kalinganagara,IN,"Srikakulam, India",18.571358,83.885464,Suris,1,0,1,Indian_Subcontinent,17,1752,2,7,8
+Utkala,12.193,Kalachuris,152,1050,1250,Truhart (1996),0,,1050,1250,,,,,Ratnapura,IN,"Ratnapur, India",22.288,82.166,Division,,,0,Indian_Subcontinent,17,1370,2,7,8
+Kanauj,12.301,Gurjars,117,816,1018,Truhart (1996),0,,816,1018,,,,,Kannauj,IN,"Kannauj, India",27.07,79.92,Ghaznavids,1,0,1,Indian_Subcontinent,13,810,2,7,8
+Delhi,12.305,Mamluks,197,1206,1289,Truhart (1996),1,"Morby 1989, p.209",,,1206,1289,,,Delhi,IN,"Delhi, India",24.734319,81.334404,Delhi Sultanate (Khalji),1,0,0,Indian_Subcontinent,13,504,2,7,8
+Delhi,12.305,Kaljis,153,1290,1319,Truhart (1996),1,"Morby 1989, p.209",,,1290,1319,,,Delhi,IN,"Delhi, India",24.734319,81.334404,Delhi Sultanate (Tughluq),1,0,0,Indian_Subcontinent,13,1087,2,7,8
+Delhi,12.305,Tugluqs,342,1320,1413,Truhart (1996),1,"Morby 1989, p.209",,,1320,1413,,,Delhi,IN,"Delhi, India",24.734319,81.334404,Delhi Sultanate (Sayyids),1,0,0,Indian_Subcontinent,15,1087,2,7,8
+Delhi,12.305,Sayyids,300,1414,1452,Truhart (1996),1,"Morby 1989, p.209",,,1414,1452,,,Delhi,IN,"Delhi, India",24.734319,81.334404,Delhi Sultanate (Lodi),1,0,0,Indian_Subcontinent,15,1087,2,7,8
+Delhi,12.305,Lodis,186,1453,1528,Truhart (1996),1,"Morby 1989, p.209",,,1453,1528,,,Delhi,IN,"Delhi, India",24.734319,81.334404,Mughals,1,0,1,Indian_Subcontinent,15,1087,2,7,8
+Delhi,12.305,Mughals,214,1529,1539,Truhart (1996),1,"Morby 1989, p.211; Elliot 1877",,,1529,1539,,,Delhi,IN,"Delhi, India",24.734319,81.334404,Suris,1,0,1,Indian_Subcontinent,16,1087,2,7,8
+Delhi,12.305,Suris,323,1540,1554,Truhart (1996),1,"Morby 1989, p.211",,,1540,1554,,,Sasaram,IN,"Sasaram, India",24.95,84.03,Mughals,1,0,1,Indian_Subcontinent,18,1109,2,7,8
+Delhi,12.305,Mughals,214,1555,1857,Truhart (1996),1,"Morby 1989, p.211; Elliot 1877",,,1555,1857,,,Delhi,IN,"Delhi, India",24.734319,81.334404,British India,0,0,1,Indian_Subcontinent,16,1087,2,7,8
+Varanasi,12.307,Gahadavala,103,1030,1193,Truhart (1996),1,Tapsell 1983,1030,1193,,,,,Varanasi,IN,"Varanasi, India",25.318889,83.012778,Ghurids,1,0,1,Indian_Subcontinent,12,1062,2,7,8
+Sri Lanka II,12.601,Silakala,311,1070,1407,Truhart (1996),1,Tapsell 1983,1070,1407,,,,,Polonnaruwa,LK,Polonnaruwa,7.933333,81,Alagakkonara Dynasty,0,,0,Indian_Subcontinent,14,2931,2,3,3
+Pegu,13.113,Hamsavati,122,825,1056,Truhart (1996),0,,825,1056,,,,,Pegu,MM,"Bago, Myanmar",18.441918,96.027418,Pagan,0,1,1,Southeast_Asia,0,1451,2,7,9
+Pegu,13.113,Hamsavati,122,1273,1286,Truhart (1996),0,,1273,1286,,,,,Pegu,MM,"Bago, Myanmar",18.441918,96.027418,,,,,Southeast_Asia,4,1451,2,7,9
+Pegu,13.113,Mon,212,1287,1538,Truhart (1996),1,Tapsell 1983,1287,1538,,,,,Pegu,MM,"Bago, Myanmar",18.441918,96.027418,Ava,0,1,1,Southeast_Asia,4,1451,2,7,9
+Pegu,13.113,Tagaung,500,1539,1610,Truhart (1996),1,Tapsell 1983,1539,1610,,,,,Pegu,MM,"Bago, Myanmar",18.441918,96.027418,Ava,0,1,1,Southeast_Asia,7,1451,2,7,9
+Pagan,13.221,Pyu,259,846,1342,Truhart (1996),1,Tapsell 1983,846,1342,,,,,Bagan,MM,"Bagan, Myanmar",21.1725,94.86,Disintegration,,,0,Southeast_Asia,0,1157,2,7,9
+Ava,13.222,Pinnya,252,1364,1554,Truhart (1996),1,Tapsell 1983,1364,1554,,,,,Sagaing,MM,"Sagaing, Myanmar",24.059352,95.217495,Ava (Sayin Nawng),0,1,1,Southeast_Asia,2,835,2,7,9
+Ava,13.222,Sayin Nawng,299,1555,1751,Truhart (1996),1,Tapsell 1983,1555,1751,,,,,Sagaing,MM,"Sagaing, Myanmar",24.059352,95.217495,Restored Hathawady,,,1,Southeast_Asia,4,835,2,7,9
+Burma,13.223,Alaungpaya,7,1752,1820,Truhart (1996),1,Tapsell 1983,1752,1820,,,,,Myanmar,MM,Myanmar,22,96,Great Britain,0,1,1,Southeast_Asia,8,1058,2,7,9
+Ayutthaya,13.296,Cheang-sen,69,1347,1767,Truhart (1996),1,Tapsell 1983,,,,,,,Ayutthaya,TH,"Phra Nakhon Si Ayutthaya, Thailand",14.316377,100.582302,Burma (Alaupangya),0,1,1,Southeast_Asia,11,1959,2,3,9
+Siam,13.301,Chakkri,63,1782,1995,Truhart (1996),1,Tapsell 1983,,,,,,,Bangkok,TH,"Bangkok, Thailand",13.7525,100.494167,N/A,0,0,0,Southeast_Asia,15,2018,2,3,9
+Angkor,13.363,Jayavarman,146,802,1001,Truhart (1996),1,Tapsell 1983,,,,,,,Angkor,KH,"Angkor, Cambodia",13.4125,103.866667,Angkor (Ligor),0,0,0,Southeast_Asia,7,2127,2,3,9
+Angkor,13.363,Ligor,184,1002,1077,Truhart (1996),1,Tapsell 1983,,,,,,,Angkor,KH,"Angkor, Cambodia",13.4125,103.866667,Angkor (Mahidharapura),0,0,0,Southeast_Asia,9,2127,2,3,9
+Angkor,13.363,Mahidharapura,194,1078,1335,Truhart (1996),1,Tapsell 1983,,,,,,,Mun Basin,KH,Mun River,15.320556,105.508056,Angkor (Neay-trasac-paem),0,0,0,Southeast_Asia,9,1914,2,3,9
+Angkor,13.363,Neay-trasac-paem,226,1336,1420,Truhart (1996),1,Tapsell 1983,,,,,,,Angkor,KH,"Angkor, Cambodia",13.4125,103.866667,Ayutthaya,0,0,1,Southeast_Asia,12,2127,2,3,9
+Cambodia,13.364,Cambodia Kings,59,1432,1863,Tapsell (1983),1,Tapsell 1983,,,,,,,Cambodia,KH,Cambodia,12.566667,104.983333,France,0,0,0,Southeast_Asia,13,2218,2,3,9
+Vietnam,13.387,Ly,191,1009,1225,Truhart (1996),1,Tapsell 1983,,,,,,,Hoa Lu,VN,"Hoa Lu, Vietnam",20.26816,105.910643,Vietnam (Tran),0,1,0,Southeast_Asia,13,1368,2,7,9
+Vietnam,13.387,Tran,337,1226,1400,Truhart (1996),1,Tapsell 1983,1226,1400,,,,,Hanoi,VN,"Hanoi, Vietnam",21.0245,105.84117,China (Ming),0,1,1,Southeast_Asia,11,1284,2,7,9
+Vietnam,13.389,Tran,337,1407,1427,Truhart (1996),1,Tapsell 1983,1407,1427,,,,,Hanoi,VN,"Hanoi, Vietnam",21.0245,105.84117,Vietnam (Later Le Dynasty),0,1,0,Southeast_Asia,13,1284,2,7,9
+Vietnam,13.389,Le,183,1428,1789,Truhart (1996),1,Tapsell 1983,1407,1789,,,,,Hanoi,VN,"Hanoi, Vietnam",21.0245,105.84117,Vietnam (Tay Son),,,0,Southeast_Asia,13,1284,2,7,9
+Hue,13.391,Nguyen,228,1570,1774,Truhart (1996),1,Tapsell 1983,1570,1774,,,,,Hue,VN,"Hue, Vietnam",16.466667,107.579167,Hue (Trinh),0,0,1,Southeast_Asia,9,1804,3,3,9
+Lan Chang,13.422,Kings of Lan Chang,168,1350,1707,Tapsell (1983),1,Tapsell 1983,1350,1707,,,,,Luang Prabang,LA,"Luang Prabang, Laos",19.89,102.134722,Disintegration,,,0,Southeast_Asia,1,1396,2,7,9
+Gwynedd,15.182,Princes of Gwynedd,256,844,1239,Tapsell (1983),1,Kokkonen & Sundell 2014,1100,1239,,,,,Chester,GB,"Chester, England, United Kingdom",53.207393,-2.881343,England,0,1,1,Europe,8,2081,4,9,12
+Scotland,15.215,Alpin,10,889,1056,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Scone,GB,"Scone, Scotland, United Kingdom",56.424428,-3.39537,Scotland (Canmore),0,1,0,Europe,4,2130,4,9,17
+Scotland,15.215,Canmore,60,1057,1286,Truhart (1996),1,Kokkonen & Sundell 2014,1100,1286,,,,,Scone,GB,"Scone, Scotland, United Kingdom",56.424428,-3.39537,Scotland (Bruce),0,1,0,Europe,6,2130,4,9,17
+Scotland,15.215,Bruce,52,1306,1370,Truhart (1996),1,Kokkonen & Sundell 2014,1306,1370,,,,,Scone,GB,"Scone, Scotland, United Kingdom",56.424428,-3.39537,Scotland (Stuart),0,1,0,Europe,9,2130,4,9,17
+Scotland,15.215,Stuart,318,1371,1603,Truhart (1996),1,Kokkonen & Sundell 2014,1371,1603,,,,,Scone,GB,"Scone, Scotland, United Kingdom",56.424428,-3.39537,England,0,1,0,Europe,9,2130,4,9,17
+England,15.238,Anglo-Saxon,14,825,1065,Truhart (1996),1,Kokkonen & Sundell 2014 replication data,,,,,,,Winchester,GB,"Winchester, England, United Kingdom",51.06605,-1.314423,England (Norman),0,0,1,Europe,8,1994,4,9,12
+England,15.238,Norman,232,1066,1706,Truhart (1996),1,Kokkonen & Sundell 2014 replication data,1216,1706,,,,,London,GB,"London, England, United Kingdom",51.507222,-0.1275,Great Britain,0,1,0,Europe,10,1994,4,9,12
+Great Britain,15.242,Hannover,123,1707,1995,Tapsell (1983),1,Kokkonen & Sundell 2014 replication data,1707,1832,,,,,London,GB,"London, England, United Kingdom",51.507222,-0.1275,N/A,0,0,0,Europe,17,1994,4,9,12
+Netherlands,15.264,Nassau-Oranien,222,1581,1809,Truhart (1996),1,Kokkonen & Sundell 2014,1674,1809,,,,,The Hague,NL,"The Hague, Netherlands",52.07114,4.29916,France (Revolutionary),0,0,1,Europe,13,1598,4,9,12
+Sweden,15.289,Yngligar,366,995,1249,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Ostergotland,SE,"Ostergotland, Sweden",58.415833,15.625278,Sweden (Folkungar),0,0,0,Europe,4,1194,4,10,17
+Sweden,15.289,Folkungar,99,1250,1317,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Uppsala,SE,"Uppsala, Sweden",60.197663,17.742031,Denmark,0,1,0,Europe,4,1224,4,10,17
+Sweden,15.289,Vasa,354,1521,1653,Truhart (1996),1,Kokkonen & Sundell 2014,1544,1653,,,,,Uppsala,SE,"Uppsala, Sweden",60.197663,17.742031,Sweden (Pfalz-Zweibrucken),0,1,0,Europe,7,1224,4,10,17
+Sweden,15.289,Pfalz-Zweibrucken,248,1654,1719,Truhart (1996),1,Kokkonen & Sundell 2014,1654,1719,,,,,Stockholm,SE,"Stockholm, Sweden",59.275254,18.035164,Sweden (Hessen-Kassel),0,1,0,Europe,11,1169,4,10,17
+Sweden,15.289,Hessen-Kassel,127,1720,1750,Truhart (1996),1,Kokkonen & Sundell 2014,1720,1750,,,,,Stockholm,SE,"Stockholm, Sweden",59.275254,18.035164,Sweden (Holstein-Gottorp),0,1,0,Europe,12,1169,4,10,17
+Sweden,15.289,Holstein-Gottorp,132,1751,1818,Truhart (1996),1,Kokkonen & Sundell 2014,1751,1818,,,,,Uppsala,SE,"Uppsala, Sweden",60.197663,17.742031,N/A,0,0,0,Europe,9,1224,4,10,17
+Norway,15.318,Yngligar,366,1016,1318,Tapsell (1983),1,Kokkonen & Sundell 2014,1260,1318,,,,,Oslo,NO,"Oslo, Norway",59.913333,10.738889,Denmark (Folkungar),0,1,0,Europe,4,1511,4,10,17
+Norway,15.318,Folkungar,99,1319,1380,Tapsell (1983),1,Kokkonen & Sundell 2014,1319,1380,,,,,Trondheim,NO,"Trondheim, Norway",63.412235,10.411357,Denmark,0,1,0,Europe,2,1724,4,10,17
+Denmark,15.326,Skioldinger,315,891,1041,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Roskilde,DK,"Roskilde, Denmark",55.635034,12.076769,Denmark (Ulfinger),0,0,0,Europe,4,1181,4,10,17
+Denmark,15.326,Ulfinger,346,1047,1396,Truhart (1996),1,Kokkonen & Sundell 2014,1156,1396,,,,,Roskilde,DK,"Roskilde, Denmark",55.635034,12.076769,Denmark (Pommern-Stargard),0,1,0,Europe,6,1181,4,10,17
+Denmark,15.326,Pommern-Stargard,253,1397,1439,Truhart (1996),1,Kokkonen & Sundell 2014,1397,1439,,,,,Roskilde,DK,"Roskilde, Denmark",55.635034,12.076769,Denmark (Pfalz-Neumarkt),0,1,0,Europe,9,1181,4,10,17
+Denmark,15.326,Pfalz-Neumarkt,247,1440,1447,Truhart (1996),1,Kokkonen & Sundell 2014,1440,1447,,,,,Roskilde,DK,"Roskilde, Denmark",55.635034,12.076769,Denmark (Oldenburg),0,1,0,Europe,10,1181,4,10,17
+Denmark,15.326,Oldenburg/Holstein-Gottorp,236,1448,1863,Truhart (1996),1,Kokkonen & Sundell 2014,1448,1863,,,,,Copenhagen,DK,"Copenhagen, Denmark",55.704438,12.502119,N/A,0,0,0,Europe,10,1161,4,10,17
+France,15.335,Capet,61,987,1327,Truhart (1996),1,Kokkonen & Sundell 2014,987,1327,,,,,Paris,FR,"Paris, France",48.859116,2.331839,France (Valois),0,1,0,Europe,10,1778,4,9,12
+France,15.335,Valois,353,1328,1514,Truhart (1996),1,Kokkonen & Sundell 2014,1328,1514,,,,,Paris,FR,"Paris, France",48.859116,2.331839,France (Angouleme),0,1,0,Europe,14,1778,4,9,12
+France,15.335,Angouleme,15,1515,1588,Truhart (1996),1,Kokkonen & Sundell 2014,1515,1588,,,,,Paris,FR,"Paris, France",48.859116,2.331839,France (Bourbon),0,1,0,Europe,16,1778,4,9,12
+France,15.335,Bourbon,49,1589,1792,Truhart (1996),1,Kokkonen & Sundell 2014,1589,1792,,,,,Paris,FR,"Paris, France",48.859116,2.331839,France (Revolutionaries),0,0,0,Europe,16,1778,4,9,12
+Anjou,15.345,Anjou,16,1246,1480,Truhart (1996),1,Tapsell 1983,1246,1480,,,,,Anjou,FR,"Angers, France",47.473612,-0.554167,France,0,1,1,Europe,13,2015,4,5,12
+Brittany,15.361,Dukes of Brittany,51,890,1524,Tapsell (1983),1,Tapsell 1983,1186,1524,,,,,Nantes,FR,"Nantes, France",47.2181,-1.5528,France,0,1,0,Europe,9,2095,4,5,12
+Normandy,15.365,Dukes of Normandy,87,845,1204,Tapsell (1983),1,Tapsell 1983,910,1204,,,,,Normandy,FR,"Normandy, France",48.88,0.17,France,0,1,1,Europe,9,1933,4,9,12
+Burgundy,15.4,Capet,61,918,1360,Truhart (1996),1,Tapsell 1983,918,1360,,,,,Dijon,FR,"Dijon, France",47.316667,5.016667,Burgundy (Valois),0,1,0,Europe,10,1606,4,5,12
+Burgundy,15.4,Valois,353,1361,1477,Truhart (1996),1,Tapsell 1983,1361,1477,,,,,Dijon,FR,"Dijon, France",47.316667,5.016667,France; Austria,0,1,0,Europe,14,1606,4,5,12
+Poitou,15.426,Ramnulf,275,963,1204,Truhart (1996),1,Tapsell 1983,963,1204,,,,,Poitou,FR,"Poitou, France",46.6486,-0.2478,France,0,1,1,Europe,10,2013,4,5,12
+Qurtuba,15.481,Umayyads,347,756,1031,Truhart (1996),0,,756,1031,,,,,Cordoba,SP,"Cordoba, Spain",37.89,-4.78,Disintegration,,,0,Europe,9,2688,4,5,12
+Qurtuba,15.481,Abbadids,1,1059,1090,Truhart (1996),0,,1059,1090,,,,,Cordoba,SP,"Cordoba, Spain",37.89,-4.78,Almoravids,0,1,1,Europe,12,2688,4,5,12
+Navarre,15.523,Arista,24,860,1075,Truhart (1996),1,Kokkonen & Sundell 2014,860,1075,,,,,Pamplona,ES,"Pamplona, Spain",42.817546,-1.651163,Aragon,0,1,1,Europe,10,2246,4,5,12
+Navarre,15.523,Arista,24,1134,1233,Truhart (1996),1,Kokkonen & Sundell 2014,1134,1233,,,,,Pamplona,ES,"Pamplona, Spain",42.817546,-1.651163,Champagne,,,0,Europe,13,2246,4,5,12
+Leon,15.525,Kings of Leon,169,910,1230,Tapsell (1983),1,Kokkonen & Sundell 2014,910,1230,,,,,Leon,ES,"Leon, Spain",42.573544,-5.954401,Castillas,0,1,0,Europe,11,2591,4,5,12
+Castillas,15.527,Castillas,62,1034,1515,Truhart (1996),1,Kokkonen & Sundell 2014,1034,1515,,,,,Valladolid,ES,"Valladolid, Spain",41.489063,-4.89167,Spain,0,1,0,Europe,12,2545,4,5,12
+Aragon,15.528,Kings of Aragon,20,1035,1515,Tapsell (1983),1,Kokkonen & Sundell 2014,1035,1515,,,,,Jaca,ES,"Jaca, Spain",42.572157,-0.549165,Spain,0,1,0,Europe,12,2166,4,5,12
+Mallorca,15.529,Kings of Mallorca,170,1229,1343,Tapsell (1983),1,Kokkonen & Sundell 2014,1229,1343,,,,,Palma,ES,"Palma de Mallorca, Spain",39.575748,2.656644,Aragon,0,1,1,Europe,17,2023,4,5,12
+Spain ,15.53,Habsburg,120,1516,1699,Truhart (1996),1,Kokkonen & Sundell 2014,1516,1699,,,,,Madrid,ES,"Madrid, Spain",40.429913,-3.669245,Spain (Bourbon),0,1,0,Europe,17,2488,4,5,12
+Spain ,15.53,Bourbon,49,1700,1808,Truhart (1996),1,Kokkonen & Sundell 2014,1700,1808,,,,,Madrid,ES,"Madrid, Spain",40.429913,-3.669245,France (Napoleonic),0,0,1,Europe,19,2488,4,5,12
+Barcelona,15.536,Counts of Barcelona,77,803,1196,Tapsell (1983),1,Kokkonen & Sundell 2014,873,1196,,,,,Barcelona,ES,"Barcelona, Spain",41.400347,2.159592,Aragon,0,1,0,Europe,11,1989,4,5,12
+Portugal,15.573,Borgona,48,1139,1384,Truhart (1996),1,Kokkonen & Sundell 2014,1139,1384,,,,,Lisbon,PT,"Lisbon, Portugal",38.748243,-9.140093,Aviz Dynasty,0,1,0,Europe,13,2994,4,5,11
+Portugal,15.573,Aviz,32,1385,1579,Truhart (1996),1,Kokkonen & Sundell 2014,1385,1579,,,,,Lisbon,PT,"Lisbon, Portugal",38.748243,-9.140093,Portugal (Habsburg),0,1,0,Europe,15,2994,4,5,11
+Portugal,15.573,Habsburg,120,1580,1639,Truhart (1996),1,Kokkonen & Sundell 2014,1580,1639,,,,,Lisbon,PT,"Lisbon, Portugal",38.748243,-9.140093,Portugal (Braganca),0,1,0,Europe,17,2994,4,5,11
+Portugal,15.573,Braganca,50,1640,1853,Truhart (1996),1,Kokkonen & Sundell 2014,1640,1853,,,,,Lisbon,PT,"Lisbon, Portugal",38.748243,-9.140093,Portugal (Coburg-Gotha),0,1,0,Europe,18,2994,4,5,11
+Kingdom of Sicily ,15.614,Norman,232,1130,1193,Truhart (1996),1,Kokkonen & Sundell 2014,1130,1193,,,,,Palermo,IT,"Palermo, Italy",38.128635,13.334865,Holy Roman Empire,0,0,1,Europe,17,1294,4,6,12
+Kingdom of Sicily ,15.614,Hohenstafen,130,1194,1265,Truhart (1996),1,Kokkonen & Sundell 2014,1194,1265,,,,,Palermo,IT,"Palermo, Italy",38.128635,13.334865,Aragon,0,1,1,Europe,17,1294,4,6,12
+Kingdom of Naples,15.615,Anjou,16,1266,1504,Truhart (1996),1,Kokkonen & Sundell 2014,1266,1504,,,,,Naples,IT,"Naples, Italy",40.862838,14.237375,Castillas,0,1,1,Europe,7,1066,4,6,12
+Sardinia,15.616,Savoia,297,1720,1861,Truhart (1996),1,Tapsell 1983,1720,1861,,,,,Sardinia,IT,"Sardinia, Italy",40,9,Kingdom of Italy,,,0,Europe,23,1508,4,6,12
+Roma,15.631,Roma,255,711,1870,Truhart (1996),1,Tapsell 1983,,,,,,,Rome,IT,"Rome, Italy",41.893333,12.482778,Kingdom of Italy,,,1,Europe,16,1157,4,6,12
+Florence,15.66,Dukes of Florence,98,905,1568,Tapsell (1983),1,Kokkonen & Sundell 2014,1537,1568,,,,,Florence,IT,"Firenze, Italy",43.817726,11.370028,Tuscany,0,1,0,Europe,17,1191,4,6,12
+Florence,15.665,Medici,205,1569,1736,Truhart (1996),1,Kokkonen & Sundell 2014,1569,1736,,,,,Florence,IT,"Firenze, Italy",43.817726,11.370028,Austria,0,1,0,Europe,23,1191,4,6,12
+Venice,15.721,Venice,355,697,1797,Truhart (1996),0,,,,,,,,Venice,IT,"Venice, Italy",45.4375,12.335833,France (Napoleonic),0,0,1,Europe,1,1098,4,6,12
+Milan,15.735,Este,95,840,1185,Truhart (1996),1,Tapsell 1983,,,,,,,Milan,IT,"Milan, Italy",45.473702,9.170685,Milan (Dukes of Milan),0,1,0,Europe,14,1345,4,6,12
+Milan,15.735,Dukes of Milan,207,1186,1555,Tapsell (1983),1,Kokkonen & Sundell 2014,1396,1555,,,,,Milan,IT,"Milan, Italy",45.473702,9.170685,Spain,0,1,0,Europe,17,1345,4,6,12
+Savoia,15.758,Savoia,297,1003,1720,Truhart (1996),1,Kokkonen & Sundell 2014,1003,1720,,,,,Montmélian,FR,"Montmelian, France",45.484468,6.04084,Sardinia,0,1,0,Europe,12,1579,4,5,12
+Napoli,15.812,Dukes of Napoli,232,661,1129,Truhart (1996),1,Kokkonen & Sundell 2014,1072,1129,,,,,Melfi,IT,"Melfi, Italy",40.994141,15.652962,Sicily (Norman),0,1,0,Europe,9,954,4,6,12
+Sicilia,15.815,Norman,232,1061,1129,Truhart (1996),1,Kokkonen & Sundell 2014,1061,1129,,,,,Palermo,IT,"Palermo, Italy",38.111111,13.351667,Sicily (Norman),0,1,0,Europe,16,1294,4,6,12
+Calabria,15.823,Counts and Dukes of Apulia,76,1059,1101,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Melfi,IT,"Melfi, Italy",40.994141,15.652962,Naples (Norman),0,1,1,Europe,13,954,4,6,12
+Moldavia,15.914,Voivodes of Moldavia,356,1342,1861,Tapsell (1983),1,Kokkonen & Sundell 2014,,,,,,,Baia,RO,"Baia, Romania",47.4203,26.2169,Romania,0,0,0,Europe,3,51,4,6,12
+Wallachia,15.916,Voivodes of Wallachia,357,1247,1861,Tapsell (1983),1,Kokkonen & Sundell 2014,,,,,,,Campulung,RO,"Campulung Moldovenesc, Romania",47.524305,25.573409,Romania,0,0,0,Europe,0,78,4,6,12
+Bulgaria,15.943,Sishman,313,980,1018,Truhart (1996),1,Tapsell 1983,980,1018,,,980,1018,Ohrid,MK,"Ohrid, North Macedonia",41.116944,20.801667,Byzantine Empire I,0,0,1,Europe,11,587,4,6,12
+Bulgaria,15.944,Asen,27,1185,1279,Truhart (1996),1,Tapsell 1983,1185,1279,,,,,Ohrid,MK,"Ohrid, North Macedonia",41.116944,20.801667,Bulgaria (Cumans),0,1,0,Europe,13,587,4,6,12
+Bulgaria,15.944,Cumans,79,1280,1323,Truhart (1996),1,Tapsell 1983,1280,1323,,,,,Vidin,BG,"Vidin, Bulgaria",43.993056,22.872222,Bulgaria (Sishman),0,1,1,Europe,12,278,4,6,12
+Bulgaria,15.944,Sishman,313,1324,1393,Truhart (1996),1,Tapsell 1983,1324,1393,,,,,Tarnovo,BG,"Tarnovo, Bulgaria",43.077778,25.616667,Ottoman Empire,0,0,1,Europe,19,155,4,6,12
+Croatia,15.959,Trpimirci,339,925,1102,Truhart (1996),1,Kokkonen & Sundell 2014,925,1102,,,,,Nin,HR,"Nin, Croatia",44.235335,15.170075,Hungary (Arpads),0,0,1,Europe,1,883,4,6,12
+Serbia,15.964,Nemanja,227,1169,1389,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Stari Ras,RS,"Novi Pazar, Serbia",43.144835,20.516939,Disintegration,,,0,Europe,13,488,4,6,12
+Bosnia,15.974,Kotromanovic,175,1377,1463,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Jajce,BA,"Jajce, Bosnia and Herzegovina",44.34203,17.27059,Ottoman Empire,0,0,1,Europe,12,715,4,6,12
+Bolgar,16.111,Volga Bolgars,524,900,1370,Truhart (1996),0,,,,900,1370,,,Bolghar,RU,"Bolghar, Russia",54.978889,49.056389,Mongols,1,0,1,Inner_Asia,0,0,5,10,13
+Pechenegs,16.116,Pechenegs,245,896,1091,Truhart (1996),0,,,,896,1091,,,Crimea,RU,"Crimea, Russia",45.3,34.4,Cumans,1,0,1,Inner_Asia,4,0,5,6,12
+Novgorod,16.121,Ryurik,287,800,1456,Tapsell (1983),1,Tapsell 1983,,,,,1000,1350,Novgorod,RU,"Novgorod, Russia",58.55,31.266667,Muscovy,0,0,1,Europe,0,504,4,10,17
+Polotsk,16.122,Ryurik,287,862,1306,Tapsell (1983),0,,,,,,1000,1306,Polotsk,BR,"Polotsk, Belarus",55.483333,28.8,Lithuania,0,0,1,Europe,0,414,4,10,17
+Kiev,16.123,Ryurik,287,864,1230,Tapsell (1983),1,Kokkonen & Sundell 2014,,,,,1000,1230,Kiev,UA,"Kiev, Ukraine",50.469863,30.431971,Mongols,1,0,1,Europe,4,5,4,10,12
+Pinsk,16.131,Ryurik,287,978,1317,Tapsell (1983),0,,,,,,1000,1317,Pinsk,BR,"Pinsk, Belarus",52.115278,26.103056,Lithuania,0,0,1,Europe,1,248,4,10,12
+Galic,16.132,Ryurik,287,988,1083,Tapsell (1983),0,,,,,,1000,1083,Halych,"""","Halych, Ukraine",49.124722,24.728611,,,,,Europe,0,172,4,10,12
+Paremysl,16.134,Ryurik,287,1084,1238,Tapsell (1983),0,,,,,,1084,1238,Halych,UA,"Halych, Ukraine",49.124722,24.728611,,,,,Europe,1,172,4,10,12
+Galic,16.137,Ryurik,287,1125,1263,Tapsell (1983),1,Tapsell 1983,,,,,1125,1263,Lviv,UA,"Lviv, Ukraine",49.8425,24.032222,Disintegration,,,0,Europe,2,206,4,10,12
+Galicia-Volhynia,16.143,Ryurik,287,1264,1377,Tapsell (1983),1,Tapsell 1983,,,,,1264,1350,Lviv,UA,"Lviv, Ukraine",49.8425,24.032222,Lithuania,0,0,1,Europe,3,206,4,10,12
+Smolensk,16.148,Ryurik,287,988,1404,Tapsell (1983),1,Tapsell 1983,,,,,1000,1404,Smolensk,RU,"Smolensk, Russia",54.782778,32.045278,Lithuania,0,0,1,Europe,1,193,4,10,12
+Chernigov,16.149,Ryurik,287,1024,1250,Tapsell (1983),1,Tapsell 1983,,,,,1024,1250,Chernigov,RU,"Chernigov, Ukraine",51.493889,31.294722,Disintegration,,,0,Europe,3,6,4,10,12
+Pereyaslav-Rus,16.15,Ryurik,287,1054,1339,Tapsell (1983),1,Tapsell 1983,,,,,1054,1339,Pereyaslav,UA,"Pereiaslav, Ukraine",50.065,31.445,Lithuania,0,0,1,Inner_Asia,3,0,5,10,12
+Novgorod-Seversk,16.154,Ryurik,287,1097,1393,Tapsell (1983),0,,,,,,1097,1350,Novgorod-Seversk,UA,"Novhorod-Siverskyi, Ukraine",51.997222,33.266667,Lithuania,0,0,1,Europe,1,31,5,10,12
+Murom-Ryazan,16.16,Ryurik,287,1129,1500,Tapsell (1983),1,Tapsell 1983,,,,,1129,1350,Ryazan,RU,"Ryazan, Russia",54.63,39.7425,Muscovy,0,1,1,Europe,2,0,5,10,12
+Vladimir-Suzdal,16.17,Ryurik,287,1169,1328,Tapsell (1983),1,Tapsell 1983,,,,,1169,1328,Vladimir,RU,"Vladimir, Russia",56.128611,40.405833,Muscovy,0,0,0,Europe,3,133,5,10,17
+Mongols (Golden Horde),16.191,Chinggisids,70,1237,1502,Truhart (1996),1,Tapsell 1983,,,1237,1502,,,Sarai,RU,"Sarai, Russia",53.719218,41.012101,Samarqand (Timurids),1,0,1,Inner_Asia,1,0,5,10,12
+Galic,16.204,Ryurik,287,1247,1363,Truhart (1996),0,,,,,,1247,1350,Halych,UA,"Halych, Ukraine",49.124722,24.728611,,,,,Europe,3,172,4,10,12
+Muscovy,16.231,Ryurik,287,1276,1546,Tapsell (1983),1,Kokkonen & Sundell 2014,1359,1546,,,1276,1350,Moscow,RU,"Moscow, Russia",55.741469,37.615561,Russia,0,1,0,Europe,2,25,5,10,17
+Russia,16.261,Ryurik,287,1547,1597,Truhart (1996),1,Kokkonen & Sundell 2014,1547,1597,,,,,Moscow,RU,"Moscow, Russia",55.741469,37.615561,Russia (Godunov),0,1,0,Europe,5,25,5,10,17
+Russia,16.261,Godunov,114,1598,1605,Truhart (1996),1,Kokkonen & Sundell 2014,1598,1605,,,,,Moscow,RU,"Moscow, Russia",55.741469,37.615561,Russia (Romanov),0,1,0,Europe,5,25,5,10,17
+Russia,16.261,Romanov,285,1613,1917,Truhart (1996),1,Kokkonen & Sundell 2014,1613,1682,,,,,Moscow,RU,"Moscow, Russia",55.741469,37.615561,Soviet Union,0,0,0,Europe,6,25,5,10,17
+Crimea,16.271,Khanate of Krim,162,1441,1783,Tapsell (1983),1,Tapsell 1983,,,1441,1783,,,Chufut-kale,RU,"Chufut-kale, Russia",44.741111,33.924444,Russia,0,0,1,Inner_Asia,13,27,5,6,12
+Lithuania,16.436,Grand Dukes of Lithuania,185,1253,1568,Tapsell (1983),1,Kokkonen & Sundell 2014,,,,,,,Kernave,LT,"Širvintos, Lithuania",55.049942,24.949134,Poland,0,0,0,Europe,1,583,4,10,12
+Poland I,16.522,Piast,251,962,1079,Tapsell (1983),1,Kokkonen & Sundell 2014,,,,,,,Gniezo,PL,"Gniezno, Poland",52.532689,17.599834,Division,,,0,Europe,2,711,4,10,12
+Poland (Greater),16.523,Piast,251,1080,1149,Truhart (1996),0,,,,,,,,Poznan,PL,"Poznan, Poland",52.408333,16.933611,Poland,0,0,1,Europe,2,749,4,10,12
+Poland (Lesser),16.524,Piast,251,1080,1306,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Krakow,PL,"Krakow, Poland",50.052652,19.987345,Poland,0,0,0,Europe,1,495,4,10,12
+Masovia,16.525,Masovia,204,1138,1495,Truhart (1996),1,Tapsell 1983,,,,,,,Warsaw,PL,"Warsaw, Poland",52.23,21.011111,Poland,0,0,0,Europe,2,485,4,10,12
+Poland II,16.551,Piast,251,1319,1385,Truhart (1996),1,Kokkonen & Sundell 2014,1319,1385,,,,,Krakow,PL,"Krakow, Poland",50.052652,19.987345,Poland (Jagiello),0,0,0,Europe,4,495,4,10,12
+Poland II,16.551,Jagiello,144,1386,1572,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Krakow,PL,"Krakow, Poland",50.052652,19.987345,Poland (Elected Kings),0,0,0,Europe,4,495,4,10,12
+Poland II,16.551,Elected Kings,93,1573,1795,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Krakow,PL,"Krakow, Poland",50.052652,19.987345,Partition (Brandenburg; Russia; Austria),0,1,1,Europe,6,495,4,10,12
+Transylvania,16.625,Princes of Transylvania,257,1334,1691,Tapsell (1983),1,Kokkonen & Sundell 2014,,,,,,,Alba Iulia,RO,"Alba Iulia, Romania",46.071674,23.576057,Austria,0,1,1,Europe,9,239,4,6,12
+Hungary,16.631,Arpad,25,1000,1300,Truhart (1996),1,Kokkonen & Sundell 2014,1200,1300,,,1000,1100,Esztergom,HU,"Gran, Hungary",47.787412,18.737974,Hungary (Angevin),0,1,0,Europe,8,576,4,10,12
+Hungary,16.631,Anjou,16,1301,1386,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Esztergom,HU,"Gran, Hungary",47.787412,18.737974,Hungary (Sigismund),0,0,0,Europe,11,576,4,10,12
+Hungary,16.631,Habsburg,120,1445,1457,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Esztergom,HU,"Gran, Hungary",47.787412,18.737974,Hungary (Korvin),0,0,0,Europe,12,576,4,10,12
+Hungary,16.631,Korvin,173,1458,1489,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Buda,HU,"Buda, Budapest, Hungary",47.495695,19.01294,Hungary (Jagiello),0,0,0,Europe,12,559,4,6,12
+Hungary,16.631,Jagiello,144,1490,1526,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Buda,HU,"Buda, Budapest, Hungary",47.495695,19.01294,Ottoman Empire,0,0,1,Europe,12,559,4,6,12
+Austria (Duchy),16.722,Babenburgs,34,1156,1251,Truhart (1996),1,Tapsell 1983,1156,1251,,,,,Melk,AT,"Melk, Austria",48.233333,15.35,Austria (Habsburg),0,1,1,Europe,9,825,4,10,12
+Austria,16.735,Habsburg,120,1276,1918,Truhart (1996),1,Kokkonen & Sundell 2014,1276,1918,,,,,Vienna,AT,"Vienna, Austria",48.198674,16.348388,Disintegration,,,0,Europe,12,751,4,10,12
+Bohemia (Duchy),16.818,Przemysl,258,895,1197,Truhart (1996),1,Tapsell 1983,,,,,,,Prague,CZ,"Prague, Czechia",50.06694,14.460249,Bohemia (Przmysl),0,0,0,Europe,7,891,4,10,12
+Bohemia,16.82,Przemysl,258,1198,1305,Truhart (1996),1,Kokkonen & Sundell 2014,1204,1305,,,,,Prague,CZ,"Prague, Czechia",50.06694,14.460249,Bohemia (Luxemburg),0,0,0,Europe,10,891,4,10,12
+Bohemia,16.82,Luxemburg,190,1310,1436,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Prague,CZ,"Prague, Czechia",50.06694,14.460249,Bohemia (Habsburg),0,1,0,Europe,12,891,4,10,12
+Bohemia,16.82,Habsburg,120,1437,1457,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Prague,CZ,"Prague, Czechia",50.06694,14.460249,Bohemia (Jagiello),0,0,0,Europe,13,891,4,10,12
+Bohemia,16.82,Jagiello,144,1471,1525,Truhart (1996),1,Kokkonen & Sundell 2014,,,,,,,Prague,CZ,"Prague, Czechia",50.06694,14.460249,Austria,0,1,0,Europe,13,891,4,10,12
+Holy Roman Empire,16.913,Holy Roman Emperors,133,962,1806,Tapsell (1983),1,Kokkonen & Sundell 2014,,,,,,,Swabia,DE,"Tubingen, Germany",48.523078,9.059097,France (Napoleonic),0,0,1,Europe,9,1289,4,10,12
+Palatinate,17.421,Palatinate Dynasty,241,1257,1676,Tapsell (1983),1,Kokkonen & Sundell 2014,1257,1676,,,,,Heidelberg,DE,"Heidelberg, Germany",49.37625,8.769869,France,0,1,1,Europe,12,1306,4,10,12
+Brandenburg,17.693,Askanien,30,1157,1319,Truhart (1996),1,Tapsell 1983,1157,1319,,,,,Brandenburg an der Havel,DE,"Brandenburg, Germany",52.421197,12.523106,Brandenburg (Luxemburg),0,1,0,Europe,3,1041,4,10,12
+Brandenburg,17.693,Luxemburg,190,1323,1410,Truhart (1996),1,Tapsell 1983,1323,1410,,,,,Brandenburg an der Havel,DE,"Brandenburg, Germany",52.421197,12.523106,Brandenburg (Hohenzollern),0,1,0,Europe,5,1041,4,10,12
+Brandenburg,17.693,Hohenzollern,131,1411,1701,Truhart (1996),1,Kokkonen & Sundell 2014,1411,1701,,,,,Berlin,DE,"Berlin, Germany",52.52045,13.40732,Prussia (Hohenzollern),0,1,0,Europe,7,984,4,10,12
+Saxony,17.706,Wettin,361,1485,1806,Truhart (1996),1,Kokkonen & Sundell 2014,1499,1806,,,,,Wittenberg,DE,"Wittenberg , Germany",51.822827,12.663891,Disintegration,,,0,Europe,6,1022,4,10,12
+Prussia (Teutonic),17.781,Teutonic Knights,332,1239,1632,Truhart (1996),0,,,,,,,,Konigsberg,RU,"Konigsberg, Russia",54.711472,20.509306,Brandenburg,0,1,0,Europe,1,687,4,10,12
+Prussia,17.811,Hohenzollern,131,1701,1806,Tapsell (1983),1,Kokkonen & Sundell 2014,1701,1806,,,,,Berlin,DE,"Berlin, Germany",52.52,13.405,France (Napoleonic),0,0,1,Europe,10,984,4,10,12
+Bavaria,17.9211,Wittelsbach,362,1623,1804,Tapsell (1983),1,Kokkonen & Sundell 2014,1545,1804,,,,,Munich,DE,"Munich, Germany",48.152126,11.544467,Bavaria,0,0,0,Europe,16,1108,4,10,12
