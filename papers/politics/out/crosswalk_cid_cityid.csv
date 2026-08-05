@@ -1,0 +1,279 @@
+cid,city,country,lat,lon,in_hre,in_cne,city_id,name_loc
+0,Aachen,Germany,50.78,6.08,True,True,14001,Aachen
+61,Altenburg,Germany,50.98,12.43,True,True,10002,Altenburg
+66,Amberg,Germany,49.45,11.87,True,True,23004,Amberg
+74,Andernach,Germany,50.43,7.4,True,True,18005,Andernach
+82,Anklam,Germany,53.85,13.68,True,True,2001,Anklam
+86,Ansbach,Germany,49.28,10.6,True,True,22006,Ansbach
+120,Aschaffenburg,Germany,49.98,9.15,True,True,22009,Aschaffenburg
+121,Aschersleben,Germany,51.75,11.45,True,True,11008,Aschersleben
+137,Augsburg,Germany,48.35,10.88,True,True,23006,Augsburg
+154,Bad Hersfeld,Germany,50.87,9.7,True,True,15061,Hersfeld
+156,Bad Kreuznach,Germany,49.87,7.85,True,True,18010,Bad Kreuznach
+159,Baden-Baden,Germany,48.77,8.23,True,True,21003,Baden-Baden
+173,Bamberg,Germany,49.88,10.88,True,True,22016,Bamberg
+183,Barmen,Germany,51.28,7.22,True,True,14113,Wuppertal-Barmen
+191,Bautzen,Germany,51.18,14.48,True,True,9008,Bautzen
+194,Bayreuth,Germany,49.95,11.58,True,True,22018,Bayreuth
+200,Beckum,Germany,51.75,8.03,True,True,13009,Beckum
+227,Bergisch-Gladbach,Germany,51.0,7.13,True,True,14008,Bergisch Gladbach
+229,Berlin,Germany,52.52,13.4,True,True,7010,Berlin
+232,Bernburg,Germany,51.8,11.73,True,True,11013,Bernburg
+241,Biberach,Germany,48.1,9.97,True,True,17006,Biberach
+242,Bielefeld,Germany,52.02,8.52,True,True,13014,Bielefeld
+249,Bingen,Germany,49.97,7.9,True,True,18017,Bingen
+261,Bochum,Germany,51.47,7.08,True,True,13019,Bochum
+269,Bonn,Germany,50.73,7.08,True,True,14012,Bonn
+280,Bottrop,Germany,51.52,6.92,True,True,13025,Bottrop
+293,Brandenburg,Germany,52.4,12.53,True,True,7027,Brandenburg
+294,Braniewo,Poland,54.4,19.83,False,True,1011,Braunsberg
+297,Braunschweig,Germany,52.25,10.5,True,True,12016,Braunschweig
+299,Breisach am Rhein,Germany,48.02,7.6,True,True,21009,Breisach
+300,Bremen,Germany,53.08,8.8,True,True,12017,Bremen
+301,Bremerhaven,Germany,53.55,8.58,True,True,12019,Bremerhaven
+318,Bruchsal,Germany,49.12,8.58,True,True,20005,Bruchsal
+321,Brzeg,Poland,50.87,17.45,False,True,8010,Brieg
+325,Burg,Germany,52.28,11.85,True,True,11020,Burg b. M.
+417,Celle,Germany,52.62,10.08,True,True,12024,Celle
+420,Cernjahovsk,Russia,54.63,21.82,False,False,1034,Insterburg
+447,Chemnitz,Germany,50.83,12.92,True,True,9017,Chemnitz
+476,Clausthal Zellerfeld,Germany,51.8,10.33,True,True,12025,Clausthal-Zellerfeld
+482,Coburg,Germany,50.25,10.97,True,True,22024,Coburg
+483,Coesfeld,Germany,51.93,7.17,True,True,13034,Coesfeld
+513,Cottbus,Germany,51.72,14.35,True,True,7033,Cottbus
+522,Cronenberg,Germany,51.2,7.13,True,True,14115,Wuppertal-Cronenberg
+535,Darmstadt,Germany,49.88,8.67,True,True,15015,Darmstadt
+547,Dessau,Germany,51.83,12.23,True,True,11028,Dessau
+556,Dinkelsbuehl,Germany,49.07,10.35,True,True,22027,Dinkelsbuehl
+560,Doebeln,Germany,51.12,13.12,True,True,9023,Doebeln
+568,Dortmund,Germany,51.52,7.47,True,True,13039,Dortmund
+575,Dresden,Germany,51.05,13.73,True,True,9025,Dresden
+582,Dueren,Germany,50.8,6.5,True,True,14018,Dueren
+583,Duesseldorf,Germany,51.2,6.78,True,True,14019,Duesseldorf
+584,Duisburg,Germany,51.42,6.77,True,True,14022,Duisburg
+592,Ebersbach,Germany,51.0,14.58,True,True,9026,Ebersbach
+601,Eichstaett,Germany,48.9,11.22,True,True,22032,Eichstaett
+602,Eilenburg,Germany,51.45,12.62,True,True,11034,Eilenburg
+603,Einbeck,Germany,51.82,9.87,True,True,12033,Einbeck
+605,Eisenach,Germany,50.98,10.32,True,True,10019,Eisenach
+607,Eisleben,Germany,51.52,11.53,True,True,11035,Eisleben
+610,Elberfeld,Germany,51.27,7.13,True,True,14116,Wuppertal-Elberfeld
+612,Elblag,Poland,54.17,19.42,False,True,1018,Elbing
+620,Emden,Germany,53.37,7.2,True,True,12037,Emden
+621,Emmerich,Germany,51.83,6.27,True,True,14026,Emmerich
+629,Erfurt,Germany,50.97,11.02,True,True,11039,Erfurt
+630,Erlangen,Germany,49.6,11.02,True,True,22035,Erlangen
+631,Eschweiler,Germany,50.82,6.27,True,True,14028,Eschweiler
+633,Essen,Germany,51.47,7.02,True,True,14029,Essen
+634,Esslingen,Germany,48.75,9.32,True,True,16017,Esslingen/Neckar
+664,Flensburg,Germany,54.78,9.43,True,True,5011,Flensburg
+678,Frankenberg,Germany,50.9,13.02,True,True,9035,Frankenberg/Sa
+680,Frankfurt am Main,Germany,50.1,8.67,True,True,15027,Frankfurt
+681,Frankfurt am Oder,Germany,52.33,14.55,True,True,7045,Frankfurt (Oder)
+682,Freiberg,Germany,50.9,13.33,True,True,9037,Freiberg
+683,Freiburg,Germany,47.98,7.85,True,True,21018,Freiburg/Br.
+690,Fuerth,Germany,49.47,10.98,True,True,22039,Fuerth
+691,Fulda,Germany,50.55,9.68,True,True,15036,Fulda
+704,Gdansk,Poland,54.38,18.67,False,True,1013,Danzig
+708,Gelsenkirchen,Germany,51.52,7.1,True,True,13055,Gelsenkirchen
+713,Gera,Germany,50.7,12.18,True,True,10026,Gera
+719,Giessen,Germany,50.58,8.7,True,True,15043,Giessen
+729,Glauchau,Germany,50.82,12.53,True,True,9045,Glauchau
+730,Gliwice,Poland,50.28,18.67,False,True,8032,Gleiwitz
+731,Glogow,Poland,51.67,16.08,False,True,8033,Glogau
+733,Glueckstadt,Germany,53.78,9.42,True,True,5016,Glueckstadt
+737,Goeppingen,Germany,48.7,9.67,True,True,16026,Goeppingen
+738,Goerlitz,Germany,51.15,14.99,True,True,8034,Goerlitz
+741,Goettingen,Germany,51.53,9.95,True,True,12048,Goettingen
+745,Gorzow Wielkopolski,Poland,52.7,15.2,False,True,7071,Landsberg (Warthe)
+746,Goslar,Germany,51.9,10.42,True,True,12049,Goslar
+748,Gotha,Germany,50.95,10.72,True,True,10028,Gotha
+762,Greifswald,Germany,54.08,13.38,True,True,2009,Greifswald
+764,Grimma,Germany,51.23,12.72,True,True,9047,Grimma
+768,Grossenhain,Germany,51.28,13.52,True,True,9049,Grossenhain
+774,Gubin,Poland,51.98,14.7,False,True,7059,Guben
+776,Guestrow,Germany,53.8,12.17,True,True,4015,Guestrow
+780,Gusev,Russia,54.6,22.2,False,False,1029,Gumbinnen
+785,Hagen,Germany,51.37,7.48,True,True,13063,Hagen
+790,Halberstadt,Germany,51.9,11.07,True,True,11058,Halberstadt
+793,Halle,Germany,51.48,11.97,True,True,11060,Halle a. d. S.
+794,Hamburg,Germany,53.55,9.98,True,True,6001,Hamburg
+795,Hameln,Germany,52.1,9.35,True,True,12052,Hameln
+797,Hamm,Germany,51.67,7.82,True,True,13067,Hamm
+799,Hanau,Germany,50.13,8.92,True,True,15055,Hanau
+800,Hannover,Germany,52.4,9.73,True,True,12053,Hannover
+801,Harburg,Germany,48.78,10.68,True,True,23055,Harburg (Schwaben)
+809,Hattingen,Germany,51.4,7.18,True,True,13069,Hattingen
+812,Heidelberg,Germany,49.42,8.72,True,True,20013,Heidelberg
+813,Heilbronn,Germany,49.13,9.22,True,True,16033,Heilbronn
+816,Helmstedt,Germany,52.22,11.0,True,True,12059,Helmstedt
+820,Herford,Germany,52.1,8.67,True,True,13073,Herford
+822,Herne,Germany,51.55,7.22,True,True,13074,Herne
+824,Hildesheim,Germany,52.15,9.95,True,True,12062,Hildesheim
+828,Hof,Germany,50.3,11.92,True,True,22058,Hof
+837,Hueckeswagen,Germany,51.13,7.33,True,True,14048,Hueckeswagen
+843,Husum,Germany,54.47,9.05,True,True,5019,Husum
+847,Ibbenbueren,Germany,52.27,7.72,True,True,13082,Ibbenbueren
+848,Iena,Germany,50.93,11.58,True,True,10039,Jena
+857,Ingolstadt,Germany,48.77,11.45,True,True,23063,Ingolstadt
+863,Iserlohn,Germany,51.37,7.68,True,True,13083,Iserlohn
+884,Jelenia Gora,Poland,50.92,15.75,False,True,8051,Hirschberg im Riesengebirge
+893,Kaiserslautern,Germany,49.43,7.77,True,True,18039,Kaiserslautern
+895,Kaliningrad,Russia,54.72,20.5,False,False,1036,Koenigsberg Pr.
+908,Karlsruhe,Germany,49.0,8.4,True,True,20017,Karlsruhe
+910,Kassel,Germany,51.32,9.48,True,True,15075,Kassel
+912,Kaufbeuren,Germany,47.88,10.62,True,True,23064,Kaufbeuren
+917,Kempten,Germany,47.72,10.32,True,True,23067,Kempten (Allgaeu)
+927,Kiel,Germany,54.33,10.13,True,True,5023,Kiel
+942,Kleve,Germany,51.8,6.18,True,True,14059,Kleve
+943,Klodzko,Poland,50.45,16.65,False,True,8031,Glatz
+946,Koblenz,Germany,50.35,7.58,True,True,18045,Koblenz
+947,Koeln,Germany,50.92,6.95,True,True,14060,Koeln
+948,Koenigswinter,Germany,50.67,7.18,True,True,14064,Koenigswinter
+950,Koethen,Germany,51.75,11.97,True,True,11081,Koethen
+952,Kolobrzeg,Poland,54.2,15.55,False,True,3030,Kolberg
+957,Konstanz,Germany,47.67,9.17,True,True,21037,Konstanz
+967,Koszalin,Poland,54.18,16.18,False,True,3029,Koeslin
+979,Krempe,Germany,53.83,9.48,True,True,5024,Krempe
+993,Kwidzyn,Poland,53.75,18.93,False,True,1045,Marienwerder
+1000,Lahr,Germany,48.4,7.87,True,True,21039,Lahr
+1005,Landau,Germany,49.2,8.12,True,True,18051,Landau
+1006,Landshut,Germany,48.52,12.17,True,True,23074,Landshut
+1007,Langensalza,Germany,51.12,10.67,True,True,11084,Langensalza
+1014,Lauingen,Germany,48.57,10.42,True,True,23076,Lauingen (Donau)
+1030,Leer,Germany,53.23,7.43,True,True,12071,Leer
+1033,Legnica,Poland,51.22,16.15,False,True,8082,Liegnitz
+1036,Leipzig,Germany,51.32,12.37,True,True,9070,Leipzig
+1047,Leverkusen,Germany,51.03,6.98,True,True,14070,Leverkusen
+1069,Lippstadt,Germany,51.67,8.32,True,True,13094,Lippstadt
+1096,Luban,Poland,51.13,15.3,False,True,8075,Lauban
+1101,Ludwigsburg,Germany,48.88,9.18,True,True,16053,Ludwigsburg
+1102,Ludwigshafen,Germany,49.48,8.45,True,True,18055,Ludwigshafen
+1103,Luebeck,Germany,53.87,10.67,True,True,5026,Luebeck
+1104,Lueneburg,Germany,53.25,10.42,True,True,12076,Lueneburg
+1124,Magdeburg,Germany,52.12,11.63,True,True,11094,Magdeburg
+1129,Mainz,Germany,50.02,8.27,True,True,18058,Mainz
+1133,Malbork,Poland,54.03,19.02,False,True,1044,Marienburg
+1142,Mannheim,Germany,49.48,8.48,True,True,20024,Mannheim
+1148,Marburg,Germany,50.82,8.77,True,True,15092,Marburg
+1152,Marienberg,Germany,50.65,13.17,True,True,9082,Marienberg i. S.
+1181,Meiningen,Germany,50.57,10.42,True,True,10053,Meiningen
+1182,Meissen,Germany,51.17,13.47,True,True,9087,Meissen
+1187,Memmingen,Germany,47.98,10.18,True,True,23084,Memmingen
+1193,Merseburg,Germany,51.35,11.98,True,True,11096,Merseburg
+1196,Mettmann,Germany,51.25,6.97,True,True,14073,Mettmann
+1211,Minden,Germany,52.28,8.92,True,True,13104,Minden
+1221,Mittweida,Germany,50.98,12.98,True,True,9088,Mittweida
+1224,Moenchengladbach,Germany,50.18,6.45,True,True,18077,Pruem
+1281,Muelheim an der Ruhr,Germany,51.42,6.83,True,True,14077,Muelheim a. d. Ruhr
+1282,Muenchen,Germany,48.13,11.57,True,True,23092,Muenchen
+1283,Muenster,Germany,51.95,7.62,True,True,13105,Muenster
+1309,Nauen,Germany,52.6,12.87,True,True,7091,Nauen
+1310,Naumburg,Germany,51.15,11.8,True,True,11101,Naumburg (Saale)
+1314,Neubrandenburg,Germany,53.55,13.25,True,True,4026,Neubrandenburg
+1315,Neuburg,Germany,48.73,11.18,True,True,23095,Neuburg a. d. Donau
+1318,Neuruppin,Germany,52.92,12.8,True,True,7093,Neu Ruppin
+1319,Neuss,Germany,51.2,6.68,True,True,14079,Neuss
+1320,Neustrelitz,Germany,53.35,13.07,True,True,4030,Neustrelitz
+1321,Neuwied,Germany,50.42,7.45,True,True,18067,Neuwied
+1352,Noerdlingen,Germany,48.85,10.5,True,True,23105,Noerdlingen
+1357,Norden,Germany,53.6,7.2,True,True,12085,Norden
+1358,Nordhausen,Germany,51.5,10.78,True,True,11104,Nordhausen
+1381,Nuernberg,Germany,49.45,11.07,True,True,22094,Nuernberg
+1384,Nysa,Poland,50.48,17.33,False,True,8096,Neisse
+1385,Oberhausen,Germany,51.47,6.87,True,True,14082,Oberhausen
+1394,Offenbach,Germany,50.13,8.78,True,True,15106,Offenbach
+1396,Oldenburg,Germany,53.15,8.22,True,True,12091,Oldenburg
+1397,Oldenburg,Germany,54.28,10.87,True,True,5034,Oldenburg (Holstein)
+1404,Olsztyn,Poland,53.78,20.5,False,True,1002,Allenstein
+1409,Opole,Poland,50.68,17.92,False,True,8109,Oppeln
+1410,Oppenheim,Germany,49.85,8.35,True,True,18073,Oppenheim
+1431,Osnabrueck,Germany,52.27,8.03,True,True,12092,Osnabrueck
+1444,Paderborn,Germany,51.72,8.75,True,True,13117,Paderborn
+1468,Passau,Germany,48.58,13.47,True,True,23112,Passau
+1503,Pforzheim,Germany,48.9,8.7,True,True,20031,Pforzheim
+1512,Pirmasens,Germany,49.2,7.6,True,True,18076,Pirmasens
+1513,Pirna,Germany,50.97,13.97,True,True,9113,Pirna
+1521,Plauen,Germany,50.5,12.13,True,True,9115,Plauen
+1554,Potsdam,Germany,52.4,13.07,True,True,7102,Potsdam
+1561,Prenzlau,Germany,53.32,13.87,True,True,7104,Prenzlau
+1583,Quedlinburg,Germany,51.8,11.15,True,True,11114,Quedlinburg
+1588,Radevormwald,Germany,51.2,7.35,True,True,14088,Radevormwald
+1598,Ravensburg,Germany,47.78,9.62,True,True,17041,Ravensburg
+1602,Recklinghausen,Germany,51.58,7.2,True,True,13123,Recklinghausen
+1604,Regensburg,Germany,49.02,12.1,True,True,23123,Regensburg
+1607,Reichenbach,Germany,50.62,12.3,True,True,9122,Reichenbach i. V.
+1609,Remscheid,Germany,51.18,7.18,True,True,14091,Remscheid
+1610,Rendsburg,Germany,54.3,9.67,True,True,5041,Rendsburg
+1617,Reutlingen,Germany,48.48,9.18,True,True,17042,Reutlingen
+1619,Rheine,Germany,52.28,7.43,True,True,13125,Rheine
+1620,Rheydt,Germany,51.3,6.45,True,True,14097,Rheydt
+1648,Rostock,Germany,54.08,12.12,True,True,4037,Rostock
+1652,Rothenburg ob der Tauber,Germany,49.38,10.17,True,True,22109,Rothenburg o. d. Tauber
+1654,Rottenburg am Neckar,Germany,48.47,8.93,True,True,17045,Rottenburg
+1674,Saarbruecken,Germany,49.23,6.98,True,True,19008,Alt-Saarbruecken
+1675,Saarlouis,Germany,49.32,6.75,True,True,19012,Saarlouis
+1692,Salzgitter,Germany,52.15,10.4,True,True,12109,Salzgitter
+1693,Salzwedel,Germany,52.86,11.15,True,True,11121,Salzwedel
+1736,Schleswig,Germany,54.52,9.55,True,True,5042,Schleswig
+1738,Schneeberg,Germany,50.6,12.63,True,True,9133,Schneeberg
+1739,Schorndorf,Germany,48.8,9.55,True,True,16074,Schorndorf
+1740,Schwabach,Germany,49.47,11.02,True,True,22118,Schwabach
+1741,Schwaebisch Gmuend,Germany,48.82,9.8,True,True,16075,Schwaebisch Gmuend
+1742,Schwaebisch Hall,Germany,49.12,9.73,True,True,16076,Schwaebisch Hall
+1744,Schweinfurt,Germany,50.05,10.27,True,True,22121,Schweinfurt
+1745,Schwerin,Germany,53.63,11.42,True,True,4040,Schwerin
+1788,Siegen,Germany,50.87,8.03,True,True,13137,Siegen
+1806,Slupsk,Poland,54.47,17.02,False,True,3068,Stolp
+1811,Soest,Germany,51.57,8.12,True,True,13138,Soest
+1817,Solingen,Germany,51.17,7.08,True,True,14100,Solingen
+1833,Sovetsk,Russia,55.08,21.88,False,False,1074,Tilsit
+1834,Spandau,Germany,52.53,13.2,True,True,7016,Berlin-Spandau
+1836,Speyer,Germany,49.32,8.43,True,True,18087,Speyer
+1868,Stade,Germany,53.6,9.47,True,True,12118,Stade
+1872,Stargard Szczecinski,Poland,53.33,15.03,False,True,3062,Stargard in Pommern
+1878,Stendal,Germany,52.6,11.85,True,True,11145,Stendal
+1886,Stralsund,Germany,54.32,13.13,True,True,2018,Stralsund
+1887,Strasbourg,France,48.58,7.75,False,True,21035,Kehl
+1888,Straubing,Germany,48.88,12.57,True,True,23139,Straubing
+1890,Stuttgart,Germany,48.77,9.18,True,True,16081,Stuttgart
+1895,Suhl,Germany,50.62,10.72,True,True,11148,Suhl
+1896,Sulechow,Poland,52.1,15.62,False,True,7155,Zuellichau
+1906,Swidnik,Poland,50.85,16.48,False,True,8142,Schweidnitz
+1911,Szczecin,Poland,53.4,14.53,False,True,3064,Stettin
+1964,Toenning,Germany,54.32,8.93,True,True,5045,Toenning
+1974,Torgau,Germany,51.57,13.0,True,True,11155,Torgau
+2003,Trier,Germany,49.75,6.63,True,True,18090,Trier
+2014,Tuebingen,Germany,48.52,9.07,True,True,17061,Tuebingen
+2029,Ulm,Germany,48.4,10.0,True,True,16085,Ulm
+2032,Unna,Germany,51.53,7.68,True,True,13143,Unna
+2062,Velbert,Germany,51.37,7.03,True,True,14104,Velbert
+2077,Verden,Germany,52.92,9.22,True,True,12127,Verden
+2096,Viersen,Germany,51.25,6.38,True,True,14105,Viersen
+2156,Walbrzych,Poland,50.78,16.28,False,True,8160,Waldenburg (Schles.)
+2158,Warburg,Germany,51.48,9.17,True,True,13150,Warburg
+2167,Weimar,Germany,50.98,11.32,True,True,10098,Weimar
+2168,Weissenfels,Germany,51.2,11.97,True,True,11161,Weissenfels
+2171,Werden,Germany,51.38,7.0,True,True,14031,Essen-Werden
+2172,Wesel,Germany,51.67,6.63,True,True,14107,Wesel
+2176,Wetzlar,Germany,50.55,8.55,True,True,15150,Wetzlar
+2182,Wiesbaden,Germany,50.08,8.23,True,True,15151,Wiesbaden
+2189,Wismar,Germany,53.88,11.47,True,True,4051,Wismar
+2191,Wittenberg,Germany,51.87,12.65,True,True,11167,Wittenberg
+2192,Wolfenbuettel,Germany,52.17,10.53,True,True,12138,Wolfenbuettel
+2193,Wolfsburg,Germany,52.42,10.78,True,True,12139,Wolfsburg
+2194,Wolin,Poland,53.84,14.62,False,True,3078,Wollin
+2200,Worms,Germany,49.63,8.37,True,True,18097,Worms
+2201,Wroclaw,Poland,51.1,17.0,False,True,8007,Breslau
+2202,Wschowa,Poland,51.8,16.32,False,True,8023,Fraustadt
+2203,Wuelfrath,Germany,51.28,7.03,True,True,14110,Wuelfrath
+2204,Wuerzburg,Germany,49.8,9.93,True,True,22145,Wuerzburg
+2214,Zabrze,Poland,50.3,18.78,False,True,8050,Hindenburg O.S.
+2216,Zagan,Poland,51.62,15.32,False,True,8133,Sagan
+2225,Zeitz,Germany,51.05,12.13,True,True,11172,Zeitz
+2229,Zerbst,Germany,51.97,12.1,True,True,11173,Zerbst
+2232,Zielona Gora,Poland,51.98,15.52,False,True,8043,Gruenberg (Schlesien)
+2235,Zittau,Germany,50.9,14.83,True,True,9159,Zittau
+2238,Zlotoryja,Poland,51.13,15.92,False,True,8035,Goldberg in Niederschlesien
+2247,Zweibruecken,Germany,49.25,7.35,True,True,18099,Zweibruecken
+2248,Zwickau,Germany,50.73,12.48,True,True,9163,Zwickau
