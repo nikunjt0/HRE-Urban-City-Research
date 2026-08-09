@@ -29,50 +29,14 @@ def _nearest(src_latlon, tgt):
     return d.flatten() * EARTH_KM, idx.flatten()
 
 
-import unicodedata
-def _norm(s):
-    if pd.isna(s):
-        return ""
-    s = unicodedata.normalize("NFKD", str(s).lower())
-    s = "".join(c for c in s if not unicodedata.combining(c))
-    for a, b in [("ss", "s"), ("oe", "o"), ("ae", "a"), ("ue", "u")]:
-        s = s.replace(a, b)
-    return "".join(c for c in s if c.isalnum())
+from coverage import match_stadtebuch, viabundus_flag
 
 
 def match_loc(d, loc):
-    """Match each Buringh row to a city_locations row: prefer a name match
-    (across name/name_alt/name_foreign) within 60 km; else nearest within 5 km.
-    Returns array of loc positional indices (or -1)."""
-    loc = loc.reset_index(drop=True)
-    name_cols = [c for c in ["name", "name_alt", "name_foreign"] if c in loc.columns]
-    name_idx = {}
-    for i, row in loc.iterrows():
-        for c in name_cols:
-            k = _norm(row[c])
-            if k:
-                name_idx.setdefault(k, []).append(i)
-    loc_rad = np.deg2rad(loc[["lat", "lon"]].to_numpy())
-    out = np.full(len(d), -1)
-    for j, row in d.reset_index(drop=True).iterrows():
-        cand = name_idx.get(_norm(row["city"]), [])
-        pr = np.deg2rad([row["lat"], row["lon"]])
-        if cand:
-            # nearest among name matches, accept if < 60 km
-            dd = np.arccos(np.clip(np.sin(loc_rad[cand, 0]) * np.sin(pr[0]) +
-                  np.cos(loc_rad[cand, 0]) * np.cos(pr[0]) *
-                  np.cos(loc_rad[cand, 1] - pr[1]), -1, 1)) * EARTH_KM
-            if dd.min() < 60:
-                out[j] = cand[int(dd.argmin())]
-                continue
-    # coordinate fallback for unmatched, within 5 km
-    miss = np.where(out < 0)[0]
-    if len(miss):
-        dist, idx = _nearest(d.iloc[miss][["lat", "lon"]].to_numpy(), loc)
-        for k, m in enumerate(miss):
-            if dist[k] <= 5.0:
-                out[m] = idx[k]
-    return out
+    """Match each Buringh row to a Städtebuch city_locations row (see
+    coverage.match_stadtebuch). A match means the city is inside the
+    Städtebuch universe, so a missing charter record is an observed zero."""
+    return match_stadtebuch(d, loc)
 
 
 def build():
@@ -102,14 +66,18 @@ def build():
         vals = loc[c].to_numpy()
         d[c] = [vals[i] if i >= 0 else np.nan for i in idx]
     d["name_loc"] = [loc["name"].to_numpy()[i] if i >= 0 else "" for i in idx]
+    # coverage: charter/market absence is only observable for matched
+    # (Städtebuch-universe) cities; elsewhere status is unknown, not zero
+    d["in_stadtebuch"] = idx >= 0
 
-    # staple (Viabundus) by coordinate
+    # staple (Viabundus) by coordinate; observable only inside the network footprint
+    d["in_via"] = viabundus_flag(d)
     n = pd.read_csv(VIA / "nodes.csv", low_memory=False, na_values=["null", ""])
     n["lat"] = pd.to_numeric(n["latitude"], errors="coerce")
     n["lon"] = pd.to_numeric(n["longitude"], errors="coerce")
     st = n[n["Is_Staple"] == "y"].dropna(subset=["lat", "lon"]).reset_index(drop=True)
     sd, _ = _nearest(d[["lat", "lon"]].to_numpy(), st[["lat", "lon"]])
-    d["staple"] = (sd <= 6.0).astype(int)
+    d["staple"] = np.where(d["in_via"], (sd <= 6.0).astype(float), np.nan)
 
     d["water"] = ((d["on_river"] == 1) | (d["on_coast"] == 1)).astype(int)
     return d
@@ -133,6 +101,10 @@ def fmt_year(y):
     return f"{abs(y)} BCE" if y < 0 else str(y)
 
 
+def fmt_flag(v):
+    return "n/c" if pd.isna(v) else str(int(v))
+
+
 if __name__ == "__main__":
     d = build()
     s, r = performers(d)
@@ -154,7 +126,7 @@ if __name__ == "__main__":
     for _, row in view.iterrows():
         print(f"  {row['city']:<18s} p1200={row['pop1200']:>7.0f} p1500={row['pop1500']:>7.0f} "
               f"g={row['growth']:+.2f} water={int(row['water'])} "
-              f"charter={fmt_year(row['charter_year']):>6s} staple={int(row['staple'])} "
+              f"charter={fmt_year(row['charter_year']):>6s} staple={fmt_flag(row['staple'])} "
               f"resid={row['resid']:+.2f}")
 
     print("\n=== TOP 12 OVER-PERFORMERS (beat their fundamentals) ===")

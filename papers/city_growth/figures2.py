@@ -15,16 +15,17 @@ plt.rcParams.update({"figure.dpi": 130, "font.size": 11, "axes.grid": True, "gri
 def fig_causal():
     res = json.load(open(OUT / "causal_summary.json"))
     order = ["staple", "fair", "charter", "market"]
-    names = {"staple": "Staple right\n(Viabundus)", "fair": "Trade fair\n(Viabundus)",
-             "charter": "Town charter\n(Städtebuch)", "market": "Market right\n(Städtebuch)"}
-    fig, ax = plt.subplots(figsize=(8.4, 4.8))
+    names = {k: f"{lab}\nn treated = {res[k]['n_treat']}" for k, lab in
+             [("staple", "Staple right\n(Viabundus)"), ("fair", "Trade fair\n(Viabundus)"),
+              ("charter", "Town charter\n(Städtebuch)"), ("market", "Market right\n(Städtebuch)")]}
+    fig, ax = plt.subplots(figsize=(8.4, 5.0))
     x = np.arange(len(order)); w = 0.38
     naive = [res[k]["naive"] * 100 for k in order]
     did = [res[k]["did"] * 100 for k in order]
     lo = [(res[k]["did"] - res[k]["ci"][0]) * 100 for k in order]
     hi = [(res[k]["ci"][1] - res[k]["did"]) * 100 for k in order]
-    b1 = ax.bar(x - w/2, naive, w, color="#c0392b", label="Naïve association (two-way fixed effects)")
-    b2 = ax.bar(x + w/2, did, w, color="#2c7fb8", label="Causal effect (matched diff-in-diff, 95% CI)")
+    ax.bar(x - w/2, naive, w, color="#c0392b", label="Naïve association (two-way fixed effects)")
+    ax.bar(x + w/2, did, w, color="#2c7fb8", label="Matched diff-in-diff (95% bootstrap CI)")
     ax.errorbar(x + w/2, did, yerr=[lo, hi], fmt="none", ecolor="#154360", capsize=4, lw=1.4)
     for xi, k in zip(x - w/2, order):
         p = res[k]["naive_p"]
@@ -34,12 +35,45 @@ def fig_causal():
         ax.text(xi, res[k]["did"]*100 + (2.0 if res[k]["did"] >= 0 else -4), f"{res[k]['did']:+.0%}",
                 ha="center", fontsize=9, fontweight="bold", color="#154360")
     ax.axhline(0, color="k", lw=0.9)
-    ax.set_xticks(x); ax.set_xticklabels([names[k] for k in order])
+    ax.set_xticks(x); ax.set_xticklabels([names[k] for k in order], fontsize=9)
     ax.set_ylabel("Effect on city population (%)")
-    ax.set_title("Commercial privileges are associated with size — but did not CAUSE growth\n"
-                 "Every causal estimate's confidence interval includes zero", fontsize=11.5)
+    ax.set_title("Raw size gaps do not survive a timing-aware comparison\n"
+                 "Point estimates ≈ 0; none reject zero (samples restricted to each source's coverage area)",
+                 fontsize=11)
     ax.legend(fontsize=9, loc="upper right")
     fig.tight_layout(); fig.savefig(FIG / "fig_causal_consolidated.png"); plt.close(fig)
+
+
+def fig_event_study():
+    """Stacked event-study coefficients per privilege (95% CI), from causal_summary."""
+    res = json.load(open(OUT / "causal_summary.json"))
+    order = [k for k in ["staple", "fair", "charter", "market"] if res[k].get("event_study")]
+    labs = {"staple": "Staple right", "fair": "Trade fair",
+            "charter": "Town charter", "market": "Market right"}
+    fig, axes = plt.subplots(1, len(order), figsize=(2.9 * len(order), 3.9), sharey=True)
+    if len(order) == 1:
+        axes = [axes]
+    for ax, k in zip(axes, order):
+        es = res[k]["event_study"]
+        ee = [-2, -1, 0, 1]
+        coefs = [es["-2"]["coef"], 0.0, es["0"]["coef"], es["1"]["coef"]]
+        los = [es["-2"]["lo"], 0.0, es["0"]["lo"], es["1"]["lo"]]
+        his = [es["-2"]["hi"], 0.0, es["0"]["hi"], es["1"]["hi"]]
+        ax.errorbar(ee, coefs, yerr=[np.array(coefs) - np.array(los),
+                                     np.array(his) - np.array(coefs)],
+                    fmt="o-", color="#2c7fb8", capsize=4, lw=1.5, ms=5)
+        ax.axhline(0, color="k", lw=0.8); ax.axvline(-0.5, color="#c0392b", ls=":", lw=1)
+        ax.set_xticks(ee)
+        ax.set_xticklabels(["-2", "-1\n(ref)", "0\n(grant)", "+1"], fontsize=8.5)
+        ax.set_title(f"{labs[k]}\n(n treated = {es['n_treated_cities']})", fontsize=10)
+        ax.set_xlabel("centuries relative to grant", fontsize=8.5)
+    axes[0].set_ylabel("log population vs. controls")
+    fig.suptitle("Stacked event studies: treated towns rise steadily THROUGH the grant date\n"
+                 "The ascent begins before the grant and does not accelerate after it — selection, not treatment\n"
+                 "(not-yet-treated and never-treated controls, cohort-stacked FE, city-clustered)",
+                 fontsize=10.5, y=1.10)
+    fig.tight_layout()
+    fig.savefig(FIG / "fig_event_study.png", bbox_inches="tight"); plt.close(fig)
 
 
 def _basin(r):
@@ -96,14 +130,14 @@ def fig_water_timing():
     ax.set_xticks(x); ax.set_xticklabels(periods)
     ax.set_ylabel("Extra log-growth vs landlocked (per century)")
     ax.set_title("The sea turned from liability to engine after 1400\n"
-                 "Coastal premium by sea basin: negative during the plague, strongly positive after",
+                 "Coastal premium by sea basin: negative during the plague century, strongly positive after",
                  fontsize=11.5)
-    ax.annotate("Black Death\nenters via ports", xy=(1, -0.16), xytext=(1.1, -0.05),
+    ax.annotate("plague century:\ncoastal cities lose", xy=(1, -0.16), xytext=(1.1, -0.05),
                 fontsize=8.5, ha="left", arrowprops=dict(arrowstyle="->", color="gray"))
     ax.legend(fontsize=9)
     fig.tight_layout(); fig.savefig(FIG / "fig_water_timing.png"); plt.close(fig)
 
 
 if __name__ == "__main__":
-    fig_causal(); fig_performers(); fig_water_timing()
-    print("wrote fig_causal_consolidated, fig_performers, fig_water_timing")
+    fig_causal(); fig_event_study(); fig_performers(); fig_water_timing()
+    print("wrote fig_causal_consolidated, fig_event_study, fig_performers, fig_water_timing")
