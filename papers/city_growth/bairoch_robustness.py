@@ -12,6 +12,7 @@ from panel import load_buringh, wide_pop
 from bairoch_panel import load_bairoch_wide
 from privileges import privilege_years, _nearest_grant
 from charter_did import load_treatment_years
+from coverage import viabundus_flag, stadtebuch_flag
 
 TH = 1000.0
 EARTH_KM = 6371.0088
@@ -116,6 +117,9 @@ def naive_gap(w, ycol):
 
 def run(name, w):
     w = attach_privileges(w[w["in_cne"]].copy())
+    # privilege absence is only observable inside each source's universe
+    w["in_via"] = viabundus_flag(w)
+    w["in_stb"] = stadtebuch_flag(w)
     R = {}
     gs, gr, gn = gibrat(w, 1300, 1500)
     R["gibrat_slope"], R["gibrat_r2"], R["gibrat_n"] = gs, gr, gn
@@ -131,7 +135,8 @@ def run(name, w):
     R["decomp_total_r2"], R["decomp_n"] = tot, vn
     for kind, ycol in [("staple", "staple_year"), ("fair", "fair_year"),
                        ("charter", "charter_year"), ("market", "market_year")]:
-        ng = naive_gap(w, ycol); dd, dn = did(w, ycol)
+        uni = w[w["in_via"]] if kind in ("staple", "fair") else w[w["in_stb"]]
+        ng = naive_gap(uni, ycol); dd, dn = did(uni, ycol)
         R[f"{kind}_naive"], R[f"{kind}_did"], R[f"{kind}_ntreat"] = ng, dd, dn
     print(f"\n{'='*70}\n{name}\n{'='*70}")
     print(f"  Gibrat 1300->1500 slope={gs:+.3f} R2={gr:.3f} (n={gn})")

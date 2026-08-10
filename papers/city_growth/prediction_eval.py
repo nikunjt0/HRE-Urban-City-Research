@@ -39,19 +39,32 @@ INST = ["has_staple", "has_fair", "has_charter", "has_market"]
 
 
 def load():
+    from coverage import viabundus_flag, stadtebuch_flag
     d = pd.read_csv(OUT / "synthesis_frame.csv")
     d = d[d["in_cne"] == True].copy()
-    for y in [800, 1200, 1300, 1400, 1500]:
+    for y in [800, 900, 1000, 1100, 1200, 1300, 1400, 1500]:
         d[f"l{y}"] = np.log(d[f"pop{y}"].where(d[f"pop{y}"] >= TH))
     d["elev_z"] = (d["elev"] - d["elev"].mean()) / d["elev"].std()
     d["water"] = ((d["on_river"] == 1) | (d["on_coast"] == 1)).astype(float)
     pw = pd.read_csv(OUT / "privilege_wide.csv")[["cid", "staple_year", "fair_year"]]
     cp = pd.read_csv(OUT / "city_performers.csv")[["cid", "charter_year", "market_year"]]
     d = d.merge(pw, on="cid", how="left").merge(cp, on="cid", how="left")
-    d["has_staple"] = (d["staple_year"] <= 1500).fillna(False).astype(float)
-    d["has_fair"] = (d["fair_year"] <= 1500).fillna(False).astype(float)
-    d["has_charter"] = (d["charter_year"] <= 1500).fillna(False).astype(float)
-    d["has_market"] = (d["market_year"] <= 1500).fillna(False).astype(float)
+    # privilege status is only OBSERVABLE inside each source's geographic
+    # universe (Viabundus network footprint; Städtebuch = 1937 Germany).
+    # Outside it, an unmatched city is missing data, not an untreated zero.
+    d["in_via"] = viabundus_flag(d)
+    d["in_stb"] = stadtebuch_flag(d)
+    d["has_staple"] = np.where(d["in_via"], (d["staple_year"] <= 1500).fillna(False).astype(float), np.nan)
+    d["has_fair"] = np.where(d["in_via"], (d["fair_year"] <= 1500).fillna(False).astype(float), np.nan)
+    d["has_charter"] = np.where(d["in_stb"], (d["charter_year"] <= 1500).fillna(False).astype(float), np.nan)
+    d["has_market"] = np.where(d["in_stb"], (d["market_year"] <= 1500).fillna(False).astype(float), np.nan)
+    # Europe-wide self-government (Bosker) and participative institutions
+    # (Wahl PPI) — the southern institutions blocks, each on its own universe
+    from southern_institutions import attach_commune, attach_ppi
+    d = attach_commune(d)
+    d = attach_ppi(d)
+    d["has_commune"] = np.where(d["in_bosker"], (d["commune_year"] <= 1500).fillna(False).astype(float), np.nan)
+    d["has_ppi"] = np.where(d["in_ppi"], (d["ppi_year"] <= 1500).fillna(False).astype(float), np.nan)
     return d
 
 
@@ -85,13 +98,16 @@ def part_a(d, md):
     md.append("## A. Building the decomposition step by step (R2 ladder)\n")
     md.append("Candidate explanations of log pop1500, entered alone and together:\n")
     ladder = [
-        ("institutions only (staple/fair/charter/market by 1500)", INST),
+        ("institutions only (privilege-observable universe)", INST),
         ("geography only (river/coast/basin/elevation)", GEO),
         ("deep history only (log pop 800)", ["l800"]),
         ("inherited size only (log pop 1200)", ["l1200"]),
         ("geography + inherited size", GEO + ["l1200"]),
         ("geography + deep history + inherited size", GEO + ["l800", "l1200"]),
-        ("ALL FOUR (adding institutions)", GEO + ["l800", "l1200"] + INST),
+        ("geo + inherited + institutions (privilege universe)", GEO + ["l1200"] + INST),
+        ("self-government (commune) only — Bosker universe, Europe-wide", ["has_commune"]),
+        ("participative institutions only — Wahl universe", ["has_ppi"]),
+        ("geo + inherited + commune (Bosker universe)", GEO + ["l1200", "has_commune"]),
     ]
     md.append("| model | R2 | n |\n|---|---|---|")
     for label, xs in ladder:
@@ -99,25 +115,51 @@ def part_a(d, md):
         md.append(f"| {label} | {rr:.3f} | {n} |")
         print(f"  {label:52s} R2={rr:.3f} n={n}")
 
-    # same-sample comparison: does adding institutions shrink the unexplained part?
-    s = d.dropna(subset=["l1500", "l800", "l1200"] + GEO + INST)
-    r3 = sm.OLS(s["l1500"], sm.add_constant(s[GEO + ["l800", "l1200"]])).fit().rsquared
-    r4 = sm.OLS(s["l1500"], sm.add_constant(s[GEO + ["l800", "l1200"] + INST])).fit().rsquared
-    md.append(f"\nSame {len(s)} cities: unexplained share 3-group = {1-r3:.3f}, "
-              f"after adding institutions = {1-r4:.3f} "
+    # same-sample comparison on the privilege-observable universe (institutions
+    # measured, no false zeros): does adding them shrink the unexplained part?
+    s = d.dropna(subset=["l1500", "l1200"] + GEO + INST)
+    r3 = sm.OLS(s["l1500"], sm.add_constant(s[GEO + ["l1200"]])).fit().rsquared
+    r4 = sm.OLS(s["l1500"], sm.add_constant(s[GEO + ["l1200"] + INST])).fit().rsquared
+    md.append(f"\nSame {len(s)} privilege-universe cities: unexplained share without "
+              f"institutions = {1-r3:.3f}, with = {1-r4:.3f} "
               f"(institutions recover {r4-r3:.3f} of the {1-r3:.3f}).\n")
-    print(f"  unexplained: {1-r3:.3f} -> {1-r4:.3f} after adding institutions")
+    print(f"  unexplained (privilege universe, n={len(s)}): {1-r3:.3f} -> {1-r4:.3f} "
+          f"after adding institutions")
 
-    md.append("## A2. Shapley shares with institutions as a fourth group\n")
-    groups = {"geography": GEO, "deep_history_800": ["l800"],
-              "inherited_1200": ["l1200"], "institutions": INST}
-    phi, tot, n = shapley(d, "l1500", groups)
-    md.append(f"total R2 = {tot:.3f} (n={n}); unexplained = {1-tot:.3f}\n")
+    md.append("## A2. Shapley shares\n")
+    md.append("Headline three-group split on the full sample (privileges cannot enter "
+              "here honestly: their status is only observed inside each source's coverage "
+              "area). Institutions are then bounded on the privilege-observable universe "
+              "(inside both the Viabundus footprint and the Städtebuch area), where all "
+              "four statuses are measured. NOTE: all shares are shares of predictive R2 — "
+              "descriptive accounting, not causal attribution.\n")
+    groups3 = {"geography": GEO, "deep_history_800": ["l800"], "inherited_1200": ["l1200"]}
+    phi3, tot3, n3 = shapley(d, "l1500", groups3)
+    md.append(f"\n3-group, full sample: total R2 = {tot3:.3f} (n={n3}); unexplained = {1-tot3:.3f}\n")
     md.append("| group | share of explained | share of total variance |\n|---|---|---|")
-    for k2, v in phi.items():
-        md.append(f"| {k2} | {v/tot:.1%} | {v:.3f} |")
-        print(f"    {k2:20s} {v/tot:6.1%} of explained   ({v:.3f} R2 units)")
-    print(f"    unexplained {1-tot:.1%}")
+    for k2, v in phi3.items():
+        md.append(f"| {k2} | {v/tot3:.1%} | {v:.3f} |")
+        print(f"    [3g full]  {k2:20s} {v/tot3:6.1%} of explained   ({v:.3f} R2 units)")
+    print(f"    [3g full]  unexplained {1-tot3:.1%}  (n={n3})")
+    groupsU = {"geography": GEO, "inherited_1200": ["l1200"], "institutions": INST}
+    phiU, totU, nU = shapley(d, "l1500", groupsU)
+    md.append(f"\n3-group with institutions, privilege-observable universe: total R2 = "
+              f"{totU:.3f} (n={nU}); unexplained = {1-totU:.3f}\n")
+    md.append("| group | share of explained | share of total variance |\n|---|---|---|")
+    for k2, v in phiU.items():
+        md.append(f"| {k2} | {v/totU:.1%} | {v:.3f} |")
+        print(f"    [univ]     {k2:20s} {v/totU:6.1%} of explained   ({v:.3f} R2 units)")
+    print(f"    [univ]     unexplained {1-totU:.1%}  (n={nU})")
+    # Europe-wide (incl. southern) institutions: commune on the Bosker universe
+    groupsB = {"geography": GEO, "inherited_1200": ["l1200"], "self_government": ["has_commune"]}
+    phiB, totB, nB = shapley(d, "l1500", groupsB)
+    md.append(f"\n3-group with communal self-government, Bosker universe (Europe-wide incl. "
+              f"Italy/France/Austria): total R2 = {totB:.3f} (n={nB}); unexplained = {1-totB:.3f}\n")
+    md.append("| group | share of explained | share of total variance |\n|---|---|---|")
+    for k2, v in phiB.items():
+        md.append(f"| {k2} | {v/totB:.1%} | {v:.3f} |")
+        print(f"    [bosker]   {k2:20s} {v/totB:6.1%} of explained   ({v:.3f} R2 units)")
+    print(f"    [bosker]   unexplained {1-totB:.1%}  (n={nB})")
 
     # residual autocorrelation: is the unexplained part a stable omitted factor?
     md.append("\n## A3. Is the unexplained 31% a stable hidden factor, or noise?\n")
@@ -139,28 +181,27 @@ def part_a(d, md):
     # figure: ladder + shapley
     fig, axes = plt.subplots(1, 2, figsize=(11.5, 4.6))
     ax = axes[0]
-    labels = ["Institutions\nonly", "Geography\nonly", "Size in 800\nonly",
-              "Size in 1200\nonly", "Geo + 800\n+ 1200", "+ Institutions"]
+    labels = ["Institutions\nonly*", "Geography\nonly", "Size in 800\nonly",
+              "Size in 1200\nonly", "Geo + 800\n+ 1200", "Geo + 1200\n+ institutions*"]
     vals = [r2(d, "l1500", xs)[0] for xs in
             [INST, GEO, ["l800"], ["l1200"], GEO + ["l800", "l1200"],
-             GEO + ["l800", "l1200"] + INST]]
+             GEO + ["l1200"] + INST]]
     colors = ["#c0392b", "#7fbf7b", "#8073ac", "#2c7fb8", "#555555", "#999999"]
     ax.barh(range(len(vals))[::-1], vals, color=colors)
     for i, v in enumerate(vals):
         ax.text(v + 0.01, len(vals) - 1 - i, f"{v:.2f}", va="center", fontsize=10,
                 fontweight="bold")
     ax.set_yticks(range(len(vals))[::-1]); ax.set_yticklabels(labels, fontsize=9)
-    ax.set_xlim(0, 0.85); ax.set_xlabel("share of 1500 size variation explained (R²)")
+    ax.set_xlim(0, 0.85)
+    ax.set_xlabel("share of 1500 size variation explained (R²)\n"
+                  "* = privilege-observable universe only (coverage-correct)")
     ax.set_title("Step 1: what can each candidate explain?")
     ax = axes[1]
-    groups4 = {"geography": GEO, "deep_history_800": ["l800"],
-               "inherited_1200": ["l1200"], "institutions": INST}
-    phi4, tot4, _ = shapley(d, "l1500", groups4)
-    parts = [("Inherited size\n(1200)", phi4["inherited_1200"], "#2c7fb8"),
-             ("Deep origin\n(800)", phi4["deep_history_800"], "#8073ac"),
-             ("Geography (direct)", phi4["geography"], "#7fbf7b"),
-             ("Institutions", phi4["institutions"], "#c0392b"),
-             ("Unexplained\n(luck + measurement)", 1 - tot4, "#cccccc")]
+    parts = [("Inherited size\n(1200)", phi3["inherited_1200"], "#2c7fb8"),
+             ("Deep origin\n(800)", phi3["deep_history_800"], "#8073ac"),
+             ("Geography (conditional)", phi3["geography"], "#7fbf7b"),
+             ("Unexplained, weakly\npersistent (shocks +\nmeasurement)", 1 - tot3, "#cccccc")]
+    n4 = n3
     left = 0
     stagger = 0
     for name, v, c in parts:
@@ -178,10 +219,11 @@ def part_a(d, md):
         left += v
     ax.set_xlim(0, 1); ax.set_ylim(-0.6, 0.75); ax.set_yticks([])
     ax.set_xlabel("share of total variance in city size, 1500")
-    ax.set_title("Step 2: fair (Shapley) split of the credit")
+    ax.set_title(f"Step 2: Shapley split of predictive R² (full sample, n={n4};\ndescriptive accounting, not causal attribution)",
+                 fontsize=10)
     fig.tight_layout(); fig.savefig(FIG / "fig_decomp_build.png", bbox_inches="tight")
     plt.close(fig)
-    return phi4, tot4
+    return phi3, tot3
 
 
 # ---------------------------------------------------------------- B. implied size
@@ -303,23 +345,25 @@ def part_c(d, md):
     # the equation
     s3 = project(d, b, c, a_t)
     r2_eq = metrics(s3, md, "THE EQUATION (size + water + shocks)")
-    # equation + privileges
+    # equation + privileges (only cities where all four statuses are observable)
     Pi = transitions(d)
-    di = d[["cid"] + INST]
-    Pi = Pi.merge(di, on="cid", how="left")
+    di = d[["cid"] + INST].dropna(subset=INST)
+    Pi = Pi.merge(di, on="cid", how="inner")
     Xi = pd.get_dummies(Pi["period"], prefix="a").astype(float)
     Xi["l0"] = Pi["l0"]; Xi["water"] = Pi["water"]
     for cc in INST:
         Xi[cc] = Pi[cc]
     mi = sm.OLS(Pi["l1"], Xi).fit()
     ai = {p.replace("a_", ""): mi.params[p] for p in Xi.columns if p.startswith("a_")}
-    s4 = s.copy()
+    s4 = s.dropna(subset=INST).copy()
     lp = s4["l1200"].to_numpy().copy()
     inst_term = sum(mi.params[cc] * s4[cc].to_numpy() for cc in INST)
     for y in ["1200", "1300", "1400"]:
         lp = ai.get(y, 0.0) + mi.params["l0"] * lp + mi.params["water"] * s4["water"].to_numpy() + inst_term
     s4["lpred"] = lp
-    metrics(s4, md, "equation + all four privileges")
+    metrics(s3[s3["cid"].isin(set(s4["cid"]))], md,
+            f"the equation, privilege-universe cities (n={len(s4)})")
+    metrics(s4, md, f"equation + all four privileges (n={len(s4)})")
 
     # growth prediction
     md.append("")
@@ -374,6 +418,70 @@ def part_c(d, md):
     plt.close(fig)
 
 
+def part_d(d, md):
+    """Temporal-leakage check. The headline R2=0.56 uses coefficients estimated
+    on the 1200-1500 transitions themselves — the features are 1200-vintage but
+    the coefficients have seen the 1500 outcomes. Here the law (and a GBM) are
+    estimated SOLELY on the 800->900 ... 1100->1200 transitions, coefficients
+    locked, then iterated 1200->1500. Nothing after 1200 touches the fit."""
+    md.append("\n## D. Temporal-leakage check: law estimated on pre-1200 transitions only\n")
+    print("=" * 74); print("D. EX-ANTE (PRE-1200) BACKCAST"); print("=" * 74)
+    GEOX = ["on_river", "on_coast", "atlantic", "baltic", "northsea", "medit", "elev_z"]
+    # a handful of lat/lon values are corrupted in the source; mask to median
+    for col, lo, hi in [("lat", 35, 62), ("lon", -12, 32)]:
+        bad = (d[col] < lo) | (d[col] > hi)
+        d.loc[bad, col] = d.loc[~bad, col].median()
+    F = ["water"] + GEOX + ["lat", "lon"]
+    recs = []
+    for y0, y1 in [(800, 900), (900, 1000), (1000, 1100), (1100, 1200)]:
+        ss = d.dropna(subset=[f"l{y0}", f"l{y1}"]).copy()
+        ss["l0"] = ss[f"l{y0}"]; ss["l1"] = ss[f"l{y1}"]; ss["period"] = str(y0)
+        recs.append(ss[["cid", "l0", "l1", "period"] + F])
+    P = pd.concat(recs, ignore_index=True)
+    counts = {k: int(v) for k, v in P.groupby("period").size().items()}
+    b, c, a_t, sigma = fit_law(P)
+    a_bar = float(np.mean(list(a_t.values())))
+    md.append(f"Pre-1200 law (transition counts {counts}): persistence b={b:.3f}, "
+              f"water c={c:.3f}, mean pre-1200 century drift a={a_bar:+.3f}, "
+              f"sigma={sigma:.3f}. Coefficients locked before 1200.\n")
+    print(f"  pre-1200 law: b={b:.3f} c={c:.3f} a_bar={a_bar:+.3f} "
+          f"sigma={sigma:.3f} n={len(P)} {counts}")
+    s = d.dropna(subset=["l1200", "l1500"]).copy()
+    lp = s["l1200"].to_numpy().copy()
+    for _ in range(3):
+        lp = a_bar + b * lp + c * s["water"].to_numpy()
+    s["lpred"] = lp
+    md.append("| predictor (trained only on 700–1200 data) | R2 (log size) | rank corr | median miss | within x1.5 | within x2 | top-10 hit |\n|---|---|---|---|---|---|---|")
+    r2_strict = metrics(s, md, "pre-1200 law, strict ex-ante")
+    bias = float((s["l1500"] - s["lpred"]).mean())
+    s2 = s.copy(); s2["lpred"] = s2["lpred"] + bias
+    r2_lvl = metrics(s2, md, "pre-1200 law + one overall level correction")
+    # GBM trained on the same pre-1200 transitions, iterated forward
+    from sklearn.ensemble import GradientBoostingRegressor
+    Xtr = P[["l0"] + F].to_numpy()
+    g = GradientBoostingRegressor(random_state=0).fit(Xtr, P["l1"].to_numpy())
+    Fmat = [s[f].to_numpy() for f in F]
+    lp = s["l1200"].to_numpy().copy()
+    for _ in range(3):
+        lp = g.predict(np.column_stack([lp] + Fmat))
+    s3 = s.copy(); s3["lpred"] = lp
+    r2_mls = metrics(s3, md, "pre-1200 GBM (all geo features), strict")
+    bias_ml = float((s3["l1500"] - s3["lpred"]).mean())
+    s4 = s3.copy(); s4["lpred"] = s4["lpred"] + bias_ml
+    r2_ml = metrics(s4, md, "pre-1200 GBM + one overall level correction")
+    md.append(f"\nThe strict forecasts miss the common post-1200 growth acceleration "
+              f"(mean level error {bias:+.2f} log: the centuries after 1200 were faster than "
+              f"those before). A level miss shifts every city equally, so it cannot reorder "
+              f"the hierarchy — rank correlation and top-10 identification are unaffected. "
+              f"Allowing one overall level correction (a single scalar; no city-specific or "
+              f"post-1200 cross-sectional information), the pre-1200 law reaches "
+              f"R2 = {r2_lvl:.3f}, against 0.56 for coefficients fitted on the 1200–1500 "
+              f"transitions themselves.\n")
+    print(f"  level bias: law {bias:+.2f}, GBM {bias_ml:+.2f}")
+    return dict(b=b, c=c, a_bar=a_bar, r2_strict=r2_strict, r2_level=r2_lvl,
+                r2_ml_strict=r2_mls, r2_ml_level=r2_ml, bias=bias, counts=counts)
+
+
 def main():
     d = load()
     md = ["# Prediction evaluation & decomposition transparency\n",
@@ -384,6 +492,7 @@ def main():
     part_b(d, md)
     print("=" * 74); print("C. PREDICTION EVALUATION"); print("=" * 74)
     part_c(d, md)
+    part_d(d, md)
     (OUT / "06_prediction.md").write_text("\n".join(md))
     print("\nwrote out/06_prediction.md + 3 figures")
 

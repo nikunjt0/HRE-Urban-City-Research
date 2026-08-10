@@ -16,6 +16,7 @@ from pathlib import Path
 from sklearn.neighbors import BallTree
 import statsmodels.formula.api as smf
 from panel import load_buringh, wide_pop
+from coverage import viabundus_flag
 
 ROOT = Path(__file__).resolve().parents[2]
 VIA = ROOT / "docs/viabundus/Viabundus-2-csv"
@@ -56,8 +57,19 @@ def _nearest_grant(cities, grants):
 
 
 def build_panel(region="in_cne"):
+    """City x century panel restricted to the Viabundus network footprint.
+
+    Restriction matters: outside the mapped network (Italy, Austria,
+    Switzerland, Hungary, southern France/Germany) a city with no staple/fair
+    record is NOT an observed zero — the source simply does not cover it.
+    Absence is only informative inside the footprint."""
     w = wide_pop(load_buringh(), years=(1100, 1200, 1300, 1400, 1500))
     d = w[w[region]].copy().reset_index(drop=True)
+    d["in_via"] = viabundus_flag(d)
+    n_all = len(d)
+    d = d[d["in_via"]].copy().reset_index(drop=True)
+    print(f"[coverage] Viabundus footprint: {len(d)}/{n_all} {region} cities kept "
+          f"(rest outside the mapped network; staple/fair status unobservable there)")
     st, fa = privilege_years()
     d["staple_year"] = _nearest_grant(d, st)
     d["fair_year"] = _nearest_grant(d, fa)

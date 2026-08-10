@@ -1,3 +1,19 @@
+> **DATA-AUDIT REVISION (Aug 2026).** The numbers below predate the data audit and are
+> superseded by the revised paper (`European City Growth Paper (revised).docx`) and
+> `causal_summary.json` / `06_prediction.md` / `07_data_quality.md`. Key corrections:
+> (1) privilege analyses are now restricted to each source's coverage universe (Viabundus
+> footprint; Städtebuch = 1937 Germany) — raw staple/fair gaps become +40%/+26%, DiD
+> staple −7% [−22,+10], fair −0% [−13,+14], charter +0% [−20,+28], market −3% [−26,+32];
+> "zero causal effect" is overstated for charters/markets (wide CIs, MDE +41%/+51%) — the
+> defensible claim is "no growth break at the grant; staple/fair effects >+10–14% excluded".
+> (2) Shapley shares (full sample, n=551): 48% inherited-1200 / 19% deep-800 / 2.6% geography
+> (conditional) / 31% unexplained; institutions carry ~12 pts as markers on their observable
+> universe (n=196). (3) The ~31% residual is "unexplained and weakly persistent", not proven
+> luck. (4) The prediction law survives a no-leakage backcast (coefficients locked on
+> 800→1200 transitions: R²=0.50 strict, 0.56 level-corrected). (5) 81% of 1200–1500
+> observations in Buringh are imputed/proxied and ~7% cite Bairoch directly — the two
+> reconstructions are overlapping, not independent.
+
 # Why did medieval cities get big? A causal reappraisal
 
 **Central/Northern Europe & the Holy Roman Empire, 1200–1500**

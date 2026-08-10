@@ -25,8 +25,8 @@ def fig_privileges():
     """The causal null: naive association vs matched DiD."""
     fig, ax = plt.subplots(figsize=(7, 4.4))
     labels = ["Staple right", "Fair"]
-    naive = [43, 31]         # % from TWFE
-    did = [-9, 0]            # % from matched DiD
+    naive = [40, 26]         # % from TWFE (Viabundus-footprint sample)
+    did = [-7, 0]            # % from matched DiD
     x = np.arange(len(labels)); w = 0.36
     ax.bar(x - w/2, naive, w, label="Naïve association (two-way FE)", color="#c0392b")
     ax.bar(x + w/2, did, w, label="Causal effect (matched diff-in-diff)", color="#2c7fb8")
