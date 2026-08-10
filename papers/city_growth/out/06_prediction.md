@@ -15,6 +15,9 @@ Candidate explanations of log pop1500, entered alone and together:
 | geography + inherited size | 0.575 | 1092 |
 | geography + deep history + inherited size | 0.693 | 551 |
 | geo + inherited + institutions (privilege universe) | 0.611 | 196 |
+| self-government (commune) only — Bosker universe, Europe-wide | 0.218 | 387 |
+| participative institutions only — Wahl universe | 0.058 | 289 |
+| geo + inherited + commune (Bosker universe) | 0.564 | 367 |
 
 Same 196 privilege-universe cities: unexplained share without institutions = 0.433, with = 0.389 (institutions recover 0.044 of the 0.433).
 
@@ -38,6 +41,14 @@ Headline three-group split on the full sample (privileges cannot enter here hone
 | geography | 9.1% | 0.056 |
 | inherited_1200 | 71.9% | 0.439 |
 | institutions | 19.0% | 0.116 |
+
+3-group with communal self-government, Bosker universe (Europe-wide incl. Italy/France/Austria): total R2 = 0.564 (n=367); unexplained = 0.436
+
+| group | share of explained | share of total variance |
+|---|---|---|
+| geography | 6.5% | 0.036 |
+| inherited_1200 | 74.2% | 0.419 |
+| self_government | 19.3% | 0.109 |
 
 ## A3. Is the unexplained 31% a stable hidden factor, or noise?
 

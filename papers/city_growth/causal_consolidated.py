@@ -23,10 +23,25 @@ import statsmodels.formula.api as smf
 from pathlib import Path
 from privileges import build_panel
 from charter_did import attach_population, load_treatment_years, to_long
+from southern_institutions import attach_commune, attach_ppi
+from panel import load_buringh, wide_pop
 
 TH = 1000.0
 OUT = Path(__file__).resolve().parent / "out"
 rng = np.random.default_rng(7)
+
+
+def wide_to_long(w, ycol):
+    """City x century long panel with a treated dummy from a dated-treatment wide frame."""
+    rows = []
+    for _, r in w.iterrows():
+        for y in [1200, 1300, 1400, 1500]:
+            p = r.get(f"pop{y}")
+            if pd.isna(p) or p < TH:
+                continue
+            rows.append({"cid": r["cid"], "year": y, "lpop": np.log(p),
+                         "treated": int(r[ycol] <= y) if pd.notna(r[ycol]) else 0})
+    return pd.DataFrame(rows)
 
 
 def naive(long):
@@ -173,6 +188,19 @@ def main():
     for kind, ycol in [("charter", "charter_year"), ("market", "market_year")]:
         frames[kind] = (to_long(loc, kind)[["cid", "year", "lpop", "treated"]],
                         loc, ycol, "Cantoni/Städtebuch")
+    # Europe-wide communal self-government (Bosker) and participative
+    # institutions (Wahl PPI): century-status sources, midpoint-dated (see
+    # southern_institutions.py). These extend the test OUTSIDE Germany —
+    # Italy, France, Austria, Switzerland, Hungary, the Low Countries.
+    wb = wide_pop(load_buringh(), years=(1100, 1200, 1300, 1400, 1500))
+    wb = wb[wb["in_cne"]].reset_index(drop=True)
+    wc = attach_commune(wb)
+    wc = wc[wc["in_bosker"]].reset_index(drop=True)
+    frames["commune"] = (wide_to_long(wc, "commune_year"), wc, "commune_year",
+                         "Bosker, Europe-wide")
+    wp = attach_ppi(wb)
+    wp = wp[wp["in_ppi"]].reset_index(drop=True)
+    frames["ppi"] = (wide_to_long(wp, "ppi_year"), wp, "ppi_year", "Wahl PPI")
 
     for kind, (lp, w, ycol, src) in frames.items():
         nv, p = naive(lp)

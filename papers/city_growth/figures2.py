@@ -14,11 +14,13 @@ plt.rcParams.update({"figure.dpi": 130, "font.size": 11, "axes.grid": True, "gri
 
 def fig_causal():
     res = json.load(open(OUT / "causal_summary.json"))
-    order = ["staple", "fair", "charter", "market"]
+    order = [k for k in ["staple", "fair", "charter", "market", "commune", "ppi"] if k in res]
     names = {k: f"{lab}\nn treated = {res[k]['n_treat']}" for k, lab in
              [("staple", "Staple right\n(Viabundus)"), ("fair", "Trade fair\n(Viabundus)"),
-              ("charter", "Town charter\n(Städtebuch)"), ("market", "Market right\n(Städtebuch)")]}
-    fig, ax = plt.subplots(figsize=(8.4, 5.0))
+              ("charter", "Town charter\n(Städtebuch)"), ("market", "Market right\n(Städtebuch)"),
+              ("commune", "Self-government\n(Bosker, Europe)"), ("ppi", "Participative inst.\n(Wahl)")]
+             if k in res}
+    fig, ax = plt.subplots(figsize=(11.4, 5.2))
     x = np.arange(len(order)); w = 0.38
     naive = [res[k]["naive"] * 100 for k in order]
     did = [res[k]["did"] * 100 for k in order]
@@ -47,10 +49,12 @@ def fig_causal():
 def fig_event_study():
     """Stacked event-study coefficients per privilege (95% CI), from causal_summary."""
     res = json.load(open(OUT / "causal_summary.json"))
-    order = [k for k in ["staple", "fair", "charter", "market"] if res[k].get("event_study")]
+    order = [k for k in ["staple", "fair", "charter", "market", "commune", "ppi"]
+             if k in res and res[k].get("event_study")]
     labs = {"staple": "Staple right", "fair": "Trade fair",
-            "charter": "Town charter", "market": "Market right"}
-    fig, axes = plt.subplots(1, len(order), figsize=(2.9 * len(order), 3.9), sharey=True)
+            "charter": "Town charter", "market": "Market right",
+            "commune": "Self-government\n(Europe-wide)", "ppi": "Participative\ninstitutions"}
+    fig, axes = plt.subplots(1, len(order), figsize=(2.7 * len(order), 3.9), sharey=True)
     if len(order) == 1:
         axes = [axes]
     for ax, k in zip(axes, order):

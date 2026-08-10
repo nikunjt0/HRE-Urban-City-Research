@@ -111,13 +111,16 @@ para("Why did some medieval cities turn into metropolises while their neighbors 
      "populations (2,262 cities, 700–2000) joined to dated privilege records — with each privilege "
      "analysed strictly inside the geographic universe its source actually documents — I test that "
      "answer and find no support for it. Inside the Viabundus network area, towns holding staple "
-     "rights were 40% larger than towns without them. But towns that received a privilege had been "
-     "rising relative to their peers for centuries before the grant, and their growth does not "
-     "accelerate after it: difference-in-differences estimates around the grant are approximately "
-     "zero for all four privilege types (staple −7% [−22, +10]; fair −0% [−13, +14]; charter +0% "
-     "[−20, +28]; market −3% [−26, +32]). For staples and fairs the test is well powered — effects "
-     "larger than +10–14% are excluded; for charters and market rights the intervals remain wide, "
-     "so those nulls are imprecise. What the data consistently reject is the traditional reading in "
+     "rights were 40% larger than towns without them; Europe-wide, communes were 21% larger than "
+     "non-communes. But towns that received a privilege had been rising relative to their peers "
+     "for centuries before the grant, and their growth does not accelerate after it: "
+     "difference-in-differences estimates around the grant are approximately zero for six "
+     "institutional treatments from four sources (staple −7% [−22, +10]; fair −0% [−13, +14]; "
+     "charter +0% [−20, +28]; market −3% [−26, +32]; and — extending the test beyond Germany to "
+     "the Italian and French commune belt — communal self-government −1% [−9, +7] and "
+     "participative institutions −1% [−8, +8]). For the well-powered treatments, effects larger "
+     "than +7–14% are excluded; for charters and market rights the intervals remain wide, so "
+     "those nulls are imprecise. What the data consistently reject is the traditional reading in "
      "which the grant launches the growth: the ascent begins before the privilege arrives.")
 para("What did determine the urban hierarchy of 1500? A Shapley decomposition of predictive R² — "
      "descriptive accounting, not causal attribution — traces 48% of the total variance in 1500 "
@@ -209,6 +212,24 @@ bullet("Viabundus (Holterman et al.), a georeferenced reconstruction of the late
 bullet("Cantoni, Mohr & Weigand (2020), dated town charters (Stadtrecht) and market rights "
        "(Marktrecht) for the 2,390 towns of the Deutsches Städtebuch, with legal families "
        "(Magdeburg law, Lübeck law, …).")
+para("Three further sources extend the institutional record beyond the German privilege "
+     "datasets — each again used strictly inside its own universe:")
+bullet("Bosker, Buringh & van Zanden (2013), a 792-city European/Mediterranean panel whose "
+       "commune variable records communal self-government by century, 800–1800. This is the "
+       "Europe-wide analogue of a town charter, and it covers exactly the region the German "
+       "sources cannot: Italy, France, Austria, Switzerland, Hungary, the Low Countries.")
+bullet("Wahl (2015), participative political institutions (council elections, guild "
+       "participation, burgher representation) for 325 central-European cities including "
+       "Austria and Switzerland, by century 800–1800.")
+bullet("Krauer & Schmid (2022), a geocoded digitization of Biraben's plague-outbreak "
+       "inventory: 11,180 dated outbreak records 1346–1900, of which 338 place-level records "
+       "fall in the first Black Death wave (1347–1352). Used in §7 to test the plague "
+       "mechanism directly.")
+para("The Bosker and Wahl institutions are century-resolution status panels rather than dated "
+     "grants: if an institution is first observed at a census year, adoption occurred sometime "
+     "in the preceding century, and it is dated to that century's midpoint — equivalent to a "
+     "mid-century grant with ~50 years of exposure before the first treated census, well within "
+     "the exposure range of the exactly-dated privileges.")
 para("A blank in a privilege source can mean two very different things: 'this town did not have "
      "the privilege' or 'this town is outside the area the source documents.' Conflating the two "
      "manufactures false zeros. Viabundus maps the road, river and sea network of northern and "
@@ -219,9 +240,11 @@ para("A blank in a privilege source can mean two very different things: 'this to
      "staple and fair tests to cities within 25 km of a Viabundus network node (432 of the 1,259 "
      "sample cities — the median covered city sits about 1 km from a node, the median excluded "
      "city hundreds of km away, so the cutoff is not sensitive), and charter and market tests to "
-     "cities matched to a Städtebuch town (name match within 60 km, or coordinates within 5 km). "
-     "A city outside a source's universe is treated as missing data for that privilege — never as "
-     "an untreated zero.", "Coverage discipline.")
+     "cities matched to a Städtebuch town (name match within 60 km, or coordinates within 5 km); "
+     "likewise, commune and participative-institution tests are restricted to cities matched to a "
+     "Bosker or Wahl city (within 8 km), and plague exposure to cities near a geocoded outbreak "
+     "record. A city outside a source's universe is treated as missing data for that variable — "
+     "never as an untreated zero.", "Coverage discipline.")
 
 # ================================================================ 3
 h1("3. Step 1: Growth Was Not Predictable from Size")
@@ -276,10 +299,10 @@ para("Three things make the design credible — and honest about its limits. Fir
      "3). Third, the same machinery applied to four privileges from two independently assembled "
      "sources tells one consistent story. Figure 2 shows the headline comparison.")
 fig("fig_causal_consolidated.png",
-    "Raw size gaps (red) versus the matched difference-in-differences estimate (blue) for four "
-    "privileges, with 95% bootstrap confidence intervals and treatment counts. No estimate "
-    "rejects zero; the staple and fair intervals are tight, the charter and market intervals "
-    "are wide.")
+    "Raw size gaps (red) versus the matched difference-in-differences estimate (blue) for six "
+    "institutional treatments from four sources, with 95% bootstrap confidence intervals and "
+    "treatment counts. No estimate rejects zero; the staple, fair, commune, and "
+    "participative-institution intervals are tight, the charter and market intervals are wide.")
 para("The raw gaps do not survive the timing-aware comparison: staple −7% [−22, +10], fair −0% "
      "[−13, +14], town charter +0% [−20, +28], market right −3% [−26, +32]. These are null "
      "results of two different strengths, and the difference matters. For the two well-powered "
@@ -293,9 +316,10 @@ para("The raw gaps do not survive the timing-aware comparison: staple −7% [−
      "positive one cannot be excluded.")
 fig("fig_event_study.png",
     "Stacked event studies around the grant century (event time −1 = last pre-grant census, "
-    "reference). Towns that will receive a privilege are already rising relative to controls "
-    "two centuries before the grant, and the ascent continues at the same slope after it — "
-    "no break appears at the grant date.")
+    "reference), for all six institutional treatments. Towns that will receive a privilege are "
+    "already rising relative to controls two centuries before the grant, and the ascent "
+    "continues at the same slope after it — no break appears at the grant date, in Germany or "
+    "beyond it.")
 para("Figure 3 shows why the story is selection rather than treatment. Towns that would receive a "
      "staple right sat roughly 19 log points below their eventual relative level two centuries "
      "before the grant and climbed steadily through it; the climb after the grant continues the "
@@ -304,15 +328,33 @@ para("Figure 3 shows why the story is selection rather than treatment. Towns tha
      "they are not flat in levels — treated towns were rising, exactly as 'privileges were "
      "awarded to rising towns' predicts — but the growth rate does not change when the grant "
      "arrives, which is what the difference-in-differences nets out.")
+para("Do these nulls generalize beyond Germany — or are they an artifact of testing only where "
+     "the German sources reach? Two Europe-wide institutions answer this. Communal "
+     "self-government (Bosker et al.), the closest continental analogue of a town charter, is "
+     "observed for 391 matched cities including Italy, France, Austria, Switzerland and "
+     "Hungary, with 243 dated adoptions. The pattern is identical and more precise than any "
+     "German privilege: communes were 21% larger than non-communes in the naive comparison, "
+     "but the matched difference-in-differences is −1% [−9, +7] — the tightest interval of "
+     "the six treatments; self-government effects larger than +7% are excluded, against a "
+     "minimum detectable effect of +12%. Participative institutions (Wahl: council "
+     "elections, guild participation, burgher representation; 207 dated adoptions including "
+     "Austrian and Swiss towns) give −1% [−8, +8]. The event studies (Figure 3, right panels) "
+     "show the same signature as the German privileges: future communes were rising for two "
+     "centuries before self-government arrives, and do not accelerate afterward. The Italian "
+     "and French communes so celebrated in the historiography were, like the German charters, "
+     "milestones on ascents already under way.")
 para("A century-grid panel has a mechanical exposure problem: a staple granted in 1202 enjoys 98 "
      "years of exposure before the next census, one granted in 1297 only three. If privileges "
      "worked slowly, late-century grants would bias the estimates toward zero. They do not drive "
      "the result: restricting to grants in the first half of their century (at least 50 years of "
      "exposure) moves the estimates to staple −5%, fair +1%, charter −15%, market −6% — the same "
-     "picture.")
+     "picture. (The commune and participative-institution treatments are midpoint-dated by "
+     "construction, ~50 years of exposure each, squarely in this range.)")
 para("Growth in the century after a grant is statistically indistinguishable from growth in the "
-     "century before it, across four privileges and two sources. This parallels Bosker, Buringh & "
-     "van Zanden (2013), whose ‘bishopric advantage’ evaporates once city fixed effects absorb "
+     "century before it, across six institutional treatments, four sources, and both sides of "
+     "the Alps. For the well-powered treatments — staples, fairs, communes, participative "
+     "institutions — effects above +7–14% are excluded outright. This parallels Bosker, Buringh "
+     "& van Zanden (2013), whose ‘bishopric advantage’ evaporates once city fixed effects absorb "
      "the fact that bishops sat in already-important places.",
      "Finding 1: privileges were badges of arrival, not engines.")
 para("The Städtebuch record makes the logic vivid. Cologne, the empire's largest city (40,000 in "
@@ -438,9 +480,13 @@ para("The result on the full sample (n = 551), as shares of the total variance i
      "Institutions cannot enter this split honestly (their status is unobserved outside their "
      "sources' coverage), so they are bounded on the privilege-observable universe (n = 196): "
      "there, a three-way split gives inherited size 44 points of variance, institutions 12, "
-     "geography 6, with 39 unexplained. Even taking the 12-point share at face value, "
-     "institutions are markers, not movers: Step 2 found no growth break at the grants, and §8 "
-     "shows they add little to actual forecasting accuracy.")
+     "geography 6, with 39 unexplained. The same exercise on the Europe-wide Bosker universe "
+     "(n = 367, including the Italian and French commune belt) is strikingly parallel: "
+     "inherited size 42 points, communal self-government 11, geography 4. Even taking these "
+     "11–12-point shares at face value, institutions are markers, not movers: Step 2 found no "
+     "growth break at any of the six grants, and §8 shows they add little to actual "
+     "forecasting accuracy. North and south of the Alps alike, the institution flags the kind "
+     "of city that grows; it does not make cities grow.")
 para("Two glosses keep the headline numbers honest. First, these are shares of predictive R² — a "
      "descriptive accounting of where the variance sits, not a causal attribution; nothing here "
      "says 46% of a city's 1500 population was 'caused by' its 1200 size. Second, geography's "
@@ -498,26 +544,52 @@ para("One geographic factor did keep moving cities after 1200: navigable water. 
 para("The premium was not constant — it was switched on late. Figure 8 resolves the coastal "
      "premium by sea basin and century. In the plague century (1300–1400), coastal cities did "
      "worse, Mediterranean ports especially; after 1400, every basin turns strongly positive as "
-     "long-distance trade reorganized around the Atlantic, North Sea, and Baltic. A caution on "
-     "mechanism: maritime plague entry is a natural reading of the 1300s dip — Messina and "
-     "Marseille were famously the disease's ports of entry — but a century-level population "
-     "regression cannot establish it. Showing that coastal cities suffered because plague "
-     "arrived through their harbors, and recovered because trade reorganized, would require "
-     "city-level plague-arrival or mortality-exposure data this panel does not contain. What "
-     "the data do show is the reduced-form pattern: the cities that emerged from the "
-     "plague-and-recovery window permanently larger were disproportionately on water (64% of "
-     "winners vs 57% of losers; net 1300→1500 gain on water +0.084 log, p = 0.008, controlling "
-     "for pre-plague size).")
-para("This result is best read as an extension of Jedwab, Johnson & Koyama, not a rival novelty: "
-     "they establish that European cities recovered from the Black Death toward places with "
-     "stronger fixed factors of production. The refinement offered here is that, within this "
-     "Central European sample, the operative fixed factor was navigable water — the premium is "
-     "concentrated in the recovery century and shows up in every basin — which ties their "
-     "recovery mechanism to the specific geography that also dominates the over-performer list "
-     "of §5.")
+     "long-distance trade reorganized around the Atlantic, North Sea, and Baltic. What the data "
+     "show in reduced form: the cities that emerged from the plague-and-recovery window "
+     "permanently larger were disproportionately on water (64% of winners vs 57% of losers; net "
+     "1300→1500 gain on water +0.084 log, p = 0.008, controlling for pre-plague size).")
 fig("fig_water_timing.png",
     "The water premium by sea basin and century. Negative for Mediterranean ports in the plague "
     "century; strongly positive everywhere after 1400.")
+para("This pattern is best read as an extension of Jedwab, Johnson & Koyama, not a rival "
+     "novelty: they establish that European cities recovered from the Black Death toward "
+     "places with stronger fixed factors of production. The refinement offered here is that, "
+     "within this Central European sample, the operative fixed factor was navigable water — "
+     "the premium is concentrated in the recovery century and shows up in every basin — which "
+     "ties their recovery mechanism to the specific geography that also dominates the "
+     "over-performer list of §5.")
+h2("7.1 Testing the mechanism with plague-arrival data")
+para("Maritime plague entry is the natural reading of the 1300s dip — Messina and Marseille "
+     "were famously the disease's ports of entry — and rather than leave it as an assertion, "
+     "it can be confronted with data: the Krauer & Schmid digitization of Biraben's outbreak "
+     "inventory supplies 338 geocoded, place-level outbreak records from the first wave "
+     "(1347–1352), matched here to sample cities within 10 km. The test comes with a built-in "
+     "health warning. Biraben's inventory is a chronicle compilation, not a census of "
+     "outbreaks: absence of a record is weak evidence of absence, recording probability rises "
+     "with a town's documentation density (the match-rate table in the appendix shows the "
+     "Low Countries and Hungary at implausible zeros, a known undercoverage), and initial size "
+     "is controlled throughout for exactly that reason.")
+para("The results support the arrival leg of the mechanism and honestly fail to identify the "
+     "rest (Figure 9). Arrival: coastal cities were 7 percentage points and river cities 6 "
+     "points more likely to record a first-wave outbreak than landlocked cities of the same "
+     "size (p = .02 and .001; 142 of 1,174 sample cities hit) — the wave demonstrably "
+     "travelled the water network. Recorded arrival years, however, are indistinguishable "
+     "across coastal, river, and landlocked cities (all ≈1348): at annual resolution over a "
+     "five-year, continent-crossing wave, chronicle dates cannot rank who was struck first. "
+     "Impact and recovery: a recorded hit does not predict slower 1300→1400 growth — the "
+     "coefficient is actually positive, which is what selection on documentation produces "
+     "(thriving towns keep better records) when a century grid averages the 1347–52 crash "
+     "with fifty years of rebound; and the recovery-century hit×water interaction is "
+     "positive but insignificant (+0.07, p = .47). The honest summary: the exposure geography "
+     "of the Black Death confirms that water carried the shock, while the damage-and-rebound "
+     "channel is not identifiable from chronicle records at century resolution — it would "
+     "need annual population or mortality series.")
+fig("fig_plague_mechanism.png",
+    "The plague mechanism against arrival data (Biraben, first wave 1347–52). Left: water "
+    "cities are significantly more likely to record an outbreak (size-controlled); arrival "
+    "years do not discriminate. Right: century-resolution impact and recovery coefficients — "
+    "the positive 'hit' coefficient reflects selection on documentation, not plague benefiting "
+    "cities.")
 para("This is also the pattern behind Figure 5 and Table 1: the over-performers were Atlantic and "
      "North Sea ports because water is where the residual structure lives — the one systematic "
      "escape from the implied-size benchmark.")
@@ -571,7 +643,7 @@ fig("fig_prediction.png",
     "Left: 1500 sizes predicted by the equation from 1200 data versus actual 1500 sizes "
     "(R² = 0.56; dashed line = perfect prediction). Right: the same equation's predicted versus "
     "actual growth (R² = 0.02).")
-para("The right panel of Figure 9 is the other half of the finding. Asked to predict growth — "
+para("The right panel of Figure 10 is the other half of the finding. Asked to predict growth — "
      "which cities would rise or fall relative to their start — the same equation manages "
      "R² = 0.02. There is no contradiction: position is predictable because it is inherited; "
      "movement is unpredictable because the noise term (σ = 0.40) dwarfs the systematic pull. "
@@ -658,7 +730,7 @@ para("Simulating the law forward from the real 1200 sizes (400 runs) reproduces 
      "real top tier concentrated more than randomness predicts. The Zipf exponent — a standard "
      "measure of how dominant the largest cities are, lower = more concentrated — fell from 1.26 "
      "to 1.08 in the data, while the simulated law drifts toward mild equalization (1.22 by 1500). "
-     "Figure 10 shows the divergence. That gap is the fingerprint of a force absent from the "
+     "Figure 11 shows the divergence. That gap is the fingerprint of a force absent from the "
      "equation: agglomeration at the very top. Past a certain size, size itself attracts size — "
      "consistent with Dittmar's finding that Zipf's law for European cities emerges as the upper "
      "tail thickens toward the modern era.")
@@ -678,8 +750,8 @@ para("Every number above comes from the Buringh panel. Since medieval population
      "population numbers change. The two compilations overlap in their sources (§2), so this is "
      "a test of sensitivity to the reconstruction choices, not a fully independent replication — "
      "but it is exactly the comparison that matters for the results that could be artifacts of "
-     "one scholar's imputation scheme. Figure 11 shows the raw agreement (r = 0.96 on 1500 log "
-     "sizes, 511 common cities); Table 6 and Figure 12 place the headline quantities side by "
+     "one scholar's imputation scheme. Figure 12 shows the raw agreement (r = 0.96 on 1500 log "
+     "sizes, 511 common cities); Table 6 and Figure 13 place the headline quantities side by "
      "side.")
 fig("fig_source_agreement.png",
     "Agreement between the two population reconstructions on 1500 city sizes "
@@ -726,16 +798,19 @@ table(["population floor", "n (1200 & 1500)", "persistence r²", "Gibrat R² (gr
 # ================================================================ 10
 h1("10. What Is Actually New Here")
 para("Each ingredient of this paper has a literature behind it; the contributions are specific:")
-bullet("Privileges get a timing-aware causal test with explicit coverage discipline. The size "
-       "gaps enjoyed by privileged towns are old news; what is new is difference-in-differences "
-       "and stacked event-study estimates around the grant dates of four privilege types from "
-       "two sources, each restricted to the universe where absence is observable. The event "
-       "studies show privileged towns rising for two centuries before the grant with no break "
-       "after it. For the well-powered tests the nulls are informative — staple effects above "
-       "+10% and fair effects above +14% are excluded against raw gaps of +40% and +26%; for "
-       "charters and market rights the nulls are honest but imprecise (MDEs of +41%/+51%). "
-       "Prior work (e.g., Bosker et al. 2013) showed institution coefficients shrink under "
-       "fixed effects; this is a direct before/after test of the grants themselves.", "1.")
+bullet("Privileges get a timing-aware causal test with explicit coverage discipline — and the "
+       "null generalizes across Europe. What is new is difference-in-differences and stacked "
+       "event-study estimates around the grant dates of six institutional treatments from four "
+       "sources (Viabundus staples and fairs; Städtebuch charters and market rights; Bosker "
+       "communes Europe-wide; Wahl participative institutions), each restricted to the universe "
+       "where absence is observable. The event studies show privileged towns rising for two "
+       "centuries before the grant with no break after it — in Germany, Italy, and France "
+       "alike. For the well-powered tests the nulls are informative: staple effects above +10%, "
+       "fair above +14%, commune above +7%, and participative-institution effects above +8% are "
+       "excluded, against naive gaps of +40%, +26%, +21%, +5%; for charters and market rights "
+       "the nulls are honest but imprecise (MDEs of +41%/+51%). Prior work (e.g., Bosker et "
+       "al. 2013) showed institution coefficients shrink under fixed effects; this is a direct "
+       "before/after test of the grants themselves.", "1.")
 bullet("The urban hierarchy's origins are decomposed, with the decomposition's own limits "
        "stated. The full-sample Shapley split of predictive R² — 48% inherited (1200) size, 19% "
        "deep (800 AD) origin, 2.6% geography conditional on those sizes, 31% unexplained — is "
@@ -758,10 +833,14 @@ bullet("The summary equation is validated as a predictor with the temporal leak 
        "simulated law, Zipf 1.08 vs 1.22) isolates top-end agglomeration as the single force a "
        "random walk cannot mimic.", "4.")
 bullet("The Black Death result extends Jedwab, Johnson & Koyama's recovery-toward-fixed-factors "
-       "finding: within this sample the operative fixed factor was navigable water — the "
-       "coastal premium is negative in the plague century and strongly positive in the recovery "
-       "century, with post-plague winners disproportionately on water. The port-entry mechanism "
-       "itself remains a hypothesis that would need plague-arrival data to establish.", "5.")
+       "finding — and the mechanism is confronted with actual arrival data. Within this sample "
+       "the operative fixed factor was navigable water: the coastal premium is negative in the "
+       "plague century and strongly positive in the recovery century, with post-plague winners "
+       "disproportionately on water. Matching Biraben's digitized first-wave outbreak records "
+       "(1347–52) confirms the exposure geography — coastal and river cities were 6–7 points "
+       "more likely to record an outbreak, size-controlled — while showing candidly that the "
+       "damage-and-rebound channel cannot be identified from chronicle records at century "
+       "resolution.", "5.")
 
 # ================================================================ 11
 h1("11. What This Means")
@@ -805,6 +884,10 @@ for ref in [
     "Journal of Economic Inequality, 5(2), 199–212.",
     "Jedwab, R., Johnson, N. D., & Koyama, M. (2024). Medieval cities through the lens of urban "
     "economics.",
+    "Krauer, F., & Schmid, B. V. (2022). Mapping the plague through natural language processing "
+    "(digitized Biraben/Sticker outbreak data). Zenodo, doi:10.5281/zenodo.6587267.",
+    "Wahl, F. (2015). Participative political institutions in pre-modern Europe: Introducing a "
+    "new database. Historical Methods, 48(3), 110–124.",
     "Shorrocks, A. F. (1982). Inequality decomposition by factor components. Econometrica, 50(1), "
     "193–211.",
 ]:

@@ -58,6 +58,13 @@ def load():
     d["has_fair"] = np.where(d["in_via"], (d["fair_year"] <= 1500).fillna(False).astype(float), np.nan)
     d["has_charter"] = np.where(d["in_stb"], (d["charter_year"] <= 1500).fillna(False).astype(float), np.nan)
     d["has_market"] = np.where(d["in_stb"], (d["market_year"] <= 1500).fillna(False).astype(float), np.nan)
+    # Europe-wide self-government (Bosker) and participative institutions
+    # (Wahl PPI) — the southern institutions blocks, each on its own universe
+    from southern_institutions import attach_commune, attach_ppi
+    d = attach_commune(d)
+    d = attach_ppi(d)
+    d["has_commune"] = np.where(d["in_bosker"], (d["commune_year"] <= 1500).fillna(False).astype(float), np.nan)
+    d["has_ppi"] = np.where(d["in_ppi"], (d["ppi_year"] <= 1500).fillna(False).astype(float), np.nan)
     return d
 
 
@@ -98,6 +105,9 @@ def part_a(d, md):
         ("geography + inherited size", GEO + ["l1200"]),
         ("geography + deep history + inherited size", GEO + ["l800", "l1200"]),
         ("geo + inherited + institutions (privilege universe)", GEO + ["l1200"] + INST),
+        ("self-government (commune) only — Bosker universe, Europe-wide", ["has_commune"]),
+        ("participative institutions only — Wahl universe", ["has_ppi"]),
+        ("geo + inherited + commune (Bosker universe)", GEO + ["l1200", "has_commune"]),
     ]
     md.append("| model | R2 | n |\n|---|---|---|")
     for label, xs in ladder:
@@ -140,6 +150,16 @@ def part_a(d, md):
         md.append(f"| {k2} | {v/totU:.1%} | {v:.3f} |")
         print(f"    [univ]     {k2:20s} {v/totU:6.1%} of explained   ({v:.3f} R2 units)")
     print(f"    [univ]     unexplained {1-totU:.1%}  (n={nU})")
+    # Europe-wide (incl. southern) institutions: commune on the Bosker universe
+    groupsB = {"geography": GEO, "inherited_1200": ["l1200"], "self_government": ["has_commune"]}
+    phiB, totB, nB = shapley(d, "l1500", groupsB)
+    md.append(f"\n3-group with communal self-government, Bosker universe (Europe-wide incl. "
+              f"Italy/France/Austria): total R2 = {totB:.3f} (n={nB}); unexplained = {1-totB:.3f}\n")
+    md.append("| group | share of explained | share of total variance |\n|---|---|---|")
+    for k2, v in phiB.items():
+        md.append(f"| {k2} | {v/totB:.1%} | {v:.3f} |")
+        print(f"    [bosker]   {k2:20s} {v/totB:6.1%} of explained   ({v:.3f} R2 units)")
+    print(f"    [bosker]   unexplained {1-totB:.1%}  (n={nB})")
 
     # residual autocorrelation: is the unexplained part a stable omitted factor?
     md.append("\n## A3. Is the unexplained 31% a stable hidden factor, or noise?\n")
