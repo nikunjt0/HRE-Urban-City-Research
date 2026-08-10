@@ -53,3 +53,45 @@ machine-readable Bairoch 1988 data at `docs/bairoch_pop_data/bairoch-1988.csv` a
 **Status: not missing — already in the repo** at
 `docs/European_Population_data_Buringh/` (xlsx/ods/txt + Annex A/B PDFs + MANIFEST.TXT,
 an IISH/DANS-style deposit). Not re-downloaded.
+
+---
+Attempts made 2026-08-10 (privilege-coverage / plague data sweep for the city-growth paper).
+
+## Jedwab, Johnson & Koyama (2022 JEL) — city-level Black Death mortality (274 cities)
+**Status: exists but requires (free) openICPSR account.**
+- openICPSR project 120682, DOI 10.3886/E120682V1. The file
+  `Replication Files/Figure-1/cities274.xls` is the city-level cumulative
+  1347–1352 mortality dataset (digitized from Christakos et al. 2005).
+- Anonymous download returns 403; log in with a free ICPSR account and fetch
+  https://www.openicpsr.org/openicpsr/project/120682/version/V1/view
+- Substitute acquired: `plague_biraben/` (Krauer & Schmid) provides dated
+  plague ARRIVAL records; JJK provides mortality INTENSITY — complementary,
+  worth getting if the port-entry mechanism test is pursued seriously.
+
+## Stasavage (2014 APSR) "Was Weber Right?" — urban autonomy dates, ~170 cities
+**Status: not publicly deposited** (2014 APSR predates mandatory Dataverse).
+No Dataverse deposit found; Cambridge Core has appendix PDF only. The autonomy
+list draws on Bosker et al.'s `commune` variable (which we hold) — the marginal
+value over `commune` is modest. Email author if the exact coding is needed.
+
+## Guiso, Sapienza & Zingales "Long-Term Persistence" (JEEA 2016) — Italian communes
+**Status: not verified downloadable.** NBER w14278 / SSRN pages carry no data
+file; JEEA supplementary may require subscription. Bosker `commune` covers 57
+Italian cities in our matched panel; GSZ would add commune status for smaller
+towns. Low priority.
+
+## Not usable as tabular privilege data (checked, flagged)
+- Österreichischer Städteatlas: 64 Austrian towns, scanned map folders on
+  mapire.eu — no structured charter/privilege table.
+- Engel, "Digital Atlas of Medieval Hungary" (Engel2020.zip, abtk.hu): >23,000
+  settlements with legal-status TYPE (city/market town) but as a c.1500 static
+  cross-section inside a proprietary GIS executable — no dated grants.
+- Atlas Fontium (data.atlasfontium.pl, Poland): open GeoNode layer "Miasta,
+  AHP XVI w." = static 1550–1600 town gazetteer with locality type; useful as a
+  Poland control/gazetteer, NOT dated lokacja/charter events. (A dated Polish
+  Magdeburg-law charter dataset was not found in machine-readable form.)
+- Geovistory portal: SPARQL-only access, and does NOT host the CoMOR fairs
+  data despite citations suggesting it.
+- Staple rights south of the Viabundus network: no machine-readable dataset
+  found anywhere — the staple analysis remains honestly bounded to the
+  Viabundus footprint.
